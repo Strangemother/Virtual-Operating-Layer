@@ -1,0 +1,1 @@
+Assets.load('initial', ()=>initializeSystem())
