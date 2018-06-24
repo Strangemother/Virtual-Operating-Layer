@@ -2,6 +2,7 @@
 Maintain a list of drivers for user feedback.
 Start stop and API control.
  */
+AUTO_HOOK = {}
 
 class DriverManager extends Driver {
 
@@ -12,6 +13,78 @@ class DriverManager extends Driver {
     mount(sys){
         sys.pubsub.add('MEMORY.init', this.memoryInit.bind(this))
         sys.pubsub.add('Drivers.ready', this.driversReady.bind(this))
+        sys.pubsub.add('driver.mount', this.driverMountEvent.bind(this))
+
+        this.bindAutoHook(sys)
+    }
+
+    bindAutoHook(sys){
+
+        // Bind lib driver mount
+        this._mountFunc = lib.driverMount
+        lib.driverMount = this.driverMount.bind(this)
+
+        // bind pubsub emit
+        sys.pubsub.single('*', this.anyEvent.bind(this))
+    }
+
+    anyEvent(name, e) {
+        /* capture all events from the pubsub */
+        //console.log('An any event', name)
+        let libs = [];
+
+        if(AUTO_HOOK[name] != undefined) {
+            for (var i = 0; i < AUTO_HOOK[name].length; i++) {
+                let _n =AUTO_HOOK[name][i]
+                lib[_n].wake(name)
+                libs.push(lib[_n])
+            }
+        }
+
+        this.autoMount(libs, name, e)
+    }
+
+    autoMount(libs, eventName, hookData) {
+
+        // force a tick.
+        setTimeout(function(){
+
+            for (var i = 0; i < libs.length; i++) {
+                let _Driver = libs[i];
+
+                let autoI = new _Driver()
+                autoI.mount(system)
+                autoI.hook(eventName, hookData)
+            }
+        })
+    }
+
+    driverMount(driver, libMount=true){
+        // console.log('driverManager driver heard', driver.name)
+        let r = this._mountFunc.apply(lib, arguments)
+
+        system.pubsub.emit('driver.mount', {
+            name: driver.name
+            , id: driver.id()
+        });
+
+        return r
+    }
+
+    driverMountEvent(d) {
+        /* check Auto. */
+        let driver = lib[d.id]
+
+        if(driver.prototype instanceof ExposedDriver){
+
+            let wakeStr = driver.wakeIdentity()
+
+            if(AUTO_HOOK[wakeStr] == undefined) {
+                AUTO_HOOK[wakeStr] = []
+            };
+
+            AUTO_HOOK[wakeStr].push(d.id)
+        }
     }
 
     memoryInit(MEM_DATA){

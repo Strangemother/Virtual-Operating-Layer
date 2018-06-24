@@ -63,6 +63,28 @@ class Driver {
 
 }
 
+class ExposedDriver extends Driver {
+    /* Act like a driver, with auto mounting for drivers
+    acting alone. */
+
+    static wakeIdentity(){
+        /* An exposed driver automatically mounts through 
+        the ID. */
+        return `wake.${this.id()}`
+    }
+
+
+    static wake(name){
+        /* Preliminary start method. Used to inboke pre conditions before hook.*/
+    }
+
+    hook(name, data){
+        /* capture the GUI the data is the wake event information.
+        Stated by the wake name. */
+        console.log(`${this.id()} hook`, name)
+    }
+}
+
 DRIVER_MOUNT = {}
 
 let driverMount = function(driver, libMount=true){
@@ -82,9 +104,10 @@ let driverMount = function(driver, libMount=true){
             DRIVER_MOUNT[_id] = []
         }
 
-        lib.log(`.. Accepted driver ${_id}`)
+        //lib.log(`.. Accepted driver ${_id}`)
         DRIVER_MOUNT[_id].push(driver)
     }
+
 }
 
 lib.mount({ Driver })

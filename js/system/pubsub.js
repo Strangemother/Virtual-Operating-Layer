@@ -15,9 +15,48 @@ class SubscriptionCore {
         PM[this.id] = {}
     }
 
+    single(name, onefunc){
+        /* subscribe to an event with a function - if the
+        event name exists, the listener is not applied.
+
+        This is useful for resetting the same listener without concern.
+        ensuring only 1 _add()_ call is applied to the event `name`
+
+            system.pubsub.single('one', function(){ console.log('a') })
+            "1e3nbfbag"
+            system.pubsub.single('one', function(){ console.log('b') })
+            "1e3nbfbag"
+            system.pubsub.emit('one')
+            a
+        */
+        if(this.has(name) == false) {
+            return this.add(name, onefunc)
+        }
+
+        // else return the natural id
+        return this.getIds(name)[0]
+    }
+
+    getIds(name){
+        /*  returna list of registered evenr handler IDs for a given event name.
+        */
+       if(PM[this.id][name] == undefined) {
+            return []
+       }
+
+       return Object.keys(PM[this.id][name])
+
+    }
+
+    has(name) {
+        /*return true if the event name is registered else false */
+        return PM[this.id][name] != undefined
+
+    }
+
     add(name, func){
         /* subscribe to a ame with a function. Return the listener id. */
-        if(PM[name] == undefined){
+        if(PM[this.id][name] == undefined){
             PM[this.id][name] = {}
         }
 
@@ -73,12 +112,19 @@ class SubscriptionCore {
         };
 
         let calls = 0
+        let anyE = PM[this.id]['*']
+        for(let _id in anyE) {
+            anyE[_id](name, data)
+            calls += 1
+        }
+
         for(let subCoreID in PM) {
             let items = PM[subCoreID]
             for(let funcID in items[name]) {
                 let func = items[name][funcID]
                 if(func == undefined) {
                     lib.warn('DEAD pubsub method', funcID)
+
                     continue
                 }
 

@@ -51,6 +51,8 @@ INIT_SYSTEM_MEMORY = {
             // implements: [
             // ]
 
+            /*Method to run when the interface is loaded. */
+            start: 'defaultStart'
         }
     }
 

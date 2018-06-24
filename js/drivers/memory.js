@@ -15,7 +15,7 @@ let MEM_DATA = {
     , loadedDrivers: []
 }
 
-class MEMORY extends Driver {
+class MEMORY extends lib.Driver {
 
     static id(){
         return `base.memory`

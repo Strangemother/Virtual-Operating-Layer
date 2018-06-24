@@ -27,6 +27,7 @@ let logger = function(){
 
                 logger.append.apply(logger, r)
             }
+            , el: logger
         }
     })()
 }
@@ -152,7 +153,7 @@ class Lib {
     }
 
     globals(against){
-        let _gl = against || STATIC_HEAD || this._globals;
+        let _gl = against || self['STATIC_HEAD'] || this._globals;
 
         let sortf = function(aa){
             let id = _gl.indexOf(aa);

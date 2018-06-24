@@ -5,13 +5,13 @@ class Dev {
         this.delay = 2000
         this._globals = undefined
         this._window = Object.keys(self)
-        this.gCheckTimer = window.setInterval(function(){
+        this.gCheckTimer = self.setInterval(function(){
             this.checkGlobals()
         }.bind(this), this.delay)
     }
 
     stop(){
-        window.clearInterval(this.gCheckTimer)
+        self.clearInterval(this.gCheckTimer)
     }
 
     checkGlobals(){
@@ -34,6 +34,7 @@ class Dev {
             this.delay += 1000;
         } else {
             console.log('Removed Globals!', globals)
+            this._globals = globals
         }
 
     }

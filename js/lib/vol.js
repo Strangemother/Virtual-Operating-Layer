@@ -14,7 +14,18 @@ class VOLContainer {
     constructor(){
         this._booted = false
         this.haltExecute = false;
-        this.windowKeys = Object.keys(self)
+
+        try {
+            this.windowKeys = Object.keys(self)
+        } catch(e) {
+            if(e instanceof(ReferenceError)) {
+                this.windowKeys = []
+            } else {
+                throw e
+            }
+
+        }
+
         this.attach()
         this.setImmediate()
     }
@@ -56,7 +67,7 @@ class VOLContainer {
 
             setTimeout(function(){
                 let id = e.detail.id;
-                console.log('Simulate network timeout', id)
+                //console.log('Simulate network timeout', id)
                 dispatchEvent(new CustomEvent('IMMEDIATE_RESPONSE', {
                     detail: Object.assign({ id: id}, {data: d})
                 }))

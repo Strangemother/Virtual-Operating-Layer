@@ -23,7 +23,7 @@ class Assets {
     }
 
     static _loaded(name, func) {
-        console.log('loaded', name)
+        // console.log('loaded', name)
         if(func) { func(name) }
     }
 

@@ -1,4 +1,8 @@
 {
+/* A Canvas layer defines a drawable space for any rendering unit -
+such as a Screen.
+
+The drawing loop ticks a function.*/
 
 class CanvasLayer extends DisplayLayer {
     /* An extraction of the display unit to render view items. */
@@ -25,6 +29,7 @@ class CanvasLayer extends DisplayLayer {
 
         let space = new lib.CanvasRenderLoop({
             canvas: el
+            , fps: 120
         })
 
         this.space = space;
@@ -44,7 +49,7 @@ class CanvasLayer extends DisplayLayer {
 
     present(el){
         let borderWidth = 2
-        let color = 'red'
+        let color = 'black'
         document.body.append(el)
 
         let size = this.getSize()
@@ -53,7 +58,7 @@ class CanvasLayer extends DisplayLayer {
 
         let cssEl = document.createElement('style');
         cssEl.id = `${this.id()}.style`
-        cssEl.innerHTML = `canvas { border: solid ${borderWidth}px ${color}; top: 0px; left: 0px; position: absolute; }
+        cssEl.innerHTML = `canvas { border: solid ${borderWidth}px ${color}; top: 0px; left: 0px; position: fixed; }
         body { margin: 0; overflow: hidden}`
         document.body.append(cssEl)
         window.scrollTo(0,0)
@@ -113,6 +118,8 @@ let CanvasRenderLoop = function(config){
     var setup = function(){
         config.id = Math.random().toString(32).slice(6)
         space.draw = draw;
+        space.drawFPS = drawFPS;
+
         space.create = create;
         space.config = config;
 
@@ -164,6 +171,7 @@ let CanvasRenderLoop = function(config){
         };
 
         var cnv = create(canvas, f);
+        space.context = cnv
         cnv.animFrame.loop()
         return cnv
     }
@@ -257,6 +265,11 @@ let CanvasRenderLoop = function(config){
             , start: undefined
             , stop: undefined
             , context: context
+
+        }
+
+        r.setRenderfunction = function(f){
+            renderFunction = f
         }
 
         r.render = function render(callback){

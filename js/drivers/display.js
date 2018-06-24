@@ -1,4 +1,4 @@
-/*
+/* Raw display driver, maintaining many screens.
 
 A more complex driver the 'display' defines drawable point.
 

@@ -1,3 +1,5 @@
+/* An interface is a stack of graphical layers - managed by a Screen.*/
+
 class InterfaceLayer extends DisplayLayer {
     /* An extraction of the display unit to render view items. */
 
@@ -9,13 +11,15 @@ class InterfaceLayer extends DisplayLayer {
 
     init(){
         /* Tell the system a new screen has attached. */
+        this.layers = [];
+
         system.pubsub.emit(`${this.id()}.init`, {
             id: this.id()
         })
     }
 
     mount(screen, layers){
-        console.log('Mount interface')
+        //console.log('Mount interface')
         // Test existing layers - download any extra drivers.
         // edit UI - mounting real gui.
 
@@ -44,42 +48,38 @@ class InterfaceLayer extends DisplayLayer {
 
     onLoadLayerImplements(layer, config){
         /* Layers for this interface are loaded, Install and boot.*/
-
-        debugger;
+        //console.log('Mounted layer', layer.id())
+        let len = this.layers.push({ layer, config })
+        this.setRootIndex(len-1)
+        this.startLayer(len-1)
     }
 
-    loadImplement(cls, layer, config) {
-        /* Load the given class into the given layer using any options from the
-        config object. */
-        console.log('load', cls.name, 'into', layer.id())
+    setRootIndex(index) {
+        /* Set the index of the root item.*/
+        this._rootIndex = index
     }
 
-    getSize(){
-        return this.data.vdi.dimensions.viewport
+    startLayer(index){
+        /* Given an index from the internal layers, begin integration and processing
+        */
+        let layerSet = this.layers[index]
+        let dataName = `${layerSet.layer.data.name}-${index}`
+        if(this.data[dataName] == undefined) {
+            this.data[dataName] = {}
+        }
+
+        this.start({ layer: layerSet.layer, config: layerSet.config, index, data: this.data[dataName]})
     }
 
-    start(drawFunc){
-        lib.log('start canvas')
-        let el = this.space.config.canvas;
-        this.present(el)
-        this.space.draw(drawFunc || drawFunction)
-    }
+    start(layerDefinition){
+        // Mount expected canvas layer, start draw routines.
+        //console.log('Start layer', layerDefinition.index)
 
-    present(el){
-        let borderWidth = 2
-        let color = 'red'
-        document.body.append(el)
-
-        let size = this.getSize()
-        el.width = size.width - (borderWidth * 2)
-        el.height = size.height - (borderWidth * 2)
-
-        let cssEl = document.createElement('style');
-        cssEl.id = `${this.id()}.style`
-        cssEl.innerHTML = `canvas { border: solid ${borderWidth}px ${color}; top: 0px; left: 0px; position: absolute; }
-        body { margin: 0; overflow: hidden}`
-        document.body.append(cssEl)
-        window.scrollTo(0, 0)
+        // Will appear in the ExposedDriver(NAME).hook()
+        system.pubsub.emit(`${this.id()}.${layerDefinition.config.start}`,{
+            definition: layerDefinition
+            , interface: this
+        })
     }
 }
 

@@ -1,4 +1,10 @@
+/* A Screen maintains a connection to the Display. A single Screen
+will maintain an interface - or any loaded layers and interface
+items.
 
+A Screen is a single Root for mounting interfaces.
+
+ */
 class DisplayScreen extends Driver {
     /* An extraction of the display unit to render view items. */
 

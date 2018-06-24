@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tests</title>
+    <script src="js/vendor/mocha.js"></script>
+    <script src="js/vendor/unit.js"></script>
+    <link rel="stylesheet" href="js/vendor/mocha/mocha.css">
+    <script type="text/javascript" src='js/lib/loader.js'></script>
+    <script type="text/javascript" src='js/files.js'></script>
+
+    <script>mocha.setup('bdd')</script>
+</head>
+<body>
+    <div id="mocha"></div>
+
+    <script type="text/javascript" src='js/tests/test_boot.js'></script>
+
+    <script>mocha.run()</script>
+</body>
+</html>

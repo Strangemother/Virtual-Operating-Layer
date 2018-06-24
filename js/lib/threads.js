@@ -20,10 +20,10 @@
             return 'js/lib/thread.js'
         }
 
-        createThread(uniqueName){
+        createThread(uniqueName, path){
             /* Produce a new thread (Worker) given the unique
             name as part of the initializer method. */
-            return new Thread(uniqueName, this.threadPath());
+            return new Thread(uniqueName, path || this.threadPath());
         }
 
         createPool(){
@@ -44,6 +44,7 @@
 
 
     class Thread {
+
         constructor(uniqueName, path=undefined) {
             this.uniqueName = uniqueName;
             this.path = path;
@@ -82,7 +83,7 @@
         }
 
         send(data) {
-            this.worker.postMessage(data)
+            return this.worker.postMessage.apply(this.worker, arguments)
         }
     }
 
@@ -108,11 +109,22 @@
 
         start(){
             this.threads = new Threads()
+        }
 
+        startThread(path, name){
+            if(!this.threads) {
+                this.start()
+            }
+
+            return this.threads.createThread(name || path, path)
         }
     }
 
-    let threadPool = new SharedThread('Interface', `/js/lib/shared-worker.js?cache=${Math.random()}`)
+    let threadPool
+    if(self['SharedWorker'] != undefined){
+        threadPool = new SharedThread('Interface', `/js/lib/shared-worker.js?cache=${Math.random()}`)
+    }
+
 
 
     lib.mount({ threadsEnabled, getConcurrencyCount, threadPool })
