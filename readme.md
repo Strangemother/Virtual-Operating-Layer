@@ -1,13 +1,33 @@
 JS desktop for nux.
 
+
+# Running
+
+The `run_vol.bat` will boot a local instance using the local env3
+
+For a very thin container:
+
+    python container/cef.py
+
+For the full VOL suite:
+
+    python vol
+
+
+## Usage
+
+the VOL package should be everything you need [Not implemented]:
+
+    $ vol -h
+
+
 # Assets
 
 Load core assets for the desktop framework
 
-
 # Features
 
-+ Multi screen though websockets
++ Multi screen though websockets and protobuff
 + Abstract Syntax Tree
 
     Analyse/rewrite/porting of the core application through a built-in abstract
@@ -20,6 +40,7 @@ Load core assets for the desktop framework
 + Class tree renderer
 + ASM
 + Class baking
++ Persistent data through graph database
 
 # Noted Appliance
 
@@ -39,7 +60,7 @@ application programming and layering all the concepts wanted.
 + (CEF) Middle tier
 + ES6 frontend
 + (GFS) filestorage
-+ (Hyperdex) Hyperspace distributed data layer
++ (Hyperdex, PROJECTNAME) Hyperspace distributed data layer
 + (Code) Cloud connection
 
 # Purpose
@@ -47,6 +68,13 @@ application programming and layering all the concepts wanted.
 A well-presented full UI layer to the scatter nux project. It will implement
 all features for distributed application development, with a UI layer for
 integrated environments and extended graphical development.
+
+A UI deployable on any interface:
+
+    + VOL CEF container for desktop localisation
+    + Browser based
+    + API UI Integration base (like screen VNC)
+    + Mobile through remote coms
 
 ## Funz.
 
@@ -59,3 +87,5 @@ a homogeneous platform.
 
 + ES6
 + Assets
+
+The interface has no layer of rendering owning rto its distributed nature. An interface is a feed of UI components fed through rendering pipelines from a GL interface, websocket instructions or another thread.

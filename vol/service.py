@@ -10,6 +10,7 @@ from multiprocessing import Process
 from http import server
 import threading
 import os
+import base64
 
 
 ROOT = os.path.normpath( os.path.join( os.path.dirname( os.path.abspath(__file__) ), '..') )
@@ -124,7 +125,6 @@ class VOLJavascriptHook(object):
         else:
             print('Recv', js_callback)
 
-import base64
 
 def html_to_data_uri(html, js_callback=None):
     # This function is called in two ways:
