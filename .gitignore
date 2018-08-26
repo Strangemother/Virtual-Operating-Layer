@@ -1,2 +1,11 @@
 *.pyc
 /system/
+scratch/
+tgit
+nim/
+node_modules/
+build/
+env3/
+__pycache__
+src/runtime-envs/
+.ipynb_checkpoints/

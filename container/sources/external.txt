@@ -1,2 +1,0 @@
-# (js) acorn - for live parsing
-https://github.com/ternjs/acorn.git

@@ -10,6 +10,9 @@ import os
 import shutil
 import time
 from distutils.dir_util import copy_tree
+import sys
+import build_libs
+
 
 SETTINGS = None
 
@@ -208,10 +211,6 @@ def write_startup_file():
     #         stream.write(content.format(**SETTINGS))
     else:
         shutil.copy2(src_path, dest_filepath)
-
-
-import sys
-import build_libs
 
 
 def build_env_libs():

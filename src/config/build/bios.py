@@ -29,7 +29,8 @@ BIOS_UUID_BYTES = _uuid.bytes
 # System flags for the bios init file on the host,
 # https://msdn.microsoft.com/en-us/library/z0kc8e3z.aspx
 BIOD_TAPE_ACCESS     = os.O_RDWR|os.O_RANDOM|os.O_BINARY|os.O_NOINHERIT
-BIOD_TAPE_ACCESS_NEW = os.O_RDWR|os.O_RANDOM|os.O_BINARY|os.O_NOINHERIT|os.O_CREAT|os.O_EXCL
+
+BIOD_TAPE_ACCESS_NEW = os.O_WRONLY|os.O_RANDOM|os.O_BINARY|os.O_NOINHERIT|os.O_CREAT|os.O_EXCL
 # Initial lib addresses written to the kernel for the first instance.
 # This should point to all compiled libs for the bios
 # and the first os functionality.
@@ -81,7 +82,8 @@ LIB_FOLDERS = [
     # Alternatively allow the bios to discover
     # 'win-64',
 
-    #'env_lib',
+    'env_lib',
+    'compiled_libs.zip',
     ]
 
 # Append arbitrary names to the lib path without parsing - but will be
@@ -94,6 +96,9 @@ LIB_FOLDERS_EXTRAS = [
 COMPILE_FILES = (
     ("COMPILED.bios", [
             "runtime-libs/bios/bios.pyx",
+        ]),
+    ("COMPILED.system", [
+            "runtime-libs/system/system.pyx",
         ]),
 )
 
