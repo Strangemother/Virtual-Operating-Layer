@@ -35,7 +35,7 @@ TAPE_MISSING = -2
 BEEP = "\x07"
 
 
-HEADER = None
+HEADER = { 'debug': None }
 
 
 def c_mem_clear(string):
@@ -124,7 +124,11 @@ class IO:
         puts = self.print_hook# self.stdout.write
         puts(BEEP + 'Hello Spoon')
 
-    def print_hook(self, *a, newline=None):
+    def print_hook(self, *a, newline=None, level=1):
+        if HEADER['debug'] is False and level > 1:
+            # silence
+            return
+
         self.stdout.write(' '.join(map(str, a)) + '\n')
 
 
@@ -135,7 +139,7 @@ class BIOS_TAPE:
         """In an expected env:
             0  readable
         """
-        self.uuid_radix_name = 'dad1e60a-c3c4-4b67-aa0e-13ffaa08616a'
+        self.uuid_radix_name = 'a8e46d52-d125-4cb6-8f6e-c84b0ce25e8c'
         print('testing path with')
         _os = os
         print('OS', _os)
@@ -145,6 +149,7 @@ class BIOS_TAPE:
         print('exists', _exists)
         print('uuid', self.uuid_radix_name)
         try:
+
             pr = _exists(self.uuid_radix_name)
             print('Function: {}'.format(pr))
         except Exception as e:
@@ -218,7 +223,7 @@ class BIOS_TAPE:
         if fileno < 1:
             return False
 
-        if os.path.exists(fileno) is False:
+        if os.path.exists(self.uuid_radix_name) is False:
             puts(BEEP + 'ERROR: Cannot produce BIOS Tape.')
             # sys.exit(1)
 
@@ -308,7 +313,7 @@ class BIOS_TAPE:
         # Booting in the same env this should be the same every time.
         lines += (bytes(str(fileno), 'utf'), )
         # 16 byte given uuid of the BIOS - templated in.
-        lines += (b'\xda\xd1\xe6\n\xc3\xc4Kg\xaa\x0e\x13\xff\xaa\x08aj', )
+        lines += (b'\xa8\xe4mR\xd1%L\xb6\x8fn\xc8K\x0c\xe2^\x8c', )
         # selected kernel
         kernel_version = b"Kerbechet-(0, 0, 1)"
         # The amount of bytes for a pointer when reading the kernel string.
@@ -354,14 +359,43 @@ class Tape(BIOS_TAPE):
     kernel -
 """
 
+import marshal
+
+
+class Config:
+
+    def find(self):
+        if os.path.exists('HEADER'):
+            puts('discovered configure "HEADER"')
+            data = self.read('HEADER')
+            return data
+
+    def write(self, value):
+        vv=compile('{}\n'.format(value), 'HEADER', 'eval')
+        ff=open('HEADER', 'wb')
+        marshal.dump(vv, ff)
+        ff.close()
+
+    def read(self, name):
+        stream = open(name, 'rb')
+        br = b''
+        for line in stream.readlines():
+            br += line
+        result = eval(marshal.loads(br))
+        stream.close()
+        return result
+
+
+
 
 def WAKE():
     global tape
     global HEADER
 
     io = IO()
+    config = Config()
     # tape = BIOS_TAPE()
-    HEADER = {}#tape
+    HEADER = config.find()
     puts('WAKE')
 
 # Import cold or warm state.

@@ -8,27 +8,65 @@ importables and permissions.
 """
 
 class System:
-    def __init__(self, original):
-        self._original = original
+    def __init__(self, scope=None):
+        self._scope = scope
 
     def __getattr__(self, key):
         return key
 
     def __getitem__(self, key):
+        if key == 'self':
+            return self
+
         if key == 'foo':
-            return self._original
+            return self._scope
+
+        if hasattr(self, key):
+            return getattr(self, key)
         return "< %s" % key
+
+    def __import__(self, *a, **kw):
+        return "import"
 
     def foo(self):
         return 'bar'
 
 
-def configure(bios, scope):
+class MyImporter(object):
+
+    def find_module(self, module_name, package_path):
+        # Return a loader
+        print('find_module', module_name)
+        return self
+
+    def load_module(self, module_name):
+        # Return a module
+        print('load_module', module_name)
+        return self
+
+import sys
+
+
+def configure(head, bios, scope, safe_only_system_execute=False):
+
     keys = tuple(scope().keys())
-    print(keys)
+
+    system = System()
+
     for key in keys:
-        print('Deleting', key)
         if key == '__builtins__':
-            scope()[key] = System(scope()[key])
+            _builtins = scope()[key]
+            new_builtins = head.load(bios, _builtins, head, system)
+            system._builtins = _builtins
+            setattr(_builtins, 'system', system)
+            scope()[key] = new_builtins
             continue
+        print('Deleting', key)
         del scope()[key]
+
+    bios.execute_system(system)
+    print('Stepping into system clean')
+    del scope()['__builtins__'].load
+    # del scope()['__builtins__'].__import__
+
+    # sys.meta_path.append(MyImporter())

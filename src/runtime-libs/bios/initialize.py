@@ -10,9 +10,14 @@ packages to import a kernel.
 #import os
 #import sys
 import builtins
+from bios import puts, BEEP
 
 builtins.help = 'new help'
 
 def POST():
     print('POST')
     return 1
+
+def execute_system(system):
+    puts(BEEP, 'new system', system)
+

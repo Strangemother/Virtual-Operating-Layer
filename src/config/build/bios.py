@@ -100,6 +100,9 @@ COMPILE_FILES = (
     ("COMPILED.system", [
             "runtime-libs/system/system.pyx",
         ]),
+    ("COMPILED.head", [
+            "runtime-libs/head/head.pyx",
+        ]),
 )
 
 

@@ -35,7 +35,7 @@ TAPE_MISSING = -2
 BEEP = "\x07"
 
 
-HEADER = None
+HEADER = {{ 'debug': None }}
 
 
 def c_mem_clear(string):
@@ -124,7 +124,11 @@ class IO:
         puts = self.print_hook# self.stdout.write
         puts(BEEP + 'Hello Spoon')
 
-    def print_hook(self, *a, newline=None):
+    def print_hook(self, *a, newline=None, level=1):
+        if HEADER['debug'] is False and level > 1:
+            # silence
+            return
+
         self.stdout.write(' '.join(map(str, a)) + '\n')
 
 
@@ -145,6 +149,7 @@ class BIOS_TAPE:
         print('exists', _exists)
         print('uuid', self.uuid_radix_name)
         try:
+
             pr = _exists(self.uuid_radix_name)
             print('Function: {{}}'.format(pr))
         except Exception as e:
@@ -218,7 +223,7 @@ class BIOS_TAPE:
         if fileno < 1:
             return False
 
-        if os.path.exists(fileno) is False:
+        if os.path.exists(self.uuid_radix_name) is False:
             puts(BEEP + 'ERROR: Cannot produce BIOS Tape.')
             # sys.exit(1)
 
@@ -354,14 +359,43 @@ class Tape(BIOS_TAPE):
     kernel -
 """
 
+import marshal
+
+
+class Config:
+
+    def find(self):
+        if os.path.exists('HEADER'):
+            puts('discovered configure "HEADER"')
+            data = self.read('HEADER')
+            return data
+
+    def write(self, value):
+        vv=compile('{{}}\n'.format(value), 'HEADER', 'eval')
+        ff=open('HEADER', 'wb')
+        marshal.dump(vv, ff)
+        ff.close()
+
+    def read(self, name):
+        stream = open(name, 'rb')
+        br = b''
+        for line in stream.readlines():
+            br += line
+        result = eval(marshal.loads(br))
+        stream.close()
+        return result
+
+
+
 
 def WAKE():
     global tape
     global HEADER
 
     io = IO()
+    config = Config()
     # tape = BIOS_TAPE()
-    HEADER = {{}}#tape
+    HEADER = config.find()
     puts('WAKE')
 
 # Import cold or warm state.
