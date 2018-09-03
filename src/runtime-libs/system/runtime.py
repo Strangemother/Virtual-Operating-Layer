@@ -7,30 +7,6 @@ runtime params; consider the memory allocation and process the zero layer
 importables and permissions.
 """
 
-class System:
-    def __init__(self, scope=None):
-        self._scope = scope
-
-    def __getattr__(self, key):
-        return key
-
-    def __getitem__(self, key):
-        if key == 'self':
-            return self
-
-        if key == 'foo':
-            return self._scope
-
-        if hasattr(self, key):
-            return getattr(self, key)
-        return "< %s" % key
-
-    def __import__(self, *a, **kw):
-        return "import"
-
-    def foo(self):
-        return 'bar'
-
 
 class MyImporter(object):
 
@@ -64,9 +40,11 @@ def configure(head, bios, scope, safe_only_system_execute=False):
         print('Deleting', key)
         del scope()[key]
 
-    bios.execute_system(system)
+    bios.execute_system(system, scope()['__builtins__'])
+
     print('Stepping into system clean')
     del scope()['__builtins__'].load
     # del scope()['__builtins__'].__import__
 
     # sys.meta_path.append(MyImporter())
+

@@ -6,7 +6,7 @@ def load(bios, scope, head, system):
     for name in ROOT:
         try:
             if name.startswith('__'):
-                bios.puts('Skipping', name)
+                bios.puts('Skipping', name, level=2)
                 continue
             v = getattr(scope, name)
             setattr(head, name, v)

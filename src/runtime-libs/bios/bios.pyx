@@ -17,10 +17,15 @@ wake, env create, read settings, load lib, offload events.
 
 
 # file: bios.pyx
+include "base_io.py"
+include "tape.py"
+include "config_class.py"
+
 include "wake.py"
 include "environment.py"
 include "configure.py"
 include "initialize.py"
+include "execute.py"
 
 # power on self test
 POST()

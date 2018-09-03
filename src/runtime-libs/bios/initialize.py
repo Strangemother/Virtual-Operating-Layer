@@ -17,7 +17,3 @@ builtins.help = 'new help'
 def POST():
     print('POST')
     return 1
-
-def execute_system(system):
-    puts(BEEP, 'new system', system)
-
