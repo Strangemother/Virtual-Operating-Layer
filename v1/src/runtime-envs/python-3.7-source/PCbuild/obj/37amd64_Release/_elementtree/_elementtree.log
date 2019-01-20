@@ -1,0 +1,9 @@
+﻿  _elementtree.c
+  loadlibrary.c
+  xmlparse.c
+  xmlrole.c
+  xmltok.c
+     Creating library C:\Users\jay\Documents\projects\desktop\src\runtime-envs\python-3.7-source\PCbuild\amd64\_elementtree.lib and object C:\Users\jay\Documents\projects\desktop\src\runtime-envs\python-3.7-source\PCbuild\amd64\_elementtree.exp
+  Generating code
+  Finished generating code
+  _elementtree.vcxproj -> C:\Users\jay\Documents\projects\desktop\src\runtime-envs\python-3.7-source\PCbuild\amd64\_elementtree.pyd

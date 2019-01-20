@@ -1,0 +1,9 @@
+﻿  Killing any running python.exe instances...
+  Getting build info from git
+  Building heads/master-dirty:961487c master
+C:\Users\jay\Documents\projects\desktop\src\runtime-envs\python-3.7-source\PCbuild\pythoncore.vcxproj(461,5): warning : Not including zlib is not a supported configuration.
+  main.c
+     Creating library C:\Users\jay\Documents\projects\desktop\src\runtime-envs\python-3.7-source\PCbuild\amd64\python37.lib and object C:\Users\jay\Documents\projects\desktop\src\runtime-envs\python-3.7-source\PCbuild\amd64\python37.exp
+  Generating code
+  Finished generating code
+  pythoncore.vcxproj -> C:\Users\jay\Documents\projects\desktop\src\runtime-envs\python-3.7-source\PCbuild\amd64\python37.dll

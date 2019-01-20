@@ -1,0 +1,7 @@
+﻿  python3dll.c
+  Updating python3stub.def
+     Creating library C:\Users\jay\Documents\projects\desktop\src\runtime-envs\python-3.7-source\PCbuild\amd64\python3stub.lib and object C:\Users\jay\Documents\projects\desktop\src\runtime-envs\python-3.7-source\PCbuild\amd64\python3stub.exp
+     Creating library C:\Users\jay\Documents\projects\desktop\src\runtime-envs\python-3.7-source\PCbuild\amd64\python3.lib and object C:\Users\jay\Documents\projects\desktop\src\runtime-envs\python-3.7-source\PCbuild\amd64\python3.exp
+  Generating code
+  Finished generating code
+  python3dll.vcxproj -> C:\Users\jay\Documents\projects\desktop\src\runtime-envs\python-3.7-source\PCbuild\amd64\python3.dll

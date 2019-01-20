@@ -1,0 +1,14 @@
+﻿  Performing Custom Build Tools
+   Assembling: C:\Users\jay\Documents\projects\desktop\src\runtime-envs\python-3.7-source\Modules\_ctypes\libffi_msvc\win64.asm
+  _ctypes.c
+  callbacks.c
+  callproc.c
+  cfield.c
+  ffi.c
+  malloc_closure.c
+  stgdict.c
+  prep_cif.c
+     Creating library C:\Users\jay\Documents\projects\desktop\src\runtime-envs\python-3.7-source\PCbuild\amd64\_ctypes.lib and object C:\Users\jay\Documents\projects\desktop\src\runtime-envs\python-3.7-source\PCbuild\amd64\_ctypes.exp
+  Generating code
+  Finished generating code
+  _ctypes.vcxproj -> C:\Users\jay\Documents\projects\desktop\src\runtime-envs\python-3.7-source\PCbuild\amd64\_ctypes.pyd

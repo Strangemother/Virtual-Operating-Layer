@@ -1,0 +1,5 @@
+﻿  multiprocessing.c
+  semaphore.c
+  Generating Code...
+     Creating library C:\Users\jay\Documents\projects\desktop\src\runtime-envs\python-3.7-source\PCbuild\amd64\_multiprocessing_d.lib and object C:\Users\jay\Documents\projects\desktop\src\runtime-envs\python-3.7-source\PCbuild\amd64\_multiprocessing_d.exp
+  _multiprocessing.vcxproj -> C:\Users\jay\Documents\projects\desktop\src\runtime-envs\python-3.7-source\PCbuild\amd64\_multiprocessing_d.pyd

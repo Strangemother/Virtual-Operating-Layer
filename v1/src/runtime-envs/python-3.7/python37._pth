@@ -1,0 +1,5 @@
+# core_python37.zip
+core_lib/
+.
+# Uncomment to run site.main() automatically
+#import site

@@ -1,0 +1,21 @@
+﻿  Performing Custom Build Tools
+   Assembling: C:\Users\jay\Documents\projects\desktop\src\runtime-envs\python-3.7-source\Modules\_decimal\libmpdec\vcdiv64.asm
+  _decimal.c
+  basearith.c
+  constants.c
+  context.c
+  convolute.c
+  crt.c
+  difradix2.c
+  fnt.c
+  fourstep.c
+  io.c
+  memory.c
+  mpdecimal.c
+  numbertheory.c
+  sixstep.c
+  transpose.c
+     Creating library C:\Users\jay\Documents\projects\desktop\src\runtime-envs\python-3.7-source\PCbuild\amd64\_decimal.lib and object C:\Users\jay\Documents\projects\desktop\src\runtime-envs\python-3.7-source\PCbuild\amd64\_decimal.exp
+  Generating code
+  Finished generating code
+  _decimal.vcxproj -> C:\Users\jay\Documents\projects\desktop\src\runtime-envs\python-3.7-source\PCbuild\amd64\_decimal.pyd

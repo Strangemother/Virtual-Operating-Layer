@@ -1,0 +1,11 @@
+import sys
+import site
+import builtins
+# Prevent extending of sys.path when python was started with -S and
+# site is imported later.
+
+sys.displayhook('apples')
+sys.ps1 = '$$ '
+sys.version = 'nothing'
+builtins.help = 'new help'
+
