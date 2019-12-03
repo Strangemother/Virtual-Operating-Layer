@@ -29,3 +29,5 @@ dev files.
 
 Build the source using the assigned configs.
 
+https://github.com/puppetlabs/Razor-Microkernel/wiki/Setting-up-a-TCE-repository---mirror
+https://mivilisnet.wordpress.com/2018/03/08/tiny-core-linux-on-a-usb-stick/

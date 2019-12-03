@@ -1,0 +1,75 @@
+html {
+    background: #222;
+    font-family: "Cousine";
+}
+html, body {
+    color: #71efff;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 0.8em;
+    /* letter-spacing: 0.1px; */
+    /* font-family: "Courier New"; */
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1
+    }
+    30% {
+        opacity: 0.2
+    }
+    60% {
+        opacity: .3
+    }
+    80% {
+        opacity: 1
+    }
+}
+
+.message {
+    color: grey;
+}
+
+div#console_view {
+    white-space: pre;
+}
+
+
+span.input-field {
+    display: inline-flex;
+    vertical-align: text-top;
+    /* align-items: flex-start; */
+    /* justify-content: center; */
+    white-space: normal;
+    position: relative;
+    outline: none;
+    caret-color: transparent;
+
+}
+
+span#terminal_caret {
+    /* width: 4px; */
+    display: inline-flex;
+    justify-content: center;
+    /* height: 1em; */
+    /* margin-left: 1px; */
+    /* border-radius: 2px; */
+    position: relative;
+}
+
+span.caret {
+    height: 1em;
+    width: 2px;
+    background: #71efff;
+    margin-left: 2px;
+    animation: blink normal 2.5s infinite ease-in-out;
+}
+
+
+span#input_field_text:focus {
+    outline: none;
+    color: #44eaff;
+}

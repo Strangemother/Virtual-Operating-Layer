@@ -1,0 +1,12 @@
+# Like a docker file for pyton mini build.
+# Filepaths are relative.
+INCLUDE ./args.buildfile
+PRINT echo statment with ${foo}
+
+
+CMD ${ls_com}
+PRINT echo statment with ${foo}
+# Set the output directory all - or the current block process.
+TARGET ../dist
+# Set the current working directory.
+CWD .
