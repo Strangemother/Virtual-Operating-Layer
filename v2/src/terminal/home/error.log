@@ -1,0 +1,595 @@
+
+[2019-02-10 18:04:02] Traceback (most recent call last):
+  File "load_handler.pyx", line 20, in cefpython_py36.LoadHandler_OnLoadingStateChange
+  File "C:\Users\jay\Documents\projects\desktop\v2\src\terminal\container.py", line 45, in OnLoadingStateChange
+    js_print(browser, "Python", "OnLoadingStateChange",
+NameError: name 'js_print' is not defined
+
+
+[2019-02-10 18:05:48] Traceback (most recent call last):
+  File "load_handler.pyx", line 20, in cefpython_py36.LoadHandler_OnLoadingStateChange
+  File "C:\Users\jay\Documents\projects\desktop\v2\src\terminal\container.py", line 45, in OnLoadingStateChange
+    js_print(browser, "Python", "OnLoadingStateChange",
+NameError: name 'js_print' is not defined
+
+
+[2019-02-10 18:07:32] Traceback (most recent call last):
+  File "load_handler.pyx", line 20, in cefpython_py36.LoadHandler_OnLoadingStateChange
+  File "C:\Users\jay\Documents\projects\desktop\v2\src\terminal\container.py", line 45, in OnLoadingStateChange
+    js_print(browser, "Python", "OnLoadingStateChange",
+NameError: name 'js_print' is not defined
+
+
+[2019-02-10 18:21:23] Traceback (most recent call last):
+  File "lifespan_handler.pyx", line 116, in cefpython_py36.LifespanHandler_OnBeforeClose
+  File "utils.pyx", line 50, in cefpython_py36.Debug
+KeyboardInterrupt
+
+
+[2019-02-10 19:06:33] Traceback (most recent call last):
+  File "lifespan_handler.pyx", line 116, in cefpython_py36.LifespanHandler_OnBeforeClose
+  File "utils.pyx", line 50, in cefpython_py36.Debug
+KeyboardInterrupt
+
+
+[2019-02-10 19:13:34] Traceback (most recent call last):
+  File "lifespan_handler.pyx", line 116, in cefpython_py36.LifespanHandler_OnBeforeClose
+  File "utils.pyx", line 50, in cefpython_py36.Debug
+KeyboardInterrupt
+
+
+[2019-02-10 21:40:09] Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'cef' is not defined
+
+
+[2019-02-10 21:43:31] Traceback (most recent call last):
+  File "cef.py", line 55, in <module>
+    main()
+  File "cef.py", line 34, in main
+    time.sleep(.1)
+KeyboardInterrupt
+
+
+[2019-02-10 21:49:45] Traceback (most recent call last):
+  File "cef.py", line 55, in <module>
+    main()
+  File "cef.py", line 34, in main
+    time.sleep(.1)
+KeyboardInterrupt
+
+
+[2019-02-10 21:57:40] Traceback (most recent call last):
+  File "cef.py", line 55, in <module>
+    if not is_loading:
+  File "cef.py", line 34, in main
+    term_main('main', callback=callback)
+KeyboardInterrupt
+
+
+[2019-02-10 21:58:35] Traceback (most recent call last):
+  File "cef.py", line 61, in <module>
+    main()
+  File "cef.py", line 40, in main
+    time.sleep(.1)
+KeyboardInterrupt
+
+
+[2019-02-10 22:01:44] KeyboardInterrupt
+
+
+[2019-02-10 22:08:42] KeyboardInterrupt
+
+
+[2019-02-10 22:09:22] KeyboardInterrupt
+
+
+[2019-02-10 22:09:35] KeyboardInterrupt
+
+
+[2019-02-10 22:12:17] KeyboardInterrupt
+
+
+[2019-02-10 22:13:24] KeyboardInterrupt
+
+
+[2019-02-10 22:14:35] KeyboardInterrupt
+
+
+[2019-02-10 22:17:59] KeyboardInterrupt
+
+
+[2019-02-10 22:19:21] KeyboardInterrupt
+
+
+[2019-02-10 22:20:08] KeyboardInterrupt
+
+
+[2019-02-10 22:24:59] KeyboardInterrupt
+
+
+[2019-02-10 22:25:02] Traceback (most recent call last):
+  File "cef.py", line 96, in <module>
+    main()
+  File "cef.py", line 64, in main
+    set_javascript_bindings(browser)
+  File "cef.py", line 47, in set_javascript_bindings
+    external = External(browser)
+NameError: name 'External' is not defined
+
+
+[2019-02-10 22:25:37] Traceback (most recent call last):
+  File "cef.py", line 110, in <module>
+    main()
+  File "cef.py", line 78, in main
+    set_javascript_bindings(browser)
+  File "cef.py", line 62, in set_javascript_bindings
+    bindings = cef.JavascriptBindings(
+NameError: name 'cef' is not defined
+
+
+[2019-02-10 22:25:58] Traceback (most recent call last):
+  File "v8function_handler.pyx", line 48, in cefpython_py36.V8FunctionHandler_Execute
+TypeError: wake_ready() missing 1 required positional argument: 'content'
+
+
+[2019-02-10 22:28:29] KeyboardInterrupt
+
+
+[2019-02-10 22:59:23] KeyboardInterrupt
+
+
+[2019-02-10 23:30:59] KeyboardInterrupt
+
+
+[2019-02-10 23:48:02] KeyboardInterrupt
+
+
+[2019-02-11 01:15:06] Traceback (most recent call last):
+  File "main.py", line 153, in <module>
+    main()
+  File "main.py", line 33, in main
+    cmd_process(browser, cef)
+  File "main.py", line 62, in cmd_process
+    sleep(.1)
+NameError: name 'sleep' is not defined
+
+
+[2019-02-11 01:15:23] Traceback (most recent call last):
+  File "main.py", line 153, in <module>
+    main()
+  File "main.py", line 33, in main
+    cmd_process(browser, cef)
+  File "main.py", line 63, in cmd_process
+    callback(browser, session)
+TypeError: callback() missing 1 required positional argument: 'string'
+
+
+[2019-02-11 01:16:14] Traceback (most recent call last):
+  File "main.py", line 153, in <module>
+    main()
+  File "main.py", line 33, in main
+    cmd_process(browser, cef)
+  File "main.py", line 63, in cmd_process
+    callback(browser, session, string)
+  File "main.py", line 79, in callback
+    time.sleep(.01)
+KeyboardInterrupt
+
+
+[2019-02-11 01:20:19] Traceback (most recent call last):
+  File "main.py", line 150, in <module>
+    main()
+  File "main.py", line 33, in main
+    cmd_process(browser, cef)
+  File "main.py", line 61, in cmd_process
+    callback(browser, session, string)
+  File "main.py", line 78, in callback
+    time.sleep(.01)
+KeyboardInterrupt
+
+
+[2019-02-11 01:21:02] Traceback (most recent call last):
+  File "main.py", line 147, in <module>
+    main()
+  File "main.py", line 33, in main
+    cmd_process(browser, cef)
+  File "main.py", line 60, in cmd_process
+    sleep(.1)
+KeyboardInterrupt
+
+
+[2019-02-11 01:21:43] Traceback (most recent call last):
+  File "main.py", line 151, in <module>
+    main()
+  File "main.py", line 33, in main
+    cmd_process(browser, cef)
+  File "main.py", line 67, in cmd_process
+    log('End of process')
+NameError: name 'log' is not defined
+
+
+[2019-02-11 01:24:40] Traceback (most recent call last):
+  File "main.py", line 54, in cmd_process
+    string = string.encode('utf')
+AttributeError: 'bytes' object has no attribute 'encode'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "main.py", line 161, in <module>
+    main()
+  File "main.py", line 33, in main
+    cmd_process(browser, cef)
+  File "main.py", line 55, in cmd_process
+    except exceptions.EOF as e:
+NameError: name 'exceptions' is not defined
+
+
+[2019-02-11 01:25:17] Traceback (most recent call last):
+  File "main.py", line 166, in <module>
+    main()
+  File "main.py", line 34, in main
+    cmd_process(browser, cef)
+  File "main.py", line 59, in cmd_process
+    string = string.encode('utf')
+AttributeError: 'bytes' object has no attribute 'encode'
+
+
+[2019-02-11 01:26:08] Traceback (most recent call last):
+  File "main.py", line 168, in <module>
+  File "main.py", line 34, in main
+    cmd_process(browser, cef)
+  File "main.py", line 61, in cmd_process
+    #End Of File (EOF).
+  File "main.py", line 61, in cmd_process
+    #End Of File (EOF).
+  File "C:\Users\jay\AppData\Local\Programs\Python\Python36\lib\bdb.py", line 48, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "C:\Users\jay\AppData\Local\Programs\Python\Python36\lib\bdb.py", line 67, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit
+
+
+[2019-02-11 01:29:09] Traceback (most recent call last):
+  File "v8function_handler.pyx", line 48, in cefpython_py36.V8FunctionHandler_Execute
+TypeError: session_input() missing 2 required positional arguments: 'name' and 'value'
+
+
+[2019-02-11 01:30:14] Traceback (most recent call last):
+  File "v8function_handler.pyx", line 48, in cefpython_py36.V8FunctionHandler_Execute
+  File "main.py", line 132, in session_input
+    send(session, value)
+  File "C:\Users\jay\Documents\projects\desktop\v2\src\terminal\term.py", line 85, in send
+    session = session or sessions['main']
+KeyError: 'main'
+
+
+[2019-02-11 01:32:24] Traceback (most recent call last):
+  File "v8function_handler.pyx", line 48, in cefpython_py36.V8FunctionHandler_Execute
+  File "main.py", line 132, in session_input
+    send(session, value)
+  File "C:\Users\jay\Documents\projects\desktop\v2\src\terminal\term.py", line 85, in send
+    session = session or sessions['main']
+KeyError: 'main'
+
+
+[2019-02-11 01:33:36] Traceback (most recent call last):
+  File "v8function_handler.pyx", line 48, in cefpython_py36.V8FunctionHandler_Execute
+  File "main.py", line 130, in session_input
+    send(session, value)
+  File "C:\Users\jay\Documents\projects\desktop\v2\src\terminal\term.py", line 85, in send
+    session = session or sessions['main']
+KeyError: 'main'
+
+
+[2019-02-11 01:36:14] Traceback (most recent call last):
+  File "main.py", line 166, in <module>
+    main()
+  File "main.py", line 34, in main
+    cmd_process(browser, cef)
+  File "main.py", line 52, in cmd_process
+    if len(command) > 0:
+UnboundLocalError: local variable 'command' referenced before assignment
+
+
+[2019-02-11 01:36:33] Traceback (most recent call last):
+  File "main.py", line 166, in <module>
+    main()
+  File "main.py", line 35, in main
+    cmd_process(browser, cef)
+  File "main.py", line 52, in cmd_process
+    if len(command) > 0:
+UnboundLocalError: local variable 'command' referenced before assignment
+
+
+[2019-02-11 01:38:04] Traceback (most recent call last):
+  File "main.py", line 165, in <module>
+    main()
+  File "main.py", line 35, in main
+    cmd_process(browser, cef)
+  File "main.py", line 51, in cmd_process
+    command = commands['main']
+KeyError: 'main'
+
+
+[2019-02-11 01:38:30] Traceback (most recent call last):
+  File "main.py", line 165, in <module>
+    main()
+  File "main.py", line 35, in main
+    cmd_process(browser, cef)
+  File "main.py", line 57, in cmd_process
+    pc.sendline(command)
+  File "C:\Users\jay\Documents\projects\desktop\v2\src\terminal\env\lib\site-packages\pexpect\popen_spawn.py", line 153, in sendline
+    n = self.send(s)
+  File "C:\Users\jay\Documents\projects\desktop\v2\src\terminal\env\lib\site-packages\pexpect\popen_spawn.py", line 142, in send
+    return self.proc.stdin.write(b)
+KeyboardInterrupt
+
+
+[2019-02-11 02:10:30] Traceback (most recent call last):
+  File "main.py", line 167, in <module>
+    main()
+  File "main.py", line 36, in main
+    cmd_process(browser, cef, pc, session)
+  File "main.py", line 70, in cmd_process
+    send_to_view(browser, session, string)
+  File "main.py", line 95, in send_to_view
+    log('.', end='')
+TypeError: log() got an unexpected keyword argument 'end'
+
+
+[2019-02-11 02:12:14] Traceback (most recent call last):
+  File "main.py", line 167, in <module>
+    main()
+  File "main.py", line 36, in main
+    cmd_process(browser, cef, pc, session)
+  File "main.py", line 70, in cmd_process
+    send_to_view(browser, session, string)
+  File "main.py", line 96, in send_to_view
+    time.sleep(.01)
+KeyboardInterrupt
+
+
+[2019-02-11 02:29:44] Traceback (most recent call last):
+  File "v8function_handler.pyx", line 48, in cefpython_py36.V8FunctionHandler_Execute
+  File "main.py", line 108, in session_input
+    commands[name] += (value,)
+TypeError: must be str, not tuple
+
+
+[2019-02-11 04:12:40] Traceback (most recent call last):
+  File "main.py", line 173, in <module>
+    main()
+  File "main.py", line 40, in main
+    cmd_process(browser, cef, pc, session)
+  File "main.py", line 53, in cmd_process
+    cef.MessageLoopWork()
+KeyboardInterrupt
+
+
+[2019-05-11 20:35:17] Traceback (most recent call last):
+  File "main.py", line 179, in <module>
+    main()
+  File "main.py", line 43, in main
+    cmd_process(browser, cef, proc, session)
+  File "main.py", line 67, in cmd_process
+    string = string.decode('utf')
+AttributeError: 'str' object has no attribute 'decode'
+
+
+[2019-05-11 20:40:35] Traceback (most recent call last):
+  File "main.py", line 179, in <module>
+    main()
+  File "main.py", line 43, in main
+    cmd_process(browser, cef, proc, session)
+NameError: name 'proc' is not defined
+
+
+[2019-05-11 20:53:28] Traceback (most recent call last):
+  File "main.py", line 180, in <module>
+    main()
+  File "main.py", line 43, in main
+    cmd_process(browser, cef, pc, session)
+  File "main.py", line 62, in cmd_process
+    pc.write(item)
+  File "C:\Users\jay\Documents\projects\desktop\v2\src\terminal\env\lib\site-packages\winpty\ptyprocess.py", line 218, in write
+    raise EOFError('Pty is closed')
+EOFError: Pty is closed
+
+
+[2019-05-11 21:41:05] Traceback (most recent call last):
+  File "main.py", line 184, in <module>
+    main()
+  File "main.py", line 47, in main
+    cmd_process(browser, cef, pc, session)
+  File "main.py", line 69, in cmd_process
+    string = pc.read()
+AttributeError: 'bool' object has no attribute 'read'
+
+
+[2019-05-11 21:42:06] Traceback (most recent call last):
+  File "main.py", line 184, in <module>
+    main()
+  File "main.py", line 47, in main
+    cmd_process(browser, cef, proc, session)
+  File "main.py", line 69, in cmd_process
+    string = pc.read()
+  File "C:\Users\jay\Documents\projects\desktop\v2\src\terminal\env\lib\site-packages\winpty\winpty_wrapper.py", line 69, in read
+    windll.kernel32.GetFileSizeEx(self.conout_pipe, size_p)
+KeyboardInterrupt
+
+
+[2019-05-11 21:59:57] Traceback (most recent call last):
+  File "main.py", line 184, in <module>
+    main()
+  File "main.py", line 47, in main
+    cmd_process(browser, cef, proc, session)
+  File "main.py", line 72, in cmd_process
+    string = string.decode('ascii')
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xe2 in position 10: ordinal not in range(128)
+
+
+[2019-05-11 22:44:52] Traceback (most recent call last):
+  File "main.py", line 185, in <module>
+    main()
+  File "main.py", line 47, in main
+    cmd_process(browser, cef, proc, session)
+  File "main.py", line 73, in cmd_process
+    string = string.decode('ascii')
+  File "main.py", line 73, in cmd_process
+    string = string.decode('ascii')
+  File "C:\Users\jay\AppData\Local\Programs\Python\Python36\lib\bdb.py", line 48, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "C:\Users\jay\AppData\Local\Programs\Python\Python36\lib\bdb.py", line 67, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit
+
+
+[2019-05-11 23:19:19] Traceback (most recent call last):
+  File "main.py", line 185, in <module>
+    main()
+  File "main.py", line 46, in main
+    cmd_process(browser, cef, proc, session)
+  File "main.py", line 70, in cmd_process
+    string = decode(string, pc)
+TypeError: decode() takes 1 positional argument but 2 were given
+
+
+[2019-05-11 23:34:23] Traceback (most recent call last):
+  File "main.py", line 185, in <module>
+    if not is_loading:
+  File "main.py", line 46, in main
+    proc.spawn(session['app'])
+  File "main.py", line 61, in cmd_process
+KeyboardInterrupt
+
+
+[2019-05-11 23:34:31] Traceback (most recent call last):
+  File "main.py", line 191, in <module>
+    main()
+  File "main.py", line 52, in main
+    cmd_process(browser, cef, proc, session)
+  File "main.py", line 85, in cmd_process
+    if len(string) == 0:
+TypeError: object of type 'NoneType' has no len()
+
+
+[2019-05-11 23:35:10] Traceback (most recent call last):
+  File "main.py", line 192, in <module>
+    main()
+  File "main.py", line 52, in main
+    cmd_process(browser, cef, proc, session)
+  File "main.py", line 86, in cmd_process
+    if len(string) == 0:
+TypeError: object of type 'NoneType' has no len()
+
+
+[2019-05-11 23:43:43] Traceback (most recent call last):
+  File "main.py", line 192, in <module>
+    main()
+  File "main.py", line 52, in main
+    cmd_process(browser, cef, proc, session)
+  File "main.py", line 77, in cmd_process
+    string = decode(string, pc, session)
+  File "C:\Users\jay\Documents\projects\desktop\v2\src\terminal\transcoder.py", line 9, in decode
+  File "C:\Users\jay\Documents\projects\desktop\v2\src\terminal\transcoder.py", line 9, in decode
+  File "C:\Users\jay\AppData\Local\Programs\Python\Python36\lib\bdb.py", line 48, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "C:\Users\jay\AppData\Local\Programs\Python\Python36\lib\bdb.py", line 67, in dispatch_line
+    if self.quitting: raise BdbQuit
+bdb.BdbQuit
+
+
+[2019-05-11 23:58:05] Traceback (most recent call last):
+  File "main.py", line 192, in <module>
+    main()
+  File "main.py", line 52, in main
+    cmd_process(browser, cef, proc, session)
+  File "main.py", line 72, in cmd_process
+    pc.write(item)
+  File "C:\Users\jay\Documents\projects\desktop\v2\src\terminal\env\lib\site-packages\winpty\winpty_wrapper.py", line 80, in write
+    data = data.encode('utf-8')
+AttributeError: 'int' object has no attribute 'encode'
+
+
+[2019-05-12 00:07:52] Traceback (most recent call last):
+  File "main.py", line 192, in <module>
+    main()
+  File "main.py", line 52, in main
+    cmd_process(browser, cef, proc, session)
+  File "main.py", line 72, in cmd_process
+    pc.write(item)
+  File "C:\Users\jay\Documents\projects\desktop\v2\src\terminal\env\lib\site-packages\winpty\winpty_wrapper.py", line 80, in write
+    data = data.encode('utf-8')
+AttributeError: 'dict' object has no attribute 'encode'
+
+
+[2019-05-12 00:19:32] Traceback (most recent call last):
+  File "main.py", line 197, in <module>
+    main()
+  File "main.py", line 52, in main
+    cmd_process(browser, cef, proc, session)
+  File "main.py", line 77, in cmd_process
+    string = decode(string, pc, session)
+  File "C:\Users\jay\Documents\projects\desktop\v2\src\terminal\transcoder.py", line 6, in decode
+    result = key_object['key']
+TypeError: byte indices must be integers or slices, not str
+
+
+[2019-05-12 00:20:38] Traceback (most recent call last):
+  File "main.py", line 197, in <module>
+    main()
+  File "main.py", line 52, in main
+    cmd_process(browser, cef, proc, session)
+  File "main.py", line 77, in cmd_process
+    string = decode(string, pc, session)
+  File "C:\Users\jay\Documents\projects\desktop\v2\src\terminal\transcoder.py", line 9, in decode
+    for char in result:
+UnboundLocalError: local variable 'result' referenced before assignment
+
+
+[2019-05-12 00:21:45] Traceback (most recent call last):
+  File "main.py", line 197, in <module>
+    main()
+  File "main.py", line 52, in main
+    cmd_process(browser, cef, proc, session)
+  File "main.py", line 72, in cmd_process
+    pc.write(item)
+  File "C:\Users\jay\Documents\projects\desktop\v2\src\terminal\env\lib\site-packages\winpty\winpty_wrapper.py", line 80, in write
+    data = data.encode('utf-8')
+AttributeError: 'dict' object has no attribute 'encode'
+
+
+[2019-05-12 00:27:13] Traceback (most recent call last):
+  File "v8function_handler.pyx", line 48, in cefpython_py36.V8FunctionHandler_Execute
+  File "main.py", line 128, in session_key_input
+    value = encode(value, name)
+  File "C:\Users\jay\Documents\projects\desktop\v2\src\terminal\transcoder.py", line 20, in encode
+    if isinstance(key_object, dict):
+NameError: name 'key_object' is not defined
+
+
+[2019-05-12 00:44:07] Traceback (most recent call last):
+  File "main.py", line 198, in <module>
+    main()
+  File "main.py", line 52, in main
+    cmd_process(browser, cef, proc, session)
+  File "main.py", line 77, in cmd_process
+    string = from_cli(string, pc, session)
+  File "C:\Users\jay\Documents\projects\desktop\v2\src\terminal\transcoder.py", line 10, in from_cli
+    process_stream(session, char)
+TypeError: process_stream() takes 1 positional argument but 2 were given
+
+
+[2019-05-12 00:46:16] Traceback (most recent call last):
+  File "main.py", line 198, in <module>
+    main()
+  File "main.py", line 52, in main
+    cmd_process(browser, cef, proc, session)
+  File "main.py", line 77, in cmd_process
+    string = from_cli(string, pc, session)
+  File "C:\Users\jay\Documents\projects\desktop\v2\src\terminal\transcoder.py", line 9, in from_cli
+    res += ()
+UnboundLocalError: local variable 'res' referenced before assignment
+

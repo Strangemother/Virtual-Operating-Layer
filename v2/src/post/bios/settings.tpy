@@ -1,0 +1,7 @@
+"""This file is written by the builder to facilitate burnt in values for the
+bios. Any edits to this file should occur in the 'tpy' and built.
+"""
+VERSION = {VERSION}
+BOOT_NAME = "{BOOT_NAME}"
+TERMINAL_PREFIX = "{TERMINAL_PREFIX}"
+LIBS = {BIOS_LIBS}

@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: container
+Version: 0.1
+Summary: SM VOL graphics container
+Home-page: http://github.com/strangemother/vol-container
+Author: Jay Jagpal
+Author-email: jay@strangemother.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
