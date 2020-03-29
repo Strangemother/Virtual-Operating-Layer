@@ -6,7 +6,9 @@ def main():
 
     sz = Size(10, 'mb')
     print("size", sz, sz.kilobyte)
+    import pdb; pdb.set_trace()  # breakpoint d5b7aa95 //
     print( int(sz.kilobyte), 10000 )
+
 
 class EntryHost(object):
 
@@ -33,6 +35,7 @@ class EntryHost(object):
 
         if len(m) > 0:
             return m[0]
+
 
 entries = EntryHost()
 
