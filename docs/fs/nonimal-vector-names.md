@@ -2,7 +2,7 @@
 
 Key Value vectors, or nominal vectors are names asssociated with files to utilise storage locations through arbitrary particle definitions.
 
-Consider Vector names liek tagging, but with specific locations designated to each key. By design the system will leverage a tri-state vector - or three key locale. Providing a three key local as a name to the particle, the system will create, define and manage the a vector address as a table. Utilising three tables (or more) we can derive:
+Consider Vector names like tagging, but with specific locations designated to each key. By design the system will leverage a tri-state vector - or three key locale. Providing a three key local as a name to the particle, the system will create, define and manage the a vector address as a table. Utilising three tables (or more) we can derive:
 
 + Shorter and long key search (with faster needle aggrgation)
 + data distributation through naming; "element.audio.remote" for example

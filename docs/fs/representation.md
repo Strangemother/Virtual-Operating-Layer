@@ -34,7 +34,7 @@ A Phenocryst is a local cache reference stored within the VOL host. Reading 'met
     < IDENTITY identity
 
 
-These are low-level calls designed for core access to the users content cloud. A floating particle may be useless without a grain and become sedimented. As such a higher-level API serves the user and applications with goruping resources of Grains and Aggregates.
+These are low-level calls designed for core access to the users content cloud. A floating particle may be useless without a grain and become sedimented. As such a higher-level API serves the user and applications with grouping resources of Grains and Aggregates.
 
 An ideology of building a membrane referable Grain containg a particle.
 

@@ -82,4 +82,10 @@ This represents a simple example of verbose terminolgy to display the analogy wi
 
 ---
 
-Although not entirely possible as a complete solution, smaller components can be easily adapted. As a case this syntax isn't far from Cucumber testing.
+Although not entirely possible as a complete solution, smaller components can be easily adapted. As a case this syntax isn't far from Cucumber testing. I see this vision as an extension of the same idea however applied to the core compiler as the standard language. In its thinnest form, it may be chunky batteries of code, specifically designed to be 'socialised' and implemented.
+
+Plucking core functionality shouldn't be hard - adapting a language model to facilitate communication between 'modules' through a succinent construct is near impossible (for me). Considering alterntive options; ML chat box, a soft core lexicon (on the fly programmed), a sadie context net.
+
+Initially all functionality could be functions named as batteries, with complex descriptions; pieced together by a clever bridge designed to understand how each module may fit. This is easy for thin logic, but for complicated structures introspection (runtime) may not be possible. However with an extremely thin dialect, fundamental language types are easy moved between modules. As such all 'modules' send and receive static types result objects; with functions for bridging aross all module types.
+
+As an example a "loop" always expects an iterative type. And iterative type expects something to iterate.

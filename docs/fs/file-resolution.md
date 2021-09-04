@@ -1,6 +1,6 @@
 # Resolution
 
-Base methods for resolving an aggregate tusing grains and pointers don't act like standard files.
+Base methods for resolving an aggregate using grains and pointers don't act like standard files.
 
 Due to chosen build platform the bare-metal communication is done through EXT4 (or the chosen compiler) C libs `seeks`/`read`/`write` bytes. Later this will be changed to a core implmented byte reader, such as ASM  - combining the overall dream of _one memory_ - using a homogeneous space for RAM and _disk_ for resolving in=memory data. In the future magentic disc space will not serve as the main space. With NMVe I can bridge the master-memory with RAM - merging the memory persistence into one giant swap space. At this point it's only useful to use the volatile ram as a security service.
 

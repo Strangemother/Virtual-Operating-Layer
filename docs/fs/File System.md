@@ -21,7 +21,7 @@ The returned given to the FS is handled accordingly - converting it to a readabl
 
 ## Naming
 
-The new patterns and protocols for the VOL FS reside within the concept of natural rock and earth. The field of Pedology defines an Aggregate as a mass of mineraloid particles or rock particles. The whole analogy provides a firm similarity of how VOL will work with a resulting unit.
+The new patterns and protocols for the VOL FS reside within the concept of natural rock and earth. The field of Pedology (_lolz erm..._) defines an Aggregate as a mass of mineraloid particles or rock particles. The whole analogy provides a firm similarity of how VOL will work with a resulting unit.
 
 The end-user exists within an session ecosystem bound upon on layer of smaller segments of usable units. As each unit needs other aspects of a VOL, its particulate structure wouldn't work without a union of homogeneous parts.
 
@@ -96,6 +96,12 @@ A single particle is a unchanging unit of bytes or binary content for digestion 
 A subset of particles is Known as a Colloid. During processing VOL FS will maintain a colloid of the aggregate.
 
 
+#### Orphan Particles
+
+A Particle without a before, after, and the Phenocryst, will be ophaned when no references can be found. This may occur when a Phenocryst is out of sight or lost.
+
+In this case the particle should solidify after a period and head to cold-store. Indeed the callback will be slow but a colloid will correct for the out-of-order byte return.
+
 #### Solid Particles
 
 A Particle defines a chunk of content in the FS. It may be persistently stored anywhere or exist as immediate user environment information. If the Particle content is _baked_ into a service location - such as written as bytes to a HDD - it's referred to as a 'solid' particle, as it will not change over time. The antithesis of this is not known yet _A liquid particle?_. But a set of phases exist for a Particle
@@ -126,7 +132,7 @@ Although not spoken about in the FS documentation. The Membrane is the network a
 
 ---
 
-When agglomerating particle content the information is naturally stored through the default FS on the host system. this content is smartly managed by the FS 'kernel?' to disseminate to the appropriate tooling. A particle is stored in a location governed by the gain and its reference header.
+When agglomerating particle content, the information is naturally stored through the default FS on the host system. this content is smartly managed by the FS 'kernel?' to disseminate to the appropriate tooling. A particle is stored in a location governed by the gain and its reference header.
 
 The reference header is kept on the _local_ system acting as a standard filesystem registry. All files have an entry, addressable by their reference. A Particle reference name is arbitrary. Many items may have the same particle reference yielding a grain to complete an aggregate.
 
