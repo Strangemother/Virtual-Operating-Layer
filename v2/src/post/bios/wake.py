@@ -1,7 +1,7 @@
 """The First function within the bios boot.
 The BIOS memoory is first assigned using a given hard-coded key.
 
-Once assigned the wak _produces_ a memory allocation and assigns the first
+Once assigned the wake _produces_ a memory allocation and assigns the first
 key values to the BIOS memory slot.
 
 The POST commands are read and the instructions load the next memory

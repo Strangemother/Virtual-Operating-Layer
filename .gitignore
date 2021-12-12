@@ -6,6 +6,12 @@ nim/
 node_modules/
 build/
 env3/
+**/env/
+**/.pytest_cache
 __pycache__
 src/runtime-envs/
 .ipynb_checkpoints/
+mirror
+nector
+pybuild
+python-3.*
