@@ -22,7 +22,7 @@ Elements living on top of the base (empty) bios runtime to execute a working env
 ## Second phase
 
 1. Load drivers
-     + Graphics, network (wireless), audio, inputs, mesh,
+     + Graphics, network (wireless) (first membranes), audio (audio Membrane and hardware), inputs, mesh (other membranes),
 2. install presystems
     + Run driver systems using db cache and system settings
 3. load init apps

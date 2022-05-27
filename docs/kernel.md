@@ -46,7 +46,7 @@ In VOL it's a little more complex. Three stages of initial integration persist w
 Followed by the user api - cloud, ipfs etc.
 
 
-### Interprocess communication
+### Interprocess communication (Membranes)
 
 Each task or thread will naturally provide an API for inter process communication
 isolated from the a central event core. Events can register and wait on a state machine

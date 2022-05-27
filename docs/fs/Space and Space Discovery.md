@@ -46,11 +46,11 @@ a new one should be generated - assuming such events as NEW system or WAKE
 a session for example.
 
 
-# get user session
-# Check secret asset location for any previous caches
-# check permissions for access
-# through system globals to access the membrane
-# Communicate across the membrane for valid services
-# check threads and remotes for viable locations
-# select the best space through magic inspection of spaces and name.
-# return a space writer; a manager for file passing.
++ get user session
++ Check secret asset location for any previous caches
++ check permissions for access
++ through system globals to access the membrane
++ Communicate across the membrane for valid services
++ check threads and remotes for viable locations
++ select the best space through magic inspection of spaces and name.
++ return a space writer; a manager for file passing.

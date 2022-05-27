@@ -26,7 +26,7 @@ As the session-runtime and RUNTIME don't need the CORE = running as:
 + A RUNTIME running as an app (such as an exe) network connecting to a CORE
 
 
-## Distrubution
+## Distribution
 
 VOL is naturally distributed - meaning it is designed at the CORE and RUNTIME to work within more than one consistent platform.
 The main CORE linux image is small with the VOL machinery mataining the entire system.

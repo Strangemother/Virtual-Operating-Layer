@@ -51,6 +51,8 @@ The VFS three stages of implementation:
 
 ### Bios TAPE
 
+read more tape.md
+
 Although currently (poorly) implemented, the TAPE is a TYPEA file system type containing procedural instructions as transaction for CPU or higher level instructions 'taped' into the BIOS or other accepting runtime. Taking the 'Tape' analogy from literal magnetic tapes, where they read start to finish.
 
 **Note:** _This touches on a definitive topic of 'file pointers'_
