@@ -1,0 +1,60 @@
+body {
+    background: #000000;
+    padding: 0;
+    display: flex;
+    margin: 0;
+    flex-direction: column;
+    flex-grow: 1;
+    /*font-family: 'Hind Vadodara', sans-serif;*/
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+overflow: hidden;/* cursor: none; */}
+
+
+.content {/* border: solid 1px #161616; */display: flex;flex-grow: 1;flex-direction: column;overflow: hidden;/* cursor: none; */z-index: 1;}
+
+html {display: flow-root;/* flex-grow: 1; *//* border: solid; */height: 100%;border-collapse: collapse;display: flex;}
+
+.iris-container {/* border: solid; */display: flex;position: absolute;bottom: 1rem;right: 1rem;width: 6rem;height: 6rem;/* border-collapse: collapse; */}
+
+.iris {/* border: solid; */border-radius: 50%;width: auto;flex-grow: 1;margin: 1rem;background: #343434;transition: background .3s cubic-bezier(0, 0.73, 0.45, 0.88);}
+
+.panel {/* background: #636363; */position: absolute;width: 50%;height: 50%;border-radius: 0.5rem;/* padding: 0.1%; */overflow: hidden;font-weight: 400;line-height: 1;/* top: 10%; *//* left: 13%; */display: flex;border-collapse: collapse;flex-direction: column;}
+
+
+.full.panel {/* top: 0; *//* left: 0; *//* width: 100%; */}
+
+.panel-content {flex-grow: 1;background: #242424;}
+
+.panel header, .panel footer, .winbox > footer, .winbox > header {min-height: 0.7em;background: #484848c7;}
+
+header .title, .wb-title {color: #adadad;padding: 0.3em 0.5em 0.2em;font-size: 0.9em;font-weight: 600;flex-grow: 1;}
+
+.templates {display: none;}
+
+span.wb-full {display: none;}
+
+span.wb-min, span.wb-max {background: #1e1e1e;border: solid 0.3rem #4c4c4c;width: 0.2em;}
+
+span.wb-max {border-color: #0a0a0aeb;background: #404040;}
+
+div#winbox-1 {}
+
+.winbox.max {border-radius: 0;box-shadow: none;}
+
+.pointer {/* border: solid 1px red; *//* background: #4caf50; */width: 0rem;height: 0rem;position: fixed;z-index: 2;display: flex;pointer-events: none;align-items: center;justify-content: center;}
+
+.pointer .visible {position: relative;/* left: -.25rem; *//* top: -.25rem; */border: solid 2px #2196f3;/* width: .5rem; *//* height: .5rem; */border-radius: 2rem;padding: 0.3rem;transition: padding .2s cubic-bezier(0.32, 2.42, 0.79, 0.67);}
+
+body.hide-mouse {cursor: none;}
+
+.hide-mouse .wb-n, .hide-mouse .wb-s, .hide-mouse .wb-w, .hide-mouse .wb-e {cursor: none;}
+
+.winbox.min {border-radius: 0.6em 0.6em 0em 0em;}
+
+.pointer.mousedown .visible {border-color: #344241;}
+
+.pointer.s .visible, .pointer.n .visible {/* width: 0; *//* height: 0.6rem; */padding: 0.4em 0;}
+.pointer.w .visible, .pointer.e .visible {/* width: 0; *//* height: 0.6rem; */padding: 0 0.4em;}
+
+.iris:hover,.iris:focus {background: #4c6368;}

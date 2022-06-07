@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href='{% static "css/winbox.css" %}'>
+
+   {#  <link rel="preload" href="{% static 'js/winbox.js' %}" as="script"> #}
+
+    <script type="text/javascript"  src="{% static 'js/helper.js' %}"  ></script>
+    <script  type="text/javascript" src="{% static 'js/winbox.js' %}"></script>
+    <script  type="text/javascript" src="{% static 'js/bus.js' %}"></script>
+    <script  type="text/javascript" src="{% static 'js/pointer.js' %}"></script>
+    <script  type="text/javascript" src="{% static 'js/alpha.js' %}"></script>
+
+</head>
+
+<body>
+    <div class="templates">
+
+        <div class='winbox panel'>
+
+            <header class='wb-header'>
+                <div class='wb-title'>Empty Title</div>
+                {# <div class="title">Empty Panel</div> #}
+
+                <div class='wb-icon'>
+                    <span class='wb-min'></span>
+                    <span class='wb-max'></span>
+                    <span class='wb-full'></span>
+                    <span class='wb-close'></span>
+                </div>
+
+            </header>
+
+            <div class='panel-content wb-body'></div>
+            <footer>
+
+            </footer>
+
+            <div data-direction='n' class='handle wb-n'></div>
+            <div data-direction='s' class='handle wb-s'></div>
+            <div data-direction='w' class='handle wb-w'></div>
+            <div data-direction='e' class='handle wb-e'></div>
+            <div data-direction='nw' class='handle wb-nw'></div>
+            <div data-direction='ne' class='handle wb-ne'></div>
+            <div data-direction='se' class='handle wb-se'></div>
+            <div data-direction='sw' class='handle wb-sw'></div>
+
+        </div>
+    </div>
+
+
+    <div class="content">
+        <div class="panels">
+            <!-- <div class="panel">
+                <header>
+                    <div class="title">Empty Panel</div>
+                </header>
+                <div class="panel-content">
+                    <div class="text-container">Text</div>
+                </div>
+                <footer></footer>
+            </div> -->
+        </div>
+        <div class="iris-container">
+            <div class="iris"></div>
+        </div>
+    </div>
+
+    <div class="pointer">
+        <div class="visible"></div>
+    </div>
+    {# <link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@300;400;500;600;700&display=swap" rel="stylesheet"> #}
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/alpha.css' %}">
+</body>
+</html>
