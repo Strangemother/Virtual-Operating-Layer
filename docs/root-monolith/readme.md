@@ -45,7 +45,7 @@ During _startup_ the Monolith provides a root VOL for the incoming OS; essential
 
 ## Root Drivers
 
-+ UDP COM for pre-cornerstone loadout (none websocket platforms)
++ TCP/UDP COM for pre-cornerstone loadout (none websocket platforms)
 + Audio Beep
 + Core system (Foundation)
   + OS Runtime (Py core)

@@ -37,6 +37,7 @@ All this exists within a loop, stepped by the monotlith, through a graphing tree
 Within VOL terminology this requires a
 
 + (system core) monolith
-+ a range of root internal membranes
++ CPUs
 + The FS
++ a range of root internal membranes
 + _"Cells"_ connected to membranes (mesh.md)
