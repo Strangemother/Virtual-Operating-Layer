@@ -13,6 +13,7 @@ For implementation of these core utils:
 
 + A Pointer class
   requires the peristent and virtual memory
+
 + A Stepper class
   Requires the graph machine for subsets and an address resolver, to move a pointer.
 + A Stepper machine
@@ -27,5 +28,11 @@ Similar to a standard monotlith, the _kernel_ runs above a _BIOS_ to execute the
 The result acts like a complete system build has been built for a specific task. The monolith may dispatch new kernels to other BIOD's, convert them to a _functioning utility for the target device_ by recompiling the kernel with additional graph features. This occures before the pointer actuates the SES
 
 
+## Core apps
 
-
++ Import lib
+  A system importer based upon _synthetic_ modelling
++ Eval lib
+  Execute source for live system changes; pointer collections from a graph
++ Stepping lib
+  The graph key stepping functionality, utilised by the stepper machine

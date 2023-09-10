@@ -1,3 +1,5 @@
+# Phase 0
+
 The initial stages currently required for the monolith readification into _base OS_ mode, where the OS may handle standard operations. In the monolith stage this is the very first step to building the base OS, then hand-off to basic operations such as the forever loop for REPL and "applications"
 
 + "wake" from the magicnumber hand-off or a simulated power-on event

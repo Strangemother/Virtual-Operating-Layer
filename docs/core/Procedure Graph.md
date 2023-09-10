@@ -143,7 +143,37 @@ The system will have many _graphs_ - but one primary graph executes by system de
 
 A loop executes within a space through layers
 
+## code
 
+The pointers a functional executors, also known as Self executing functions. They provide the _code_ for actions of the graph. Each function is a micro or macro solution, governing changes to the graph or memory block of the 'app'
+
+## memory
+
+Generally the graphing system has two types of persistence content to ferry. The 'memory block' allocates a set bytes range, and a transient memory runtime for message trafficing between graph steps. Fundamentally they are the same thing; as a pointer has access to both. However in some cases the pointer returns a value (such as an inline injection) - of which is stored within the transient "app" memory.
+
+Though the graphing solution, a SES may only access the graph range defined in its _space_ or cell. the process may poke outside their references, but this is done through a authorised membrane.
+
+---
+
+Thus the loop steps pointers. The pointers execute SES with memory references.
+A Pointer may alter the graph, but rarely alter the primary (root) graph.
+Memory exists as one wholesome state, membranes and the FS cares for _where_ and how it's stored.
+
+
+## Layout (presentation and calculating)
+
+The topology of the graph is a left to right, top to bottom executing chain. Each origin yields a list of statements for _work_.
+
+The stepper speed can be considered as _FPS_, and within one upper frame a single step is entered and executed. Many single steps within a period (Seconds) yields a speed and a size of work.
+
+    #0 root
+    #1 system       // 1 frame
+        #1 #0       // 30%
+        #2 #0       // 20%
+            #2 #1
+        #3 #0       // 50%
+
+The count of nodes from root to the leaf node `#1 #2 #1` is the root distance, where a relative distance is from an origin (#1#2) to it leaf within. Each pointer represents some _work_.
 
 # Forward feed branch data
 

@@ -7,12 +7,12 @@ However all aspects of a kernel are applied to this management unit.
 
 https://www.engineersgarage.com/tutorials/what-is-kernel-programming
 
-1) Process management subsystem
-2) Memory management subsystem
-3) File management subsystem
-4) Inter process communication subsystem
-5) Network management subsystem
-6) Device driver subsystem
+1. Process management subsystem
+2. Memory management subsystem
+3. File management subsystem
+4. Inter process communication subsystem
+5. Network management subsystem
+6. Device driver subsystem
 
 
 ## Application

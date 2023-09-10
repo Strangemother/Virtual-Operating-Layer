@@ -1,19 +1,19 @@
-Key graph with a stepping graph
+# Key graph with a stepping graph
 
 
 A list of words have the potential to yield.
 
-     positions
---------------------
-#   0 1 2 3 4 5    i
---------------------
-0   A P P L E S    0
-1   B A N A N A    1
-2   W I N D O W    1
-3   W I N D Y      1
-4   H E L L O      3
-5   H E L P        3
-6   H E A D S      3
+         positions
+    --------------------
+    #   0 1 2 3 4 5    i
+    --------------------
+    0   A P P L E S    0
+    1   B A N A N A    1
+    2   W I N D O W    1
+    3   W I N D Y      1
+    4   H E L L O      3
+    5   H E L P        3
+    6   H E A D S      3
 
 
 Per each input the _terminal char_ is incremented or dropped. In the above example `HE` moves postion #5, #6, and #7 to index `2`. If the next input char yields `L` or `A` the term continues.
@@ -28,7 +28,8 @@ To reduce the cost of testing for strings, each postion has a key graph, connect
 
 Graph #3 (column 2) looks something like:
 
-#3:
+\#3:
+
     P > L
     L > L | P
     A > D
@@ -36,7 +37,8 @@ Graph #3 (column 2) looks something like:
 
 for wholness graph #4 (column 3) looks like:
 
-#4:
+\#4:
+
     L > E | O
     A > N
     D > O | Y | D

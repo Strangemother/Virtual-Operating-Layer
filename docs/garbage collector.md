@@ -1,4 +1,4 @@
-# Quite Time Cleaner
+# Quiet Time Cleaner
 
 The Quiet Time Cleaner will delete old imports, ram cache and general live data
 imports. As the application works it will gradually populate FS graphs and import
