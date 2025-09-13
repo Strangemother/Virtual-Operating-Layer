@@ -1,5 +1,8 @@
 # Masters and Nodes
 
+Status: Source
+Relocated: See extracted summaries in ../../ai-docs/sections/ (e.g., capability-advertisement.md, onboarding-sequence.md, mesh-role-derivation.md)
+
 Naturally The VOL wants to tandem its work across 2 or more platforms. Ideally the CORE ran independently to the CONTAINER but in some cases running a CORE linux setup isn't possible.
 Alternative options may be recompiling the CORE with a new kernel (such as windows) or starting the RUNTIME outside a CORE and implementing as a NODE.
 

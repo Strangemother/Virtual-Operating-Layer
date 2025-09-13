@@ -1,5 +1,8 @@
 # Meshing (A Membrane)
 
+Status: Source
+Relocated: See extracted summaries in ../../ai-docs/sections/ (mesh-role-derivation.md, onboarding-sequence.md)
+
 
 > A cell membrane surrounds the cytoplasm of living cells, physically separating the intracellular components from the extracellular environment.
 

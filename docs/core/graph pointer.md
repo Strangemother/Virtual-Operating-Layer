@@ -1,5 +1,8 @@
 # Pointer
 
+Status: Source
+Relocated: Consolidated overview: `../../ai-docs/graph-overview.md` (Original retained; this file remains source of record.)
+
 The Pointer is a header element, serving actions to the graph and the stepper. As the stepper walks the graph, the pointer is called to execute upon its action. This may yield a pointer, memory or other functional work.
 
 The pointer name should be identifiable, such as "current|next". The stepper resolves the pointer name at runtime.

@@ -1,5 +1,8 @@
 # Scaling
 
+Status: Source
+Relocated: See extracted summaries in ../../ai-docs/sections/ (mesh-role-derivation.md)
+
 Scaling overlays Visual, Distribution and Hardware.
 
 ## Visual
