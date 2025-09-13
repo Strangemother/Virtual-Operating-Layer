@@ -1,5 +1,8 @@
 # Stepper
 
+Relocated: Consolidated overview: `../../ai-docs/graph-overview.md` (This document remains a detailed source.)
+Backlink: See extracted summaries in ../../ai-docs/sections/procedure-graph.md and ../../ai-docs/sections/glossary.md
+
 A Stepper walks the graph and manages many chained sequences, as a pointer resolver steps through the layer. For each frame the stepper will read the key, action any functionality and perform any exo-cell actions, before proceeding again upon the next call.
 
 Consider the stepper like a _loop_, but rather than a `while{}`, for each _next_ we aquire the next step from a pointer and resolve until the end.

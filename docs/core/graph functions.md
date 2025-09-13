@@ -1,5 +1,8 @@
 # Functions
 
+Status: Source
+Relocated: Consolidated overview: `../../ai-docs/graph-overview.md` (Original retained as source detail.)
+
 The content within the pointer to execute, yielding graph adaptions or memory alterations.
 
 + Can be compiled on-the-fly

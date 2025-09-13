@@ -1,5 +1,8 @@
 # Procedure Graph
 
+Status: Source
+Relocated: See extracted summary in ../../ai-docs/sections/ (graph-overview.md)
+
 The "procedure graph" applies a linear ordered function set in a graph chain, consequently performing a "program" or application. every application exists as a key reference within a graph - namely the function name.
 
 Initially this serves little function, other than a handy key reference. However futher abstracting this with a linear execution chain, An application may yield chain actions in parallell or linearly, through a combination of async execution and socket communication across all nodes within the a VOL ecosystem.

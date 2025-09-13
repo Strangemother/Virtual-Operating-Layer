@@ -1,5 +1,7 @@
 # Context Frame
 
+Backlink: See extracted summaries in ../../ai-docs/sections/procedure-graph.md, ../../ai-docs/sections/core-runtime.md, and ../../ai-docs/sections/glossary.md
+
 A Frame acts as a steppers _current view_ of the system, complete with all the knowledge required to run the incoming pointers. The `Context` acts as a parent hosting the `Frame` and all its associated parts.
 
 A Context lives across the life of the stepper as it walks a subset graph. All pointers and SES may view the context as 'the active system' and utilise components and stord data for 'app' tooling.

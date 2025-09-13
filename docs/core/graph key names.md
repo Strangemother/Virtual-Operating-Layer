@@ -1,5 +1,7 @@
 # Pointer Keys
 
+Relocated: Consolidated overview: `../../ai-docs/graph-overview.md` (Detailed key semantics retained here.)
+
 The 'address' of the pointer should be predicatable and computed by the previous
 unit + the current unit, resolving the next pointer.
 

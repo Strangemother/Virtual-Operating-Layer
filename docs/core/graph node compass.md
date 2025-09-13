@@ -1,5 +1,8 @@
 # Node internal vector path compass
 
+Relocated: Consolidated overview: `../../ai-docs/graph-overview.md` (This file preserves original detailed example.)
+Backlink: See extracted summaries in ../../ai-docs/sections/procedure-graph.md and ../../ai-docs/sections/glossary.md
+
 A graph node may have many input and output paths, through a sequence of chains.
 The chain may define a _required_ stepping path, with other paths within the node being a bad path from the given history:
 

@@ -1,5 +1,7 @@
 # Grains
 
+Relocated: Consolidated filesystem layering overview: `../../ai-docs/fs-overview.md` (Original detail retained.)
+
 A Grain maintains a header with references to many particles. The header is stored in a local graph for NAME asssociation with chunks. Pretty much a _file_ and its attributtes stored as a record.
 
 The Header returns any local credentials to yield finished particles. The grain leverages the locally stored references and instaniates Particles. Each particle calls and resolves indepdentantly returning pointers to chunks.

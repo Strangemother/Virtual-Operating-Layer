@@ -1,3 +1,6 @@
+Status: Source
+Relocated: Consolidated linear outline: `../../ai-docs/boot-sequence-linear.md` (Additional extractions previously referenced remain pending creation.)
+
 The boot sequence handles the initial loadout for the entire base operating layer, its allowed accesses and any additional core parameters to write.
 
 As this virtual, there is no disk boot or CPU protected mode stuff. This entire _boot_ layer reads a "bios" of base configurations for identity strings and base settings for the vol env.

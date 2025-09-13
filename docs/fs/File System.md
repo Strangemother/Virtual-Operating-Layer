@@ -1,5 +1,7 @@
 # Files
 
+Relocated: Consolidated filesystem layering overview: `../../ai-docs/fs-overview.md` (Original narrative retained here.)
+
 To clarify the reference a 'file', files, folders or the current analogy of assigning
 bytes to an address isn't the same within a VOL. Topologically a VOL aggregate will perform the same routine.
 

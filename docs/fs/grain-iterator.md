@@ -1,5 +1,7 @@
 # Pointer Stepping
 
+Relocated: Consolidated filesystem layering overview: `../../ai-docs/fs-overview.md` (Original stepping details retained.)
+
 Particle content is distributed across many spaces through the membrane. A Grain
 must gather all owned particles in an ordely fashion for presentation. The particle
 maintains no parents but the Grain must maintain the stepping procedure with the
