@@ -54,4 +54,10 @@ Needed:
 - Buffering or rate control guidelines
 Candidate Sources: [inputs.md](../../docs/inputs.md)
 
+## Cross-References
+See also:
+- [Interface & Display Layer](interface-placeholder.md) for broader interface concepts
+- [Interface Event Taxonomy](interface-event-taxonomy.md) for event category classification
+- [Mesh Overview](mesh-placeholder.md) for input sharing across mesh topology
+
 Verbatim scope: [inputs.md](../../docs/inputs.md), [display (container).md](../../docs/display%20(container).md), [Facade.md](../../docs/Facade.md) only.

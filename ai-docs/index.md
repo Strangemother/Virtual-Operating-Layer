@@ -1,6 +1,6 @@
 ---
 Status: Draft
-Last-Touched: 2025-09-12
+Last-Touched: 2025-09-13
 Owner: TODO
 ---
 # VOL Documentation Index (AI Restructured Set)
@@ -33,15 +33,21 @@ This index links to individually segmented section files derived from `restructu
 23. [Boot Sequence Diagram Stub](sections/boot-sequence-diagram.md) – Linear textual stage list with gaps.
 24. [Identity & Memory Unification](sections/identity-memory-unification.md) – Grains/slots/identity tensor linkage gaps.
 25. [Mesh Roles Matrix](sections/mesh-roles-matrix.md) – Role capability enumeration & unresolved schema.
+26. [Documentation Validation Checklist](sections/validation-checklist.md) – Compliance tracking and Working-Spec promotion readiness.
 
 ## Source Integrity
 All normative bullets cite original files under `../docs/`. Incomplete blocks enumerate explicit missing facts with candidate sources. No behaviors invented.
 
 ## Next Steps (Non-speculative)
-1. Capture any newly surfaced explicit naming tokens (if added to original docs) for SEM TAPE, pointer 0, capability fields, event categories.
-2. Cross-link overview docs inside related section files (in-document See: references) without altering originals.
+1. ~~Cross-link overview docs inside related section files (in-document See: references) without altering originals.~~ **COMPLETED**
+2. Capture any newly surfaced explicit naming tokens (if added to original docs) for SEM TAPE, pointer 0, capability fields, event categories.
 3. Prepare Working-Spec readiness checklist: ensure glossary coverage, inbound links, unresolved TODO isolation.
 4. Identify minimal candidate docs for status elevation (likely: graph-overview, filesystem-overview) once missing field enumerations appear in sources.
 5. Maintain open-questions synchronization: mark partial resolutions only after explicit names present in source docs.
+
+## Recent Updates
+- Added cross-reference sections to procedure-graph.md, filesystem.md, boot-loop.md, and mesh-roles.md for improved navigation
+- Enhanced internal linking between related conceptual areas
+- Improved section interconnectivity without modifying source citations
 
 Verbatim scope: Aggregated pointers only; refer to each section file for detailed citations.

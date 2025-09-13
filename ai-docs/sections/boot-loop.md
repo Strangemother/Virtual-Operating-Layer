@@ -1,6 +1,6 @@
 ---
 Status: Draft
-Last-Touched: 2025-09-12
+Last-Touched: 2025-09-13
 Source: restructured-notes-2025.md
 ---
 # Boot & Loop Sequence
@@ -62,5 +62,12 @@ Needed:
 - Contention policy when multiple pointers mutate same graph segment
 - Isolation or snapshot strategy
 Candidate Sources: [the loop.md](../../docs/the%20loop.md), [Procedure Graph.md](../../docs/core/Procedure%20Graph.md)
+
+## Cross-References
+See also:
+- [Boot Sequence Table](boot-sequence-table.md) for linearized phase list and format gaps
+- [Boot Sequence Diagram](boot-sequence-diagram.md) for textual stage ordering
+- [SEM TAPE Extraction](sem-tape-extraction.md) for TAPE format details
+- [Pointer 0 Payload](pointer-0-payload.md) for executable payload structure
 
 Verbatim scope: restructured-notes-2025.md Section 6 only.

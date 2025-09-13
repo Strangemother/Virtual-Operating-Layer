@@ -62,4 +62,10 @@ Needed:
 - Addressing or naming scheme for units
 Candidate Sources: [mesh.md](../../docs/mesh.md), [nodes.md](../../docs/nodes.md)
 
+## Cross-References
+See also:
+- [Mesh Overview](mesh-placeholder.md) for membrane transport and onboarding concepts
+- [Capability Advertisement](capability-advertisement.md) for capability field gaps
+- [Registry Capability Broker](registry-capability-broker.md) for registry command interactions
+
 Verbatim scope: [nodes.md](../../docs/nodes.md), [registry.md](../../docs/registry.md), [Scaling.md](../../docs/Scaling.md) only.

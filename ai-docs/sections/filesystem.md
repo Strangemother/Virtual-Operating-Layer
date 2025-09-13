@@ -1,6 +1,6 @@
 ---
 Status: Draft
-Last-Touched: 2025-09-12
+Last-Touched: 2025-09-13
 Source: restructured-notes-2025.md
 ---
 # Filesystem & Storage Layers
@@ -65,5 +65,11 @@ Needed:
 - Procedure for appending/replacing particles while preserving history
 - Handling of version lineage vs overwrite
 Candidate Sources: [File System.md](../../docs/fs/File%20System.md), [structure.md](../../docs/core/structure.md)
+
+## Cross-References
+See also: 
+- [Filesystem Overview](filesystem-overview.md) for entity relationships and naming consolidation
+- [Filesystem Layering Outline](filesystem-layering-outline.md) for structural hierarchy
+- [Memory & Identity Model](memory-identity.md) for NN-as-file integration considerations
 
 Verbatim scope: restructured-notes-2025.md Section 3 only.

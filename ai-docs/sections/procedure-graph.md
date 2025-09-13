@@ -1,6 +1,6 @@
 ---
 Status: Draft
-Last-Touched: 2025-09-12
+Last-Touched: 2025-09-13
 Source: restructured-notes-2025.md
 ---
 # Procedure Graph Model
@@ -17,6 +17,9 @@ Summary:
 - Stepper: Thin walker executing pointers sequentially; machine constructs context, frequency control, async allowances; separation: Root → Machine Parent → Stepper Machine → Stepper → Pointer. (Source: [graph stepper.md](../../docs/core/graph%20stepper.md))
 - Graph Functions / SES Behavior: Functions can redirect execution, call other pointers, store results in context memory; may be compiled or sandboxed. (Source: [graph functions.md](../../docs/core/graph%20functions.md))
 - Node Compass: Internal path resolution using summed vector history to constrain valid transitions; modulo approach considered for loops; collision concerns noted. (Source: [graph node compass.md](../../docs/core/graph%20node%20compass.md))
+
+## Cross-References
+See also: [Graph Subsystem Overview](graph-overview.md) for consolidated graph execution constructs and formal definitions.
 
 Incomplete: Formal roles separation (Pointer vs Stepper vs Stepper Machine vs Machine Parent)
 Needed:
