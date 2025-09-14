@@ -51,6 +51,22 @@ Purpose: Central index of policy and procedure documents; no new rules introduce
  - frame-0-privilege-boundary-extraction.md – Aggregated Frame 0 privilege boundary statements & gaps (Source: frame-0-privilege-boundary-extraction.md)
  - graph-key-0-enforcement-extraction.md – Aggregated Graph Key 0 enforcement & ownership gaps (Source: graph-key-0-enforcement-extraction.md)
  - user-tape-validation-extraction.md – Aggregated User Tape load order & validation gaps (Source: user-tape-validation-extraction.md)
+ - capability-set-schema-extraction.md – Aggregated Capability Set usage & schema gaps (Source: capability-set-schema-extraction.md)
+ - gap-closure-roadmap.md – Central consolidation of promotion-blocking gaps (Source: gap-closure-roadmap.md)
+ - policy-evidence-exhaustion.md – Procedure for marking gaps evidence exhausted (Source: policy-evidence-exhaustion.md)
+ - exhausted-gaps-index.md – Central listing of Evidence Exhausted gaps & reopen criteria (Source: exhausted-gaps-index.md)
+ - policy-gap-monitoring.md – Monitoring triggers & reopen procedure for exhausted gaps (Source: policy-gap-monitoring.md)
+ - graph/OVERVIEW.md – Consolidated procedure graph orientation (Source: graph/OVERVIEW.md)
+ - graph/relocation-notes.md – Source file supersedure & cross-reference guidance (Source: graph/relocation-notes.md)
+ - active-gaps-index.md – Live unresolved Incomplete blocks (non-exhausted) (Source: active-gaps-index.md)
+ - sections/glossary.md – Central glossary (Working-Spec) (Source: sections/glossary.md)
+ - tools/incomplete_block_audit.py – Incomplete block coverage audit script (Source: tools/incomplete_block_audit.py)
+ - incomplete-block-audit-report.md – Latest audit snapshot of Incomplete/Pending blocks (Source: incomplete-block-audit-report.md)
+ - gap-normalization-plan.md – Clustering methodology for untracked gap titles (Source: gap-normalization-plan.md)
+ - gap-cluster-membership.md – Enumerated cluster membership (partial) for untracked titles (Source: gap-cluster-membership.md)
+ - tools/cluster_validation.py – Cluster coverage & duplication validation script (Source: tools/cluster_validation.py)
+ - cluster-validation-report.md – Latest cluster coverage validation output (Source: cluster-validation-report.md)
+ - unclustered-titles.md – Inventory of unassigned untracked titles (Source: unclustered-titles.md)
 
 ## Cross-Reference Recommendations
 When editing a policy doc:

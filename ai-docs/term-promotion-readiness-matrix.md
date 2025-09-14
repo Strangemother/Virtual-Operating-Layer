@@ -29,7 +29,7 @@ Time Frame – Category: Underdefined (role unspecified) (Source: sections/gloss
 Jump Frame – Category: Underdefined (role unspecified) (Source: sections/glossary.md)
 Sequence Memory Graph – Category: Underdefined (differentiators absent) (Source: sections/glossary.md)
 Series Memory Graph – Category: Underdefined (differentiators absent) (Source: sections/glossary.md)
-Frame 0 – Category: Ready Candidate (multi-source references) (Source: sections/glossary.md)
+Frame 0 – Category: Ready Candidate (Evidence Exhausted blockers; awaiting new source material) (Source: frame-0-privilege-boundary-extraction.md)
 Command Lifecycle – Category: Underdefined (phase enumeration absent) (Source: sections/glossary.md)
 Index Space Domain – Category: Underdefined (relationship rules missing) (Source: sections/glossary.md)
 Expanded Space Domain – Category: Underdefined (relationship rules missing) (Source: sections/glossary.md)
@@ -37,14 +37,14 @@ Family Space Domain – Category: Underdefined (relationship rules missing) (Sou
 Extended Family Space Domain – Category: Underdefined (hierarchy unspecified) (Source: sections/glossary.md)
 Related Family Space Domain – Category: Underdefined (linkage semantics absent) (Source: sections/glossary.md)
 Dictionary Space Domain – Category: Underdefined (precedence unresolved) (Source: sections/glossary.md)
-Graph Key 0 – Category: Ready Candidate (multi-source: phase-0, readme) (Source: sections/glossary.md)
+Graph Key 0 – Category: Ready Candidate (Evidence Exhausted blockers; awaiting new source material) (Source: graph-key-0-enforcement-extraction.md)
 Reserved Graph ID – Category: Underdefined (enforcement unspecified) (Source: sections/glossary.md)
 BIOD – Category: Underdefined (role unspecified) (Source: sections/glossary.md)
 vol._vpt – Category: Underdefined (schema absent) (Source: sections/glossary.md)
 Initial Graph Bits – Category: Underdefined (entropy source unspecified) (Source: sections/glossary.md)
 CRC Start Key – Category: Underdefined (derivation steps missing) (Source: sections/glossary.md)
 root.lock() – Category: Underdefined (operation contract missing) (Source: sections/glossary.md)
-User Tape – Category: Ready Candidate (multiple phase sources) (Source: sections/glossary.md)
+User Tape – Category: Ready Candidate (Evidence Exhausted blockers; awaiting new source material) (Source: user-tape-validation-extraction.md)
 Enforced Code – Category: Underdefined (update policy missing) (Source: sections/glossary.md)
 Virtual RAM Slice – Category: Collision Review (Virtual RAM Slice/VRAM slice) (Source: sections/glossary.md)
 Code Allocator – Category: Underdefined (allocation mechanics missing) (Source: sections/glossary.md)
@@ -57,7 +57,7 @@ Generative Grammar – Category: Underdefined (rule set absent) (Source: section
 Ready Candidate: 4 (Frame 0, Graph Key 0, User Tape, Capability Set*)
 Collision Review: 2 (Virtual RAM Slice, Walking Register)
 Underdefined: Remaining terms
-*Capability Set appears with qualifier (working-term) and needs schema to move beyond Ready Candidate.
+*Capability Set appears with qualifier (working-term) and needs schema; blockers Evidence Exhausted pending new source material (Source: capability-set-schema-extraction.md)
 
 ## Incomplete Blocks
 ```
@@ -81,3 +81,4 @@ Promotion Checklist Backlink: See promotion-candidate-checklist.md for per-candi
 Frame 0 Gap Backlink: See frame-0-privilege-boundary-extraction.md for sourced privilege boundary gaps
 Graph Key 0 Gap Backlink: See graph-key-0-enforcement-extraction.md for enforcement & ownership gaps
 User Tape Gap Backlink: See user-tape-validation-extraction.md for validation & source precedence gaps
+Capability Set Gap Backlink: See capability-set-schema-extraction.md for schema & evaluation gaps

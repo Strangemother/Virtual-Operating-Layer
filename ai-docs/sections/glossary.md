@@ -34,6 +34,8 @@ Core Runtime Terms
 + Context Frame – Current view with memory, graph, temp data, APIs (Source: [frame-context.md](../../docs/core/frame-context.md))
 + Zero Suite – First service set post-handoff (Source: [zero-suite.md](../../docs/core/zero-suite.md))
 + Node Compass – Internal vector path resolution map (Source: [graph node compass.md](../../docs/core/graph%20node%20compass.md))
+Stepper Machine – Manager for stepper frequency/allowances; injects post-step routines; coexists with peers via membranes (Source: [graph stepper.md](../../docs/core/graph%20stepper.md))
+Machine Parent – Builder/owner of stepper machines; provides facades & subset graph; monitors lifecycle (Source: [graph stepper.md](../../docs/core/graph%20stepper.md))
  + SEM TAPE – Mechanism used by boot zim sem to store loading step values into mcom as a TAPE string (Source: [boot.md](../../docs/boot.md); [core/boot.md](../../docs/core/boot.md))
  + mcom – Anonymous memory reference/file descriptor receiving SEM TAPE data (config, kernel address, loading steps) (Source: [boot.md](../../docs/boot.md); [core/boot.md](../../docs/core/boot.md))
  Vector (Graph Position Vector) – Position identifier used in pointer/function examples (Source: [graph functions.md](../../docs/core/graph%20functions.md))
