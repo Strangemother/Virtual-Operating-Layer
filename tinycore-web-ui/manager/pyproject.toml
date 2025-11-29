@@ -1,0 +1,16 @@
+[project]
+name = "tinycore-manager"
+version = "0.1.0"
+description = "TinyCore host manager prototype"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "websockets>=12.0",
+]
+
+[project.scripts]
+tinycore-manager = "tinycore_manager.main:main"
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"

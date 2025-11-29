@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PTY Viewer with xterm.js</title>
+    
+    <!-- Load xterm.js from CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.css" />
+    <script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.js"></script>
+    
+    <!-- Optional: xterm.js addons for better experience -->
+    <script src="https://cdn.jsdelivr.net/npm/xterm-addon-fit@0.8.0/lib/xterm-addon-fit.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xterm-addon-web-links@0.9.0/lib/xterm-addon-web-links.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: #252526;
+            border-bottom: 1px solid #3a3a3a;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .header h1 {
+            color: #4ec9b0;
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .status {
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        .status.disconnected {
+            background: #3a1f1f;
+            color: #f48771;
+        }
+        
+        .status.connected {
+            background: #1f3a1f;
+            color: #4ec9b0;
+        }
+        
+        .terminal-container {
+            flex: 1;
+            padding: 20px;
+            background: #000;
+            overflow: hidden;
+        }
+        
+        #terminal {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .footer {
+            background: #252526;
+            border-top: 1px solid #3a3a3a;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 12px;
+            color: #888;
+        }
+        
+        .footer button {
+            padding: 6px 12px;
+            background: #0e639c;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .footer button:hover {
+            background: #1177bb;
+        }
+        
+        .keyboard-hint {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .key {
+            background: #3a3a3a;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>
+            <span>🖥️</span>
+            PTY Terminal Viewer
+        </h1>
+        <div id="status" class="status disconnected">
+            ⚠️ Disconnected
+        </div>
+    </div>
+    
+    <div class="terminal-container">
+        <div id="terminal"></div>
+    </div>
+    
+    <div class="footer">
+        <button id="clearBtn">Clear Terminal</button>
+        <div class="keyboard-hint">
+            <span>💡 Keyboard shortcuts work:</span>
+            <span class="key">Ctrl+C</span>
+            <span class="key">Ctrl+D</span>
+            <span class="key">Ctrl+L</span>
+            <span class="key">Tab</span>
+            <span class="key">↑ ↓</span>
+        </div>
+    </div>
+    
+    <script>
+        // Initialize xterm.js terminal
+        const term = new Terminal({
+            cursorBlink: true,
+            fontSize: 14,
+            fontFamily: '"Cascadia Code", "Fira Code", "Courier New", monospace',
+            theme: {
+                background: '#000000',
+                foreground: '#ffffff',
+                cursor: '#4ec9b0',
+                cursorAccent: '#000000',
+                selectionBackground: '#3a3a3a',
+                black: '#000000',
+                red: '#cd3131',
+                green: '#0dbc79',
+                yellow: '#e5e510',
+                blue: '#2472c8',
+                magenta: '#bc3fbc',
+                cyan: '#11a8cd',
+                white: '#e5e5e5',
+                brightBlack: '#666666',
+                brightRed: '#f14c4c',
+                brightGreen: '#23d18b',
+                brightYellow: '#f5f543',
+                brightBlue: '#3b8eea',
+                brightMagenta: '#d670d6',
+                brightCyan: '#29b8db',
+                brightWhite: '#e5e5e5'
+            },
+            allowProposedApi: true
+        });
+        
+        // Add fit addon to auto-resize terminal
+        const fitAddon = new FitAddon.FitAddon();
+        term.loadAddon(fitAddon);
+        
+        // Add web links addon (makes URLs clickable)
+        const webLinksAddon = new WebLinksAddon.WebLinksAddon();
+        term.loadAddon(webLinksAddon);
+        
+        // Open terminal in the container
+        term.open(document.getElementById('terminal'));
+        
+        // Fit terminal to container
+        fitAddon.fit();
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            fitAddon.fit();
+        });
+        
+        // WebSocket connection
+        let ws = null;
+        let reconnectInterval = null;
+        const statusEl = document.getElementById('status');
+        
+        function connect() {
+            // Build WebSocket URL for GitHub Codespaces
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsHost = window.location.hostname.replace('-8000.', '-8080.');
+            const wsUrl = `${protocol}//${wsHost}`;
+            
+            console.log('Connecting to:', wsUrl);
+            term.writeln('\r\n\x1b[33m⚡ Connecting to PTY server...\x1b[0m');
+            
+            ws = new WebSocket(wsUrl);
+            
+            ws.onopen = () => {
+                statusEl.textContent = '✓ Connected';
+                statusEl.className = 'status connected';
+                console.log('WebSocket connected');
+                term.writeln('\x1b[32m✓ Connected to PTY stream\x1b[0m\r\n');
+            };
+            
+            ws.onmessage = (event) => {
+                // Write received data to terminal
+                // xterm.js automatically parses and renders ANSI escape sequences
+                term.write(event.data);
+            };
+            
+            ws.onerror = (error) => {
+                console.error('WebSocket error:', error);
+                term.writeln('\r\n\x1b[31m✗ WebSocket error\x1b[0m');
+            };
+            
+            ws.onclose = () => {
+                statusEl.textContent = '⚠️ Disconnected - Reconnecting...';
+                statusEl.className = 'status disconnected';
+                term.writeln('\r\n\x1b[33m⚠️  Connection closed. Reconnecting...\x1b[0m');
+                
+                // Try to reconnect after 2 seconds
+                if (!reconnectInterval) {
+                    reconnectInterval = setTimeout(() => {
+                        reconnectInterval = null;
+                        connect();
+                    }, 2000);
+                }
+            };
+        }
+        
+        // Send keyboard input to PTY via WebSocket
+        term.onData(data => {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(data);
+            }
+        });
+        
+        // Handle terminal resize
+        term.onResize(({ cols, rows }) => {
+            // TODO: Send resize event to PTY server
+            // ws.send(JSON.stringify({ type: 'resize', cols, rows }));
+            console.log(`Terminal resized to ${cols}x${rows}`);
+        });
+        
+        // Clear button
+        document.getElementById('clearBtn').addEventListener('click', () => {
+            term.clear();
+        });
+        
+        // Initial connection
+        connect();
+        
+        // Focus terminal
+        term.focus();
+    </script>
+</body>
+</html>
