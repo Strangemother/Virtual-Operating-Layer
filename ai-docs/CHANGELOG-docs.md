@@ -1,8 +1,45 @@
 Status: Draft
-Last-Touched: 2025-09-13
+Last-Touched: 2025-11-30
 # Documentation Changelog
 
 Chronological log of structural documentation extraction and maintenance actions. No speculative content.
+
+## 2025-11-30 (Technical Overview Article)
+- Created VOL-Technical-Overview.md – Comprehensive technical article discussing the architecture, execution model, and capabilities of VOL
+- Intended for OS developers, systems researchers, and technical architects
+- Synthesizes all major specification areas: graph execution, geological storage, mesh distribution, memory identity, security architecture
+- Includes comparative analysis with traditional OS architectures and discussion of research opportunities
+- All claims sourced from existing documentation with gap areas explicitly noted
+- Source: All ai-docs overview and extraction documents
+
+## 2025-11-30 (Cleanup & Consolidation Session)
+### Navigation & Governance Improvements
+- Consolidated promotion governance: updated policy-promotion.md with clearer criteria and cross-reference to promotion-candidate-checklist.md
+- Updated promotion-plan.md to reflect completed state of Batches 1–3
+- Streamlined index.md with Quick Navigation section and document status legend
+- Enhanced overview-index.md with improved categorization including root-monolith, frame model, input lifecycle, and gap tracking sections
+- Updated gap-index.md purpose statement to clarify relationship with gap-priority-matrix.md
+
+### Glossary Restructuring
+- Cleaned up sections/glossary.md: relocated working-term stubs to dedicated section at end
+- Removed redundant archived glossary section
+- Improved header structure and organization
+- Updated status to Working-Spec with current date
+
+### Date Normalization (Last-Touched: 2025-11-30)
+Primary overviews: graph-overview.md, fs-overview.md, boot-sequence-linear.md, memory-identity-overview.md, mesh-roles-matrix.md
+Navigation docs: index.md, overview-index.md, governance-index.md, status-readiness.md
+Gap tracking: gap-index.md, gap-priority-matrix.md, gap-resolution-batches.md
+Term management: term-collisions.md, term-promotion-readiness-matrix.md
+Consolidations: root-monolith-index.md, frame-model-skeleton.md, addressing-domain-enumeration.md, input-lifecycle-skeleton.md, command-frame-lifecycle-skeleton.md, library-exposure-pathways-matrix.md
+Policy docs: promotion-candidate-checklist.md, policy-archival.md
+
+### Cross-Reference Improvements
+- Updated depends-on paths to use relative references (removed ai-docs/ prefix where redundant)
+- Enhanced cross-references between consolidation documents and their source extractions
+- Improved gap document cross-linking to gap-priority-matrix.md
+
+Sources: All primary ai-docs governance, navigation, and consolidation files
 
 ## 2025-09-13
 - Added promotion-plan.md outlining batch promotion strategy (Source: promotion-plan.md)

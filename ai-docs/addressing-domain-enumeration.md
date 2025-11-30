@@ -1,11 +1,11 @@
 # Addressing Domain Enumeration (Extraction)
 Status: Draft
-Last-Touched: 2025-09-13
-Depends-On: ai-docs/root-monolith-step-addresses-layers-extraction.md
+Last-Touched: 2025-11-30
+Depends-On: root-monolith-step-addresses-layers-extraction.md
 Verbatim scope: root-monolith-step-addresses-layers-extraction.md
 
 ## Purpose
-Enumerate domain labels and identifiers exactly as sourced; no inferred hierarchy.
+Flat enumeration of all addressing domain labels and identifiers from root-monolith sources. Hierarchy and relationships tracked as gap #16 in gap-priority-matrix.md.
 
 ## Enumerated Identifiers
 Lower-case sequence (all mapped to "another space of memory (tree structure)"):

@@ -11,11 +11,13 @@ Purpose: Define criteria and process for moving a document extraction from Draft
 ## Promotion Criteria Checklist
 A document is eligible when ALL are true:
 1. Status header present with Last-Touched date <= 60 days (Source: copilot-instructions.md)
-2. Every normative term appears in glossary.md (Source: glossary.md reference practice)
+2. Every normative term appears in sections/glossary.md (Source: glossary.md reference practice)
 3. All missing information isolated into explicit Incomplete blocks (Source: extraction methodology across ai-docs/sections)
 4. No speculative language unmarked by _Speculative:_ prefix (Source: non-speculation principle)
 5. At least one cross-reference inbound from index or another section (Source: status-readiness.md pattern)
 6. Original source file retains a relocation/backlink note (Source: existing 'Relocated:' pattern e.g., graph pointer.md)
+
+For term-specific promotion readiness (Working-Term → Stable), see promotion-candidate-checklist.md. (Source: promotion-candidate-checklist.md)
 
 ## Promotion Record Template
 Append to end of file:

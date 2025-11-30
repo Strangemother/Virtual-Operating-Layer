@@ -1,5 +1,5 @@
 Status: Draft
-Last-Touched: 2025-09-13
+Last-Touched: 2025-11-30
 # Term Collisions Catalog
 
 Purpose: Enumerate observed naming collisions or near-collisions to support glossary disambiguation. No new terms are created here.

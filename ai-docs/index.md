@@ -1,13 +1,20 @@
 ---
 Status: Draft
-Last-Touched: 2025-09-12
+Last-Touched: 2025-11-30
 Owner: TODO
 ---
 # VOL Documentation Index (AI Restructured Set)
 
-This index links to individually segmented section files derived from `restructured-notes-2025.md`. Each section preserves citations and Incomplete blocks with no speculative additions.
+Central navigation hub for the Virtual Operating Layer conceptual documentation. Each section preserves citations and Incomplete blocks with no speculative additions.
 
-## Sections
+## Quick Navigation
+- [Overview Index](overview-index.md) – Consolidated high-level overviews
+- [Governance Index](governance-index.md) – Policy and procedure documents
+- [Glossary](sections/glossary.md) – Comprehensive term definitions
+- [Gap Index](gap-index.md) – All unresolved specification items
+- [Term Collisions](term-collisions.md) – Naming conflict tracking
+
+## Core Concept Sections
 1. [Core Runtime & Lifecycle](sections/core-runtime.md) – Managing thread, terminology layers, kernel caveats, phase outline.
 2. [Procedure Graph Model](sections/procedure-graph.md) – Graph execution entities (pointer, stepper), vector naming, compass, SES.
 3. [Filesystem & Storage Layers](sections/filesystem.md) – Aggregate/Phenocryst, grains/particles, colloid resolution, header chain.
@@ -33,6 +40,11 @@ This index links to individually segmented section files derived from `restructu
 23. [Boot Sequence Diagram Stub](sections/boot-sequence-diagram.md) – Linear textual stage list with gaps.
 24. [Identity & Memory Unification](sections/identity-memory-unification.md) – Grains/slots/identity tensor linkage gaps.
 25. [Mesh Roles Matrix](sections/mesh-roles-matrix.md) – Role capability enumeration & unresolved schema.
+
+## Document Status Legend
+- **Draft**: Initial extraction; may have glossary gaps and incomplete blocks
+- **Working-Spec**: Meets all promotion criteria; ready for reference
+- **Meta**: Tracking/governance document not subject to promotion
 
 ## Source Integrity
 All normative bullets cite original files under `../docs/`. Incomplete blocks enumerate explicit missing facts with candidate sources. No behaviors invented.

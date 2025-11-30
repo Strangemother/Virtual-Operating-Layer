@@ -39,19 +39,17 @@ Rationale: Foundational boot/memory/filesystem conceptual coherence.
 Files: capability-advertisement.md, interface-event-taxonomy.md
 Rationale: Interface & mesh onboarding concept surfaces with incomplete schemas isolated.
 
-## Blockers Summary
-- No hard blockers for Batch 1–3 under current criteria.
-- Decision needed: Whether to enforce minimum inbound link count >1 for Working-Spec (currently not required).
+## Completed Promotions (2025-09-13)
+- Batches 1–3 completed; all listed candidates promoted to Working-Spec.
+- Status headers updated, Promotion Records appended, status-readiness.md synchronized.
+- CHANGELOG-docs.md updated with promotion entries.
 
-## Decision Points (Require Confirmation)
-1. Approve multi-batch promotion approach vs single bulk promotion.
-2. Confirm that derived ordering sections (onboarding-sequence.md) must remain Draft until at least one source defines order.
-3. Determine if meta docs (gap-index.md) are excluded from Working-Spec status classes.
+## Current State
+All originally identified candidates have been elevated. Future promotions will follow policy-promotion.md criteria.
 
-## Next Actions After Approval
-- Update Status headers to Working-Spec for approved batches.
-- Append a Promotion Record section in each promoted doc with date & reference to promotion-plan.md.
-- Reflect changes in status-readiness.md (mark as Working-Spec).
-- Add changelog entries summarizing promotion.
+For detailed term-level readiness tracking (Frame 0, Graph Key 0, User Tape, Capability Set), see promotion-candidate-checklist.md. (Source: promotion-candidate-checklist.md)
 
-Verbatim scope: status-readiness.md plus listed candidate docs (headers only) – no additional content interpreted.
+## Meta Document Status
+Meta documents (gap-index.md, gap-priority-matrix.md, governance-index.md, term-collisions.md) remain Draft as they track evolution rather than define specifications.
+
+Verbatim scope: status-readiness.md, CHANGELOG-docs.md, policy-promotion.md, promotion-candidate-checklist.md.

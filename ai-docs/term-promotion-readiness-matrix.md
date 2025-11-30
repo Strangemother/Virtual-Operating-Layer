@@ -1,6 +1,6 @@
 # Term Promotion Readiness Matrix (Extraction)
 Status: Draft
-Last-Touched: 2025-09-13
+Last-Touched: 2025-11-30
 Depends-On: sections/glossary.md, policy-promotion.md
 Verbatim scope: sections/glossary.md, policy-promotion.md
 

@@ -1,6 +1,6 @@
 # Library Exposure Pathways Matrix (Extraction)
 Status: Draft
-Last-Touched: 2025-09-13
+Last-Touched: 2025-11-30
 Depends-On: docs/root-monolith/applying-vol-runtime-libs.md, docs/root-monolith/comprehensive.md
 Verbatim scope: Listed files only.
 

@@ -1,6 +1,6 @@
 # Command & Frame Lifecycle Skeleton (Extraction Consolidation)
 Status: Draft
-Last-Touched: 2025-09-13
+Last-Touched: 2025-11-30
 Depends-On: docs/root-monolith/commands.md, docs/root-monolith/Frame Switching.md, docs/root-monolith/graph-walk.md, docs/core/frame-context.md
 Verbatim scope: Listed files only.
 

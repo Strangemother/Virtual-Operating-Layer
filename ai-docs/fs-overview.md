@@ -1,5 +1,5 @@
 Status: Draft
-Last-Touched: 2025-09-13
+Last-Touched: 2025-11-30
 Depends-On: sections/glossary.md
 
 # Filesystem Overview (Layering Extraction Skeleton)

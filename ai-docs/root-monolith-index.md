@@ -1,11 +1,11 @@
 # Root Monolith Extraction Index
 Status: Draft
-Last-Touched: 2025-09-13
-Depends-On: ai-docs/root-monolith-graph-walk-extraction.md, ai-docs/root-monolith-step-addresses-layers-extraction.md, ai-docs/root-monolith-memory-module-extraction.md, ai-docs/root-monolith-frame-switching-extraction.md, ai-docs/root-monolith-commands-extraction.md
+Last-Touched: 2025-11-30
+Depends-On: root-monolith-graph-walk-extraction.md, root-monolith-step-addresses-layers-extraction.md, root-monolith-memory-module-extraction.md, root-monolith-frame-switching-extraction.md, root-monolith-commands-extraction.md
 Verbatim scope: Above extraction docs only.
 
 ## Purpose
-Provide a navigation hub for root-monolith related extractions; no new semantics. Consolidates where gaps cluster.
+Central navigation hub for root-monolith extraction documents. Links to related consolidations (frame-model-skeleton.md, addressing-domain-enumeration.md) and gap tracking.
 
 ## Documents
 - Graph Walk Extraction (data/function graph separation; frame 0 command references) (Source: root-monolith-graph-walk-extraction.md)

@@ -1,5 +1,5 @@
 Status: Draft
-Last-Touched: 2025-09-13
+Last-Touched: 2025-11-30
 # Gap Priority Matrix
 
 Purpose: Rank outstanding Incomplete blocks by criticality to core conceptual coherence. No new definitions; aggregation only.

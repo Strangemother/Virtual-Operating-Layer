@@ -1,6 +1,6 @@
 # Policy: Archival Classification
 Status: Draft
-Last-Touched: 2025-09-13
+Last-Touched: 2025-11-30
 Depends-On: governance-index.md, uncovered-triage.md, policy-promotion.md
 
 Purpose: Define criteria and tagging conventions for marking origin or derivative documents as `Status: Archival` without deleting historical content. No new technical primitives introduced; policy procedural only.
