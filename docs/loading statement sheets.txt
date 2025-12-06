@@ -1,0 +1,37 @@
+loading statement sheets
+
+before pre-compilation The kernel statements are aggregated through generating a core memory table and loading memory table statements from a statements sheet
+
+Each statement is loaded in order and executed to produce the executing kernel. This should include the radicle, memory, filesystem and other functions.
+Update are made to the live kernel and reloaded at boot time. A statement can include the 'patch' file of more statements.
+
+In developer mode the address or name of the file can be a standard HOST filepath,
+Secondly the LOAD CRC function collects statements stored within a file searchable location. The CRC is the name of the file, and the CRC result of the file through the test machine.
+
+If the CRC matches, the statements can load into the memory table.
+
+In the first form the statements are written directy. In a future iteration, the load CRC can be a module for offloading the execution statements. Therefore rather than filling the memory table with many statements, _one_ statement is done syncronously, returning back the key position after completion.
+
+Dev:
+
+    1: "import radicle"
+    2: "racidle()"
+    3: 0x000
+    4: load definitions/statements/dev-kernel-additions
+    5 .. 10     # <= here
+
+General:
+
+    1: "import radicle"
+    2: "racidle()"
+    3: 0x000
+    4: load CRC # [statement copy in]
+    5 .. 10     # <= here
+
+Future:
+
+    1: "import radicle"
+    2: "racidle()"
+    3: 0x000
+    4: load CRC ... # offload and wait
+    5: continue

@@ -24,7 +24,7 @@ html {display: flow-root;/* flex-grow: 1; *//* border: solid; */height: 100%;bor
 
 .full.panel {/* top: 0; *//* left: 0; *//* width: 100%; */}
 
-.panel-content {flex-grow: 1;background: #242424;}
+.panel-content {flex-grow: 1;/* background: #242424; */}
 
 .panel header, .panel footer, .winbox > footer, .winbox > header {min-height: 0.7em;background: #484848c7;}
 
@@ -32,7 +32,7 @@ header .title, .wb-title {color: #adadad;padding: 0.3em 0.5em 0.2em;font-size: 0
 
 .templates {display: none;}
 
-span.wb-full {display: none;}
+span.wb-full, span.wb-max {display: none;}
 
 span.wb-min, span.wb-max {background: #1e1e1e;border: solid 0.3rem #4c4c4c;width: 0.2em;}
 
@@ -44,7 +44,7 @@ div#winbox-1 {}
 
 .pointer {/* border: solid 1px red; *//* background: #4caf50; */width: 0rem;height: 0rem;position: fixed;z-index: 2;display: flex;pointer-events: none;align-items: center;justify-content: center;}
 
-.pointer .visible {position: relative;/* left: -.25rem; *//* top: -.25rem; */border: solid 2px #2196f3;/* width: .5rem; *//* height: .5rem; */border-radius: 2rem;padding: 0.3rem;transition: padding .2s cubic-bezier(0.32, 2.42, 0.79, 0.67);}
+.pointer .visible {position: relative;/* left: -.25rem; *//* top: -.25rem; */border: solid 2px #2196f3;/* width: .5rem; *//* height: .5rem; */border-radius: 5rem;/* border-radius: 50%; */padding: 0.3rem;transition: padding .2s cubic-bezier(0.32, 2.42, 0.79, 0.67), translate 1.26s ease;}
 
 body.hide-mouse {cursor: none;}
 
@@ -52,9 +52,21 @@ body.hide-mouse {cursor: none;}
 
 .winbox.min {border-radius: 0.6em 0.6em 0em 0em;}
 
-.pointer.mousedown .visible {border-color: #344241;}
+.pointer.mousedown .visible {border-color: #344241;border-width: 4px;padding: 0.28rem;}
 
-.pointer.s .visible, .pointer.n .visible {/* width: 0; *//* height: 0.6rem; */padding: 0.4em 0;}
+.pointer.s .visible, .pointer.n .visible, .pointer.se .visible, .pointer.nw .visible {/* width: 0; *//* height: 0.6rem; */padding: 0.4em 0;}
 .pointer.w .visible, .pointer.e .visible {/* width: 0; *//* height: 0.6rem; */padding: 0 0.4em;}
 
 .iris:hover,.iris:focus {background: #4c6368;}
+
+.pointer.se .visible, .pointer.nw .visible {
+    transform: rotate(-45deg);
+}
+
+.pointer.ne .visible, .pointer.sw .visible {
+    transform: rotate(45deg);
+}
+
+.primary-iris.pointer .visible {
+    border-width: 4px;
+}

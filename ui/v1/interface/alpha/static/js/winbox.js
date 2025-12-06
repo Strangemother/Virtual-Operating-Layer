@@ -70,6 +70,9 @@ function WinBox(params, _title){
         background,
         border,
         classname,
+        overflow,
+        overflow_y,
+        overflow_x,
         splitscreen;
 
     if(params){
@@ -119,6 +122,9 @@ function WinBox(params, _title){
             classname = params["class"];
             splitscreen = params["splitscreen"];
             // preventMouseMoveEvent = params["preventMouseMoveEvent"];
+            overflow = params['overflow'];
+            overflow_y = params['overflow_y'];
+            overflow_x = params['overflow_x'];
 
             if(background){
 
@@ -154,6 +160,10 @@ function WinBox(params, _title){
     x = x ? parse(x, max_width, width) : left;
     y = y ? parse(y, max_height, height) : top;
 
+    overflow = overflow || false;
+    overflow_y = overflow_y || false;
+    overflow_x = overflow_x || false;
+
     index = index || 10;
 
     this.dom.id =
@@ -181,6 +191,9 @@ function WinBox(params, _title){
     this.onmove = onmove;
     this.onresize = onresize;
     this.splitscreen = splitscreen;
+    this.overflow = overflow;
+    this.overflow_y = overflow_y;
+    this.overflow_x = overflow_x;
 
     if(max){
 
@@ -471,6 +484,10 @@ function addWindowListener(self, dir){
         const pageY = event.pageY;
         const offsetX = pageX - x;
         const offsetY = pageY - y;
+        const overflow = self.overflow
+            , overflow_y = self.overflow_y
+            , overflow_x = self.overflow_x
+            ;
 
         let resize_w, resize_h, move_x, move_y;
 
@@ -528,12 +545,24 @@ function addWindowListener(self, dir){
 
             if(move_x){
 
-                self.x = Math.max(Math.min(self.x, root_w - self.width - self.right), self.left);
+                let x = Math.min(self.x)// root_w - self.width - self.right);
+                let ov = (overflow || overflow_x)
+                if(!ov){
+                    x = Math.max(Math.min(self.x, root_w - self.width - self.right), self.left);
+                }
+                self.x = x
             }
 
             if(move_y){
 
-                self.y = Math.max(Math.min(self.y, root_h - self.height - self.bottom), self.top);
+                let ov = (overflow || overflow_y)
+                let y = Math.min(self.y)// root_h - self.height - self.bottom);
+
+                if(!ov) {
+                    y = Math.max(Math.min(self.y, root_h - self.height - self.bottom), self.top);
+                }
+
+                self.y = y
             }
 
             use_raf ? raf_move = true : self.move();

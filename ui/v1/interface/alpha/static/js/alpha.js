@@ -10,7 +10,7 @@ let main = function(){
 let readyEvent = function(){
     console.log('customPointer')
     customPointer()
-let ir = new Iris('.iris')
+    let ir = new Iris('.iris')
 
 }
 
@@ -24,6 +24,8 @@ const spawn = function(title="Custom Root"){
     let windowContainer = document.querySelector('.panels')
     return new WinBox(title, {
         root: windowContainer
+        // , splitscreen: true
+        , overflow: true
     });
 }
 

@@ -104,6 +104,7 @@ class WindowHandleDelegate extends DelegateMany {
 
 }
 
+
 class Iris extends Watch {
     autoEnable() {
         return true
@@ -111,6 +112,45 @@ class Iris extends Watch {
 
     click(e){
         spawn()
+    }
+
+    setup(selector='.pointer'){
+        this.entity = document.querySelector(selector);//.cloneNode(true)
+
+    }
+
+    mouseover(e){
+        /*
+        On hover fix the pointer to focus on the Iris, the under position is still
+        user relative, but the outerpointer shape will stay upon the iris until
+        release.
+         */
+        console.log('mouseover')
+        let ev = {
+            type: e.type
+            // shape:
+            , owner: 'iris'
+            , target: this.entity
+            , styleName: 'primary-iris'
+            , action: 'copyPlacement'
+        }
+
+        bus.emit('handle-event', ev)
+    }
+
+    mouseout(e) {
+        // Release the pointer previously applied by the hover.
+        console.log('mouseout')
+        let ev = {
+            type: e.type
+            // shape:
+            , owner: 'iris'
+            , target: this.entity
+            , styleName: 'primary-iris'
+            , unlock: true
+        }
+        bus.emit('handle-event', ev)
+
     }
 }
 
