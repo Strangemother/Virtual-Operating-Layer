@@ -1,0 +1,922 @@
+The Synthesis Kernel
+Calton Pu, Henry Massalin and
+John Ioannidis Columbia University
+ABSTRACT: The Synthesis distributed operating
+system combines efficient kernel calls with a high-
+level, orthogonal interface. The key concept is the
+use ofa code synthesizer in the kernel to generate
+specialized (thus short and fast) kernel routines for
+specifrc situations. We have three methods of
+synthesizing code: Factoring Invariants to bypass
+redundant computations; Collapsing Layers to
+eliminate unnecessary procedure calls and context
+switches; and Executable Data Structures to shorten
+data structure traversal time. Applying these
+methods, the kernel call synthesized to read
+/dev/mem takes about l5 microseconds on a 6g020
+machine. A simple model of computation called a
+synthetic machine supports parallel and distributed
+processing. The interface to synthetic machine
+consists of six operations on four kinds of objects.
+This combination of a high-level interface with the
+code synthesizer avoids the traditional trade-off in
+operating systems between powerful interfaces and
+efrcient implementations.
+@ Computíng Systems, Vol. I . No. I . Winter 1988
+11
+
+
+l. Introduction
+A trade-off between powerful features and efficient
+implementation exists in many operating systems. Systems with
+highJevel interfaces and powerful features, like Argusro and Eden,2
+require a lot of code for their implementation, and this added
+overhead makes the systems slow. Systems with simple kernel
+calls, like the V kernel,s Amoeba,rs and Mach,l have little
+overhead and run fast. However, the application software then
+becomes more complex and slower because extra code is required
+to make up for the missing kernel functions. Our goal in
+developing the Synthesis distributed operating system is to escape
+from this trade-off. We want to provide a simple but highJevel
+operating system interface to ease application development and at
+the same time offer fast execution.
+To achieve our goal, we combine two concepts in Synthesis.
+The most important idea is the inclusion of a code synthesizer in
+the kernel. The code synthesizer provides efficiency through the
+generation of specialized code for frequently-executed kernel calls.
+For instance, when the programmer asks the operating system to
+open a frle, special routines to read and write that specifrc file are
+returned. Through the generation of these frequently-executed
+system calls, Synthesis reduces operating system overhead. For
+example, typical Synthesis read routines average an execution path
+of 20 to 30 machine instructions. In contrast, the 4.3 BSD read
+call contains on the order of 500 lines of C code (Appendix B).
+The second idea is an orthogonal interface called a synthetic
+machine. To a programmer, a synthetic machine presents a
+logical multi-processor with its own protected address space. Two
+reasons motivated this model of computation: to take advantage
+of general-purpose shared-memory multiprocessors, and to
+support the growing number of concurrent programs. The
+synthetic machine consists of three basic components: synthetic
+CPUs to run the program, synthetic memory to store the program
+This research is partially supported by the New York State Center for Advanced
+Technology, Computer and Information Systems, NYSSTF CAT(87)-5.
+12 Calton Pu, Henry Massalin and John Ioannidis
+
+
+and data, and synthetic I/o units to move data in to and out of
+the synthetic machine.
+The synthetic machine interface and kernel code synthesizer
+are independent ideas that have a synergistic effect. without the
+code synthesizer, even a sophisticated implementation of synthetic
+machines would be very inefficient. Each high-revel kernel call
+would require a large amount of code with a rong execution time.
+Instead, the kernel code synthesizer generates specialized routines
+to make kernel calls short. without a highJevel interface, more
+layers of software would be needed to provide adequate
+functionality. The synthetic machine supplies highJevel system
+calls to reduce the number of layers and the associated overhead.
+In Synthesis, application programmers will enjoy a high-level
+system interface with the efficiency of a "lean and mean" kernel.
+To test these ideas, we have designed and implemented a
+prototype system, with a simplifred kernel code synthesizer that
+implements a subset of the synthetic machine interface.
+Encouraged by positive results of the prototype, which confrrmed
+our expectations on its performance, we are now implementing
+the full version of Synthesis.
+In section 2, we describe how the code synthesizer generates
+and optimizes code in the kernel. In section 3, we summ arize the
+synthetic machine interface and illustrate the power of the
+interface with an emulation of the UNIX system using synthetic
+machines. we outline the current synthesis prototype in section
+4, including some measurements to illustrate the efficiency gained
+with synthesized code. Section 5 compares synthesis with related
+work, and Section 6 concludes with a summary of progress.
+2. Kernel Code Synthesizer
+Typical operating system kernel routines maintain the system state
+in data structures such as linked lists. To perform its function, a
+kernel routine finds out the system state by traversing the
+appropriate data structures and then takes the corresponding
+action. In current operating systems, there are few short cuts to
+reach frequently-visited system states, which may require lengthy
+data structure traversals.
+The Synthesis Kernel
+r3
+
+
+The fundamental idea of kernel code synthesis is to capture
+frequently visited system states in small chunks of code. Instead
+of traversing the data structures, we branch to the synthesized
+code directly. In this section, we describe three methods to
+synthesize code: Factoring Invariants, Collapsing Layers, and
+Executable Data Structures.
+2.1 Factoring Invøriants
+The factoring ínvariazls method is based on the observation that a
+functional restriction is usually easier to calculate than the original
+function. Let us consider a general function:
+Fw(p|,p2,...,pn)
+By factoring out the parameter p/ through a process called
+currying,la we can obtain an equivalent composite function:
+fFcreaterDftpz, . . .,pn) = Fua(pL,p2, . . .,pn)
+Fcreate is a second-order function. Given the parameter pL, ¡tcteate
+returns another function, Fsma¡, which is the restriction of F6¡r that
+has absorbed the constant argument p.l:
+Fr^ou(p2, . . .,pn) c Fn¡s(e|,p2, . . .,pn)
+lf Fcreate is independent of global data, then for a given pl ,
+Iicreate will always compute the same Fr*o¡ tagãÍdless of global
+state. This allows Fcreate(p l) to be evaluated once and the resulting
+Fr^o¡ rrscd thereafter. If Fr*o¡¡ is executed m times, generating and
+using it pays offwhen
+Cost (F"'at"Qt l))+m*Cost (Fsaa¡¡(p2, . . ., pn)) <
+m*Cost(F6¡rþ)1, . . .,pn))
+As the "factoring invariants" name suggests, this method
+resembles the constant folding optimization in compiler code
+generation. The analogy is strong, but the difference is also
+significant. Constant folding in code generation eliminates static
+code. In contrast, Factoring Invariants skips dynamic data
+structure traversals in addition to eliminating code.
+1,4 Calton Pu, Henry Massalin and John loannidis
+
+
+As an example, we can use UNIX open as F,create and read as
+Fsmau, and the frle name as the constant parameter pI. Constant
+global dataare the process id, address ofkernel buffers, and the
+device that the file resides on. F *eate consists of many small
+procedure templates, each of which knows how to generate code
+for a basic operation such as "read disk block" or "process TTy
+input." The parameters passed to pcreate determine which of these
+procedures are called and in what order. The rrnal Fr^o¡ is created
+by filling these templates with addresses of the process table and
+device registers.
+2.2 Collapsing Layers
+The collapsing layers method is based on the observation that in a
+layered design, separation between layers is a part of speciûcation,
+not implementation. In other words, procedure calls and context
+switches between functional layers can be bypassed at execution
+time. Let us consider an example from the layered osl model:
+Ft4(pl,þ2,...,pn):
+Foppt¡ro(P l,Fpr"sent(P2,Frrxior(''' Fdaøhk(pt, ) . . . ))
+Fapptica is a function at the Application layer that calls successive
+lower layers to send a message. Through inJine code substitution
+of Fpresent in Foro¡¡ro, \¡/e can obtain an equivalent flat function by
+eliminating the procedure call from the Application to the
+Presentation layer:
+F{í}t,r"(P L,P2,Fr"rr¡oo(''' ))) =
+Foppt¡ro(P l,Fprrr"nt(P 2,Frrrsior(''' )))
+The process to eliminate the procedure call can be embedded
+into two second-order functions. F;iïf¿í, returns code equivalent to
+Fpresent and suitable for inJine insertion. Fåällf" incorporates that
+code to generate F{iit,*.
+rio"ff¡1,tp t,F;i1t¿i/az, . . . ), r{fj,,,,(p r,p2, . . . ))
+This technique is analogous to in-line code substitution for
+procedure calls in compiler code generation. In addition to the
+elimination of procedure calls and maybe context switches, the
+The Synthesis Kernel
+15
+
+
+resulting code typically exhibits opportunities for further
+optimization, such as Factoring Invariants and elimination of data
+copying.
+By induction, F$i\f#t can eliminate the procedure call to the
+Session layer, and down through all layers. When we execute
+Fâi"å!f" to establish a virtual circuit, the F{i;ti,. code used thereafter
+to send and receive messages may consist of only sequential code.
+The performance gain analysis is similar to the one in section 2.1.
+2.3 Executable Data Structures
+Tlne executable data structures method is based on the observation
+that some data structures are traversed in some preferred order.
+Therefore, adding the executable code to the data structures to
+make them self-traversing may decrease the traversal overhead.
+Let us consider the simplifred example of the active job queue
+managed by a round-robin scheduler. Each element in the queue
+contains two short sequences of code: stopiob and startioå. The
+stopjob saves the registers and branches into the next job's størtjob
+routine (in the next element in queue). The startjob restores the
+registers, installs the address of its own stopjo,b in the timer
+interrupt vector table, and resumes processing.
+An interrupt causing a context switch will trigger the current
+program's stopjob, which saves the current state and branches
+directly into the next job's startjob. Note that the scheduler has
+been taken out of the loop. It is the queue itself that does the
+context switch, with a critical path on the order of ten machine
+instructions. The scheduler intervenes only to insert and delete
+elements from the queue.
+2.4 Kernel Programmability
+In the previous sections, we have described several innovative
+programming techniques to gain performance through code
+synthesis. Historically, the lambda functions in LISP have created
+S-expressions, which are executable in the LISP environment.
+However, new problems arose in our use of code synthesis on bare
+machine. Here, we summarize briefly the problems we have
+encountered and the approaches we have taken to solve them:
+16 
+Calton Pu, Henry Massalin and John Ioannidis
+
+
+. Inflated kernel size due to code redundancy.
+. Structuring of kernel and correctness of its algorithms.
+. Protection of synthesized code.
+One important concern in Synthesis is kernel size inflation due
+to the potential redundancy in the many Fsao¡¡ ãfid plat progtams
+generated by the same F"'ot". To solve this problem, Fcreøte
+generates either in-line code or subroutine calls using a
+mechanism similar to threaded code.a Frequently invoked
+functions are expanded inJine into the user's synthetic machine
+and executed there. Rarely executed functions are stored in a
+common area, shared by all synthetic machines running threaded
+code. The decision of when to expand inJine is made by the
+programmer writing Fcreate.
+Although the size of the code synthesizer depends heavily on
+the kinds of facilities supported by the kernel, we hope to
+minimize the cost paid for code specialization. For example, the
+Synthesis F'fÉf,",,,, calls correspond to the UNIX open system calls,
+with similar data structures and algorithms. The main difference
+between them resides in the actions taken by the system calls;
+open fúls in the UNIX data structures, and Ff,úfrf,",, places machine
+op-codes into an array. Therefore, we expect the cost of FfÉâfrr*
+to be comparable to that of the UNIX open.
+The structure of Synthesis kernel is superficially similar to a
+traditional operating system. Kernel calls of the Fcrcate type are
+invoked just like a normal system call. However, synthesized
+kernel calls createdby pn"o" are invoked in the kernel mode
+(usually through trap) through a branch into the synthesized code.
+By construction, the synthesized kernel calls perform a subset of
+the actions of normal kernel calls. These subsets calculate the
+same results and cause the same side effects for each specifrc case.
+Synthesized code is protected through memory management.
+Each address space has its own page table, and synthesized code is
+placed in protected pages, inaccessible to the user program. To
+prevent the user program from tricking the kernel into executing
+code outside the protected pages, the synthesized routines are
+accessed via a jump table in the protected area of the address
+space. Since the user program can only specify an index into this
+table, the synthesized routines are entered at the proper entry
+The Synthesis Kernel
+t7
+
+
+points. This protection mechanism is similar to C-lists to prevent
+the forgery of capabilities.16
+Synthesized routines run in supervisor state. The transition
+from user to supervisor state is made via a trap instruction. Thus,
+synthesized code can perform privileged operations such as
+accessing protected buffer pages. Just before returning control to
+the caller, the synthesized code reverts to the previous mode.
+3. Synthetic Machines
+3.1 Model of Computation
+The synthetic machine is the unit of protection. Data in a
+synthetic machine are freely shared within it, but are carefully
+protected from access by other synthetic machines. Each
+synthetic machine runs one program, and has three kinds of
+components:
+. synthetic CPUs (SCPU) to run the program,
+. synthetic memory (SMEM) to store the program and data,
+. synthetic IiO units (SIO) to move data into and out from the
+synthetic machine.
+Each synthetic machine may have any number of SCpUs, SMEMs,
+and SIOs. Each SCPU is a thread of control scheduled on a
+physical CPU. Each SMEM is a segment of memory, accessible
+from all SCPUs of the same synthetic machine.
+Examples of SMEM include program segments and shared
+memory between synthetic machines. Each SIO provides input or
+output to the synthetic machine. Examples of SIO are ordinary
+frles, devices, and network communications.
+An interesting example of a program running in a synthetic
+machine is a multiplexor supporting other synthetic machines to
+form a hierarchical structure similar to VM/370.e Child synthetic
+machines are scheduled as any other SCPU, but they may "sub-
+schedule" their own SCPUs with different scheduling algorithms.
+Similarly, their SMEMs are allocated by the parent synthetic
+machine. The SIO system calls for the child synthetic machine are
+synthesized from the parent's SIO system calls. Careful
+Calton Pu, Henry Massalin and John Ioannidis
+l8
+
+
+application of the Collapsing Layers method decreases the cost of
+indirection and hierarchy in Synthesis.
+The Synthesis kernel implements the root synthetic machine
+running on the real machine. The scheduler, memory
+management, and file system are paft of the multiplexor program
+running in the root synthetic machine. Actual user programs run
+within child synthetic machines. The conceptual nesting of
+synthetic machines does not introduce run-time overhead because
+of code synthesis, in particular Collapsing Layers.
+Many existing operating systems have entities corresponding
+to a synthetic machine. Some examples are the virtual machine in
+vM/370 and the UNIX process, which are similar to a synthetic
+machine with only one SCPU, or Mach tasksr and Distributed V
+teams,T which are similar to multiple synthetic CPUs. Although
+these systems share the same von Neumann model of
+computation, their kernel interfaces are less orthogonal than the
+synthetic machine interface that now we describe.
+3.2 Synthetic Machine Interface
+For each synthetic machine, the create kernel call is generative,
+synthesizing code for the executive kernel calls: termínate,
+reconfigure, and query. To destroy a synthetic machine, we call
+terminate. During a synthetic machine's lifetime, reconfigure
+changes its state, and query reads its state. The synthetic machine
+kernel calls are summarized in the second column of Table I (with
+the Synthetic Machine heading).
+Analogous to synthetic machines, each component must be
+created before it can be used. The generative create kernel call
+returns the code synthesized for the executive kernel calls, which
+include reqd and write in addition to terminate, reconfigure, and
+query. The read kernel call moves data into a synthetic machine,
+while write moves data out from it. Table 1 contains a partial
+summary of the interface to synthetic components. During
+execution, if new situations require new code, the synthetic
+components may be resynthesized using the create kernel call with
+the REUSE option and a modified set of parameters.
+The Synthesis Kernel
+19
+
+
+Synthetic
+Machine
+Synthetic
+CPU
+Synthetic
+Memory
+Synthetic
+rlo
+create
+(generative)
+creates an
+SMACH
+creates a thread
+of control
+allocates
+memory
+creates ports,
+opens frles,
+allocates
+devices
+terminate
+(executive)
+kills an SMACH
+and all its
+components
+kills a thread
+of control
+frees
+memory
+kills ports,
+closes files
+reconfigure
+(executive)
+resumes/suspen.
+an SMACH,
+changes
+its priority
+resumes/suspen.
+SCPU, changes
+its priority,
+wait on event
+changes
+protection,
+initiates
+sharing
+lseek,
+changes
+protection
+query
+(executive)
+gets priority,
+gers sMAcH id,
+gets uid
+gets priority,
+gets state,
+gets SCPU id
+gets size,
+starting
+address
+gets device
+type, state,
+device pointer
+read
+(executive)
+unused
+unused
+unused
+reads ûle,
+rec. messages,
+and any other
+input operation
+write
+(executive)
+unused
+unused
+unused
+writes file,
+sends messages,
+and any other
+output operation
+Table 1: Examples of Synthetic Machine Kernel Calls
+To illustrate the use of these calls,
+\rye give aî Slo_create example,
+which opens a file. Given the file
+name and arcad/write option, it
+returns the code for the executive
+calls. You call read to read from
+the frle and write to write to it.
+To frnd the frle length, current
+seek position and other frle attri-
+butes, you use query. The
+reconrtgure call changes those
+attributes. Finally, terminate
+closes the frle.
+20
+Calton Pu, Henry Massalin and John Ioannidis
+
+
+The synthetic machine interface is object-oriented. Synthetic
+machines and synthetic components are encapsulated resources,
+and users must ask them to perform the kernel calls defined in
+Table 1. Pioneer object-oriented systems such as Hydra,l6 Eden,2
+and Argusl0 have achieved performance adequate for a prototype,
+while Mach is comparable to BSD UNIX.T We believe that
+synthesized code will take the performance of Synthesis one step
+ahead of current systems. In Section 4.2, wejustify our
+expectations with preliminary measurements.
+3.3 Resource Sharing and Protection
+To support the shared-memory model of parallel processing, all
+SCPUs within a synthetic machine share the same address space
+and thus, SMEMs can be used for communication and sharing
+between them. Semaphores control the synchronization between
+SCPUs. Currently, we are developing a high-level language to
+support concurrent programming with synthetic machines.
+Efficient sharing between synthetic machines requires more
+care, since we enforce protection across their boundaries. SMEM
+may be shared between two cooperating synthetic machines. The
+original creator of the SMEM sends the appropriate routines
+(synthesized for sharing) to its peer synthetic machine through a
+protected SIO channel. The peer then uses the routines to map
+the SMEM into its own synthetic machine. The access routines
+given to the peèr determine the access privileges.
+To support the message-passing model of parallel and
+distributed processing, SIOs include network traffic. Sharing SIOs
+is similar to sharing SMEM, in that the creator of the SIO, e.g. a
+port for inter-process communication, also passes the access
+routines to the peer. Since the access routines are passed through
+the protected SIO channel, no forging is possible. This protection
+mechanism is more flexible than that achieved by capabilities with
+a constant number of bits, since these routines can implement any
+kind of control, for example, access control lists. Furthermore,
+the creator may reconfigure or resynthesize the SMEM or SIO in
+such a way as to invalidate the earlier access routines, thus
+revoking access rights already conceded.
+The Synthesis Kernel 2l
+
+
+4. Work in Progress
+4.1 Target Hardware
+For single-CPU systems, Synthesis is intended to run on a von
+Neumann-style CPU with memory management unit and large
+physical memory. The Synthesis prototype runs on an
+experimental machine based on a 68020 processor at 20 MHz with
+a 16-bit-wide bus.3 For debugging and measurements, the
+prototype hardware provides single-step and real-time trace
+facilities. In addition, a ROM-based monitor contains an
+assembler, a disassembler, and a process manager, with a C-style
+interface.rr Other commercially available machines are SUN-3,
+Macintosh II, and similar products. With multiple SCpUs in the .
+same address space and SIOs to send/receive messages, Synthesis
+supports parallel machines of both shared-memory model and
+message-passing model.
+For efficiency and lack of code synthesis support in high-level
+languages, we are using 68020 assembly language to write the first
+full version of Synthesis kernel. Our own assembler supports
+recursive calls to itself for translating static templates of code to
+be synthesized. Portability of application software is very
+important due to its volume and decentrulized development.
+However, we believe that for the small kernel code efficiency is of
+paramount importance and no concessions should be made. We
+recognize that writing a Synthesis kernel for a different processor,
+say DEC's VAX family, mây be a non-trivial experience. But an
+operating system should be defined by its interface and model of
+computation, not implementation. Until there is an optimizing
+compiler for a high-level language supporting code synthesis (LISP
+has too high run-time overhead), we plan to write a different set of
+programs to implement Synthesis for each type of hardware. Each
+implementation will emphasize performance, use the particular
+features of its own hardware, and maintain rigorous compatibility
+with the synthetic machine interface.
+22
+Calton Pu, Henry Massalin, and John Ioannidis
+
+
+4.2 First Version of Software
+The frrst version of Synthesis kernel is being written incrementally
+on top of a small kernel.rr At the moment, the Factoring
+Invariants method has been used in all input and output devices
+(SIO), including terminal I/O and a RAM-based file system. In the
+round-robin scheduler, the Executable Data Structures method
+provides fast context switch between synthetic machines and
+synthetic CPUs.
+We are designing the message passing kernel primitives to
+support distributed processing. At the core of the highJevel
+message passing support is the optimization based on the
+Collapsing Layers method.
+The frrst program we measured reads one character from the
+memory special-device file (equivalent to UNIX /dev/mem). Since
+the only significant part of the program is the system call to read a
+byte, this program shows the promise of efficiency gained with
+synthesized code. A single example does not "prove" our
+approach, but it shows how far code synthesis can go.
+In C, the program is:
+#include <sio/SIO.h>
+struct SIO_if *myfrle, *SlO_create0;
+char buf[4];
+int i;
+myûle = SIO_create(FILEACCESS, "/dev/mem", FA_RDONLy);
+for(i=100000; i--; )
+read(myfile, but l);
+SlO_terminate(myfi le) ;
+A trace of the generated code running on the prototype is included
+in Appendix A.
+The second program is similar to the frrst one.
+char y[000];
+int i;
+for(i:10000; i--; )
+read(myfile, y, 1000);
+The Synthesis Kernel 23
+
+
+In this example, we have a more common situation where the
+overhead of a system call is amortized over a larger amount of
+useful work.
+The numbers actually measured on the prototype system
+appear in the "Measured" column of Table 2. For comparison
+purposes, we translated the numbers measured from the prototype
+system into corresponding ones for a 68020-based machine
+running at 16 MHz, with a 32-bit data bus.' This configuration is
+similar to SUN-3 and Hp 9000/320 workstations. The translation
+was obtained by hand-counting the CPU cycles for such machines,
+and the results appear in the column titled "Corrected." The
+same programs were run on the HP 9000/320 workstation with the
+HP-UX 5.17, SUN-3/50 \ryith the SUN-OS 3.2, and Masscomp
+MC5600 model 56s-02, with the RTU UNIX 3.1 operating system.
+The results appear in the same table, columns HP, SUN-3, and
+Masscomp.
+program
+Measured
+Corrected
+HP
+SUN-3
+Masscomp
+Prog. I
+1.6 sec
+[.2 sec
+77 sec
+48 sec
+29 sec
+Prog.2
+2.0 sec
+2.0 sec
+15 sec
+4.9 sec
+4.5 sec
+Table 2: Measured Figures and Comparison
+4.3 Prototype Experience
+Of the three synthetic components, we have found SIO to benefit
+the most from synthesized code. Most of the improvement comes
+from the elimination of code that check parameters and states,
+since these remain the same from call to call. A concrete
+example, the read system call in 4.3 BSD, is included in Appendix
+B.
+The current prototype includes a UNIXJike hierarchical frle
+system. In addition, several frle systems will co-exist in Synthesis.
+Some file systems will consist of file servers running in synthetic
+machines, with well-known SIO ports for local and remote frle
+service. Others, like the current hierarchical file system, may be
+incorporated into the kernel, accessible through a special type of
+24 
+Calton Pu, Henry Massalin, and John Ioannidis
+
+
+SIO. Even the file servers return synthesized code to speed up frle
+access.
+A music synthesizer program has been written to run as an
+application on the prototype system. The application consists of
+six SCPUs in three stages. First, a note sequencer running in one
+SCPU feeds a four-voice sampling synthesizer, one voice per
+SCPU. The voices from the second stage go to a summing
+program in a sixth SCPU, which sends its output to the digital-to-
+analog converter port. The music synthesizer runs in real-time
+with a 25 k}Jz sampling rate and has demonstrated the speed of
+our I/O operations and context switches.
+We are developing a variant of the C language, called
+Lambda-C, to support code synthesis in a high-level language.
+Lambda-C will serve several purposes. First, we plan to build a
+portable version of Synthesis, written in this language. Second,
+we believe that code-generating programs make for efficient
+applications, not just operating systems. A high-level language
+such as Lambda-C will make these methods available to
+application programmers. Third, type-checking of synthesized
+code is non-trivial, and we need languages to support it.
+5. Comparison with Other Systems
+The main difference between Synthesis and other operating
+systems is in the combination of the synthetic machine interface
+and the kernel code synthesizer. No other operating system offers
+a high-level interface and the potential to generate efficient code.
+UNIX13 has evolved into a large system with Fourth Berkeley
+Distributionl2 and AT&T System V. Although the interface
+remains approximately the same in the many different variants of
+UNIX, the synthetic machine interface is more orthogonal. To the
+best of our knowledge, no UNIX system uses a kernel code
+synthesizer.
+The V kernelT and Amoebals are two examples of small
+distributed operating system kernels. They both encourage layers
+of software to be written on top of the kernel. Synthesis differs
+from both by the highJevel synthetic machine interface, and the
+code synthesizer.
+The Synthesis Kernel 25
+
+
+Machr offers an object-oriented interface that is isomorphic to
+a specialized synthetic machine. A Mach task corresponds to a
+synthetic machine; Mach thread, an SCPU; Mach port, the
+network SIO; Mach messages, network SIO read and write; and
+Mach virtual memory, an SMem. The synthetic machine uses the
+same interface for all I/O activities, and child synthetic machines
+may be nested within a parent. As with other systems, Mach does
+not use a kernel code synthesizer.
+Emerald5'6 is an object-oriented, integrated language and
+system. Synthesis lacks the language support in Emerald, in
+particular the sophisticated typing system. In compensation,
+although Emerald objects may be constructed at run-time (in a
+way similar to synthesized code), its kernel calls are not
+synthesized.
+6. Conclusion
+We have combined two ideas in Synthesis. First, a kernel code
+synthesizer produces specialized and extremely efficient code for
+system calls. Second, an orthogonal, object-oriented, and high-
+level interface has been derived from a simple model of
+computation. This combination gives Synthesis unique
+advantages. The kernel code synthesizer reduces the high-level
+interface inefficiency problem. The high-level interface removes
+the slowdown due to multiple layers of software built on small
+kernels.
+Efficiency derived from the code synthesizer has been
+demonstrated on a prototype system. An example is a specialized
+read system call, which takes about flfteen microseconds. In
+comparison, the HP-UX and Masscomp RTU systems running on
+similar hardware need a few hundred microseconds for an
+equivalent, non-specialized read call. We expect to do even better
+in our full system, with very efficient SIO kernel calls including frle
+systems, network communications, and other devices.
+We are implementing the full version of Synthesis for SUN-3
+workstations and a 68020-based machine. After the kernel, we will
+design and implement language support, transaction processing,
+and real-time support, all taking advantage of synthesized code.
+26 
+Calton Pu, Henry Massalin and John Ioannidis
+
+
+We believe that the unique combination of simplicity and
+efficiency makes Synthesis an excellent system to write and
+execute programs.
+Acknowledgments
+we would like to thank Perry Metzger, Mike schwartz, and Eric
+Jul for their comments that improved the presentation of the
+paper. Gail Kaiser, Chip Maguire, Rajendra Rai, and Jonathan
+Smith helped with a previous version of the paper. Equally
+important, we would like to thank Ed Hee and paul Kanevsky for
+their varied contributions to the project, and Al Lash for
+assistance in procuring laboratory facilities. AMD, Hitachi, Intel,
+Motorola, and Mupac contributed with hardware parts for the
+project.
+The Synthesis Kernel 27
+
+
+Appendix A:
+Trace of Generated Code
+003F8000 7061
+moveq #000000ó1, d0
+005F8002 223C 000F 4240 move.l #000F4240, dz
+27---- 003F8008 4841
+trap 
+#1
+20
+6
+4
+'t0
+28
+000004CE 48Ê,7 4080 
+[1] movem.l 1a2, a1 , a0, d1>, -(sp)
+00000402 2078 0000 
+[2] move.l SYSVARS, a0
+000004Dó E989 
+t3l tst.t 
+#4, d'l
+6 | 
+000004D8 DOFC FF3C 
+[4] Lea 
+(PR0CTABLE,a0,d1), a0
+7 | 
+000004DC 2468 0004 
+[5] move.t (FN-READ,a0), a2
+5 | 
+000004E0 43E8 000C Iól tea 
+(SEEKPOINTER,a0), a1
+Tsys 000004E4 20ó8 0008 
+[7I move.t (],IEüBASE,a0), a0
+13caL l. 000004E8 4892 
+t8I jsr 
+<a2)
+7 | 
+00001040 D1D1 
+I9I add.[ (a1), a0
+ó I 
+00001042 1010 
+t10I move.b (a0), d0
+9 | 
+00001044 5291 
+t111 addq.L #1, (a1)
+7 I 
+000010A8 44FC 0000 [12] move.w #0, cc
+000004E4 4E75 
+t13l rts
+000004EC 4CDF 0702 [14] movem.[ (sp)+, <d1, a0, a1, a2>.
+5 t 
+00000AF0 40D7 
+[15] move.w sr, (a7)
+21---- 000004F2 4873 
+t1ól rte
+4 
+005F800A 5381
+9 
+003F800c 66FA
+003F8008.4E41
+subq. l. #1 , dz
+bne 
+003F8008
+trap 
+#1
+Figure 1: Trace of Code Actually Measured
+In Figure 1, we show the trace produced by the execution of
+the code synthesized for program I (Section 4.2). Instruction t 1l
+saves the registers that will be used. Instruction t2: gets the
+address of the kernel data space; instructions t3l and t4l adds an
+offset to point into the SCPU's frle table. The file table contains
+the address of the specialized read routine and its static data. The
+specialized read routine address is placed in register aZ t57, aîd
+the two pieces of static data is extracted: the frle seek position
+tó1, and the base memory address t7:. The specialized routine is
+called t8l, and the seek position is added to the base memory
+address t9l. The byte is read t1ol, and the seek position is
+updated t11:. The "read OK" status code is signalled t12l and
+the function returns t13¡. Finally the registers are restored t141,
+the status saved t15J, and the system call exits t1ó¡.
+28 
+Calton Pu, Henry Massalin, and John Ioannidis
+
+
+ctocks addr 
+op-codes 
+instruction
+27---- 005F8008 4841 
+trap 
+1
+28 I 
+000008D0 4EB0 1DAó 0000 jsr 
+(IsysvARsI,pRocrBL,dl*4)
+¡ 
+FFJC
+16 I 
+005F2EDC 1030 05F1 005F move.b (ISEEKPOINTERI), dO
+| 
+2ED8
+10 I 
+003FZEE4 5289 003F 2ED8 addq.t #1, SEEKPOTNTER
+7 | 
+005F2EEA 44FC 0000 
+move.¡{ #0, cc
+10 I 
+003FF2E8 4875 
+rrs
+5 + 
+00000808 40D7 
+move.H sr, (sp)
+21---- 00000804 4873 
+rte
+Figure 2: Trace of Expected Code
+W'e describe in Figure 2 the optimized code synthesis we
+expect to produce in the full version. we will now explain what is
+happening in these two versions of the read call, and this will help
+illustrate the effect that the full code optimizer will have once it is
+implemented. There are several places where the long code is less
+than optimal. The seek position and the base address should be
+kept with the specialized read function rather than in the file
+table. Doing so will eliminate the need for instructions tól and
+[7], as well as the save and restore of registers a0 and al When
+the full optimizer is implemented, instructions tzl, I3l, t4: and
+t8l can be collapsed into one of the 68020 memory indirect
+addressing modes. Finally, there is no need to keep both a base
+address and a seek pointer. A trivial modification of the seek
+routine (not shown here) allows us to use just one pointer. Figure
+2 is the result of applying all these optimizations. The execution
+trace of a "vanilla" UNIX read is too long to be included here, but
+we summarize its actions in Appendix B.
+The Synthesis Kernel 29
+
+
+Appendix B: UNIX Comparison
+For comparison purposes, \rye have analyzed 4.3 BSD since its
+source was available. First we introduce some terms. A rtle
+descriptor is an indirect index into an entry in the system open frle
+table. Each such "open frle structure" includes the address of the
+frrst inode (which contain the actual data stored in the frle) of that
+file and pointers to the set of functions used to manipulate this file
+type, which are either the inode or the socket operations.
+Now, let us examine what happens when a frle is opened.
+First, copen) checks permissions and allocates an open file
+structure. Then namei interprets the path name taking care of
+special cases like symbolic links and mounted file systems. If the
+flle exists, its frrst inode is returned. Otherwise, maknode is called
+to create the actual frle. Then, the open file structure is filled out
+and the file descriptor leading to it is returned. The length of the
+source code for all this is of the order of 1000 lines of C.
+Now, let us see how we can read from that open frle. read
+massages its arguments and calls rwuio. The "open file structure"
+is examined to check for permissions, and validity checks are
+performed for the buffers. Then ino_rw (the generic function to
+read or write a file), is called indirectly. It does consistency
+checking, then calls another function (rwip). In the case of a
+regular or a block-device file, special processing is done to take
+advantage ofthe block I/O interface, then the block read (bread)
+function eventually invokes the device driver to do the actual
+operation. For character-device frles, the device driver is invoked
+directly. Finally, the system call returns the number of characters
+read.
+Just going through the code and not counting all the secondary
+procedures called, we counted more than 500 lines of C code. A
+great deal of that code consists of multiple validity tests, case
+statements etc. This is because a large variety of cases has to be
+handled by the same piece of code.
+30 
+Calton Pu, Henry Massalin, and John Ioannidis
+
+
+References
+M. Accetta, R. Baron, W. Bolosky, D. Golub, R. Rashid,
+A. Tevanian, and M. Young, Mach: a nev/ kernel foundation for
+UNIX development, Proceedings of the 1986 USENIX Conference,
+pages 93-112, USENIX Association, 1986.
+G. T. Almes, A. P. Black, E. D. Lazowska, and J. D. Noe, The Eden
+system: a technical review, IEEE Transacîions on Software
+Engineering, SE-1 1(1):43-58, January I 985.
+James Arleth, A 68010 Multiuser Development System, Master's
+thesis, The Cooper Union for the Advancement of Science and Art,
+New York City, 1984.
+J. R. Bell, Threaded code, Communications of .ecu,16(6):370-372,
+June 1973.
+5. A. Black, N. Hutchinson, E. Jul, and H. Levy, Object structure in the
+Emerald system, Proceedings of the First Annual Conference on
+Obj ect-Oriented Programming, Systems, Languages, and Applications,
+pages 78-86, ACM, September 1986.
+6. A. Black, N. Hutchinson, E. Jul, H. Levy, and L. Carter, Distribution
+and abstract types in Emerald, IEEE Transactions on Software
+Engineering, SE-12(12): 65-7 6, January I 987.
+7. D. Cheriton, The V kernel: a software base for distributed systems,
+IEEE Software, l(2):19-43, April 1984.
+8. D. Cheriton and W. Zwaenepoel, The Distributed V kernel and its
+performance for diskless workstations, Proceedings of the Ninth
+Symposium on Operating Systems Principles, pages 129-140,
+ACM/SIGOPS, October 1983.
+9. H. M. Deitel, An Introduction to Operating Systems, Addison-Wesley
+Publishing Company, revised frrst edition, 1984.
+10. B. H. Liskov and R. W. Scheifler, Guardians and Actions: linguistic
+support for robust, distributed programs, Proceedings of the Ninth
+Annual Symposium on Principles of Programming Languages, pages
+7-19, January 1982.
+11. H. Massalin, A 68010 Multitasking Development System, Master's
+thesis, The Cooper Union for the Advancement of Science and Art,
+New York City, 1984.
+12. J. S. Quarterman, A. Silberschatz, and J. L. Peterson, 4.2BSD and
+4.3BSD as examples of the UNIX system, ACM Computing Surveys,
+17 (4):379-41 8, December I 985.
+l.
+2.
+J.
+4.
+The Synthesis Kernel
+31
+
+
+13. D. M. Ritchie and K. Thompson, The UNIX Time-sharing System,
+C ommunications of eCu, 7 (7):365-37 5, Jttly 197 4.
+14. J. E. Stoy, Denotøtional Semantics: The Scott-Straehey Approach ta
+Programrning Language Theory, The MIT Press, 1977
+15. A. S. Tanonbaum and S. J. Mullender, The Design of a Capabílîty-
+Based Distributud Aperating Systern, Technical Report IR-88,
+Department of Mathematics and Computer Science, Vrije
+U¡iversiteit Amsterdam, Novornber I 984.
+16. W. A. Wutf, E. Cohen, rW. Corwin, A. Joneso R. Iævin, C. Pierson,
+and F. Pollack; Hydra: the kernel of a multiprocessing operating
+system, Cammunications o:f aCM, I7 (6):337 -345, June 1 974.
+Isu,btnitted Sept. 22, 1987; øccepted Nov. 5, 1984
+32 
+Calton Pu, Henry Massalinn and John loannidis
