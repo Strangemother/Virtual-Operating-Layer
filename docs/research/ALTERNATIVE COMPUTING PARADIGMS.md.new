@@ -1,0 +1,89 @@
+# Alternative Computing Paradigms
+
+**A Research Work**
+
+**FESTUS OLUBUKUNMI AJIBUWA**
+
+School of Science and Engineering  
+Atlantic International University
+
+---
+
+## Abstract
+
+This research work examines the future of computers, considers Integrated Circuit technology in the areas of how it drives computer design, and what the fundamental limitations are. Examines the proposed alternatives, including neurobiologically inspired computing, DNA computing, Tuple Board Paradigm, Mobile Computing and Quantum Computing. Views of different schools of thoughts, organizations, companies and Universities are critically assessed and compiled within this write-up.
+
+Nowadays computers are in the centre of almost all areas of modern society and their computational abilities very often determine superiority of one product with respect to another. Traditional computers are able to deal with only finite numbers because arithmetic developed for infinite numbers leave undetermined many operations (e.g., `∞-∞`) or represent infinite numbers by infinite sequences of finite numbers (e.g., non-standard analysis approaches). Thus, in spite of the key role of infinitesimals and infinite in Physics and Mathematics (e.g., derivatives, integrals, and differential equations), the parts of natural sciences related to infinite and infinitesimals remain purely theoretical fields.
+
+The new unconventional approach proposed very recently by the author uses a new computational paradigm (that is not related to traditional non-standard analysis approaches) for creating a new revolutionary type of computer – Infinity Computer – able to store infinite, finite, and infinitesimal numbers and to execute arithmetical operations with all of them. The key methodological idea is usage of a new positional system with infinite radix allowing one to express finite, infinite, and infinitesimal numbers in a unique framework by a finite number of symbols.
+
+The Infinity Computer will have a very high impact in Computer Science, Mathematics, Physics, and Economics because: it gives possibilities to execute calculations of a new type; leads to infinite accuracy of calculus; allows people to study complex systems where infinitesimal changes of parameters lead to finite and infinite changes in the output; simplifies scientific fields (and their teaching at schools and universities) where usage of infinity and infinitesimals is necessary.
+
+**Toward a new computing paradigm:** Views of Microsoft Developer Div chief architect David Vaskevitch (Enterprise Systems Journal) July, 1995
+
+We live in interesting times. As with any era of profound change, we find ourselves in need of a new paradigm -- a paradigm not just of computing but of human relationships on a global scale. But a paradigm is not something you simply define in advance; it is marked by a cultural shift in the shared mindset. Its pieces evolve slowly until it reaches a critical mass and points the way into the new era. We are at that critical point: Information technology, already undergoing tremendous change as a result of the business process reengineering movement, has entered into a new era.
+
+---
+
+## The Need for a New Computer Paradigm
+
+### The CHAOS-Based Systems
+
+**A New Computing Paradigm:** (Chaos-Based System That "Evolves" Answers May Be Alternative to Current Computers) Science Daily
+
+A revolutionary new computing technique that uses a network of chaotic elements to "evolve" its answers could provide an alternative to the digital computing systems widely used today. Described for the first time in the September 7 issue of Physical Review Letters this "dynamics-based computation" may be well suited for optical computing using ultra-fast chaotic lasers and computing with silicon/neural tissue hybrid circuitry.
+
+The system has so far demonstrated an ability to handle a wide range of common operations, including addition and multiplication, as well as Boolean logic and more sophisticated operations such as finding the least common multiplier in a sequence of integers. Because it depends on interaction among its coupled elements, the system is naturally parallel.
+
+"We have shown that this can be done, but we've only seen the tip of the iceberg," said Dr. William L. Ditto, professor of physics at the Georgia Institute of Technology. "This is a glimpse of how we can make common dynamic systems work for us in a way that's more like how we think the brain does computation. It's an entirely new computing paradigm."
+
+For many years, scientists have observed the rich variety of behavioral patterns created by chaotic systems, including those found in living organisms. Ditto and collaborator Sudeshna Sinha of the Institute of Mathematical Sciences in Madras, India, reasoned that these natural chaotic systems should have been eliminated through evolution unless they served a purpose.
+
+Ditto and Sinha devised an experiment to see if a simple network of chaotic computer elements could be made to handle computations. They joined the chaotic elements into a lattice using an adaptive connecting mechanism that would open whenever an element exceeded a certain critical value. The mechanism was designed so that the researchers could set a wide range of critical values to vary the connection between elements.
+
+The researchers then encoded values into the chaotic lattice using a variety of different techniques. In some cases, they chose patterns in the chaotic elements to represent numbers. In other cases, the numbers were represented by the amplitude of waves emitted by the chaotic elements or the frequency of "spiking" behavior.
+
+After encoding the numbers, they stimulated the elements to begin interacting.
+
+Elements containing values above the critical level triggered the connecting mechanism, allowing the excess value to "avalanche" into neighboring elements. That transfer then created additional avalanches in other connected elements. With additional stimulation, the domino effect continued until the imbalance was conducted out of the system -- as the answer to the mathematical problem.
+
+"We have the elements interconnected so that they respond to their neighbors like the avalanching that occurs when you pile grains of sand onto a sandpile," Ditto explained. "You allow the elements to avalanche and the system to evolve chaotically, and then do the avalanching again until the system settles down to the right answer. It takes a couple of iterations for it to settle down."
+
+In a simple example, values of three and four would be encoded into a system set with a critical value of one. The values would create an imbalance that would avalanche through the chaotic elements until it was conducted out of the system -- as the value of seven.
+
+Chaotic elements are useful to this system because they can assume an infinite number of behaviors that can be used to represent different values or different systems such as logic gates. Because of this flexibility, altering the initial encoding and changing the connections between the chaotic elements allow a single generic system to perform a variety of computations using its inherent self organization. In conventional computing, systems are more specialized to perform certain operations.
+
+"We are not really setting up rules in the same sense that digital computers are programmed," Ditto explained. "The system develops its own rules that we are simply manipulating. It is using pattern formation and self-organized criticality to organize toward an answer. We don't micromanage the computing, but let the dynamics do the hard work of finding a pattern that performs the desired operation."
+
+Just as the numbers can be encoded in a variety of ways, the answer also comes out in a variety of ways: a rate of change, amplitude, or a specific chaotic behavior.
+
+"There are a surprisingly large number of ways that the system can perform the computations and give you the answer," he added. "By slightly changing the connectivity and the parameters of the chaotic system, we can have it multiply several different ways through the system's self organization."
+
+Because this new system differs dramatically from existing digital computers, it is likely to have different strengths and weaknesses. "It might be better than digital computing for those activities that digital computing doesn't do very well -- such as pattern recognition or detecting the difference between two pieces of music," Ditto said.
+
+He compared dynamics-based computation to DNA computing and quantum computing, both of which are new computing paradigms still in their early stages of development.
+
+Ditto believes the new system would work particularly well in optical systems. He has done theoretical work applying dynamics-based computing to an ammonia laser system and hopes to see the system implemented experimentally.
+
+"Potentially, we could stimulate a very fast system of coupled lasers to perform a highly complicated operation like very fast arithmetic operations, pattern detection and Fourier transforms" he said. "We have something that very naturally performs an operation in an optical system. This would provide an alternative to existing efforts, which try to make optical systems do operations more like transistors."
+
+Beyond the systems they have tried, Ditto believes virtually any coupled dynamic system could be used to perform computation. "We hope that you can take any dynamical system, stimulate it in the correct way, and then get it to perform an operation for you," he said. "This would provide an alternative to engineering a system from the ground up."
+
+Ditto acknowledges a number of engineering issues that may hamper development of a practical system based on this new computing paradigm. But he notes that in their early days, digital computers had to overcome a daunting set of obstacles to overtake earlier techniques.
+
+Support for the work has come from the U.S. Office of Naval Research, and from Control Dynamics, Inc., a company partially owned by Ditto.
+
+*Note: This story has been adapted from a news release issued by Georgia Institute of Technology.*
+
+---
+
+## Introduction
+
+Computer science is a soft science. That is, computer science, like mathematics is based of accepting the true of some basic theorems. The mathematical laws on which the conventional CS paradigm is based have served to guide CS during its history of incredible improvements of CPU speed and memory size, but like the relationship between the arrangements of the fingers on the hand and the layout of the QWERTY keyboard, the relationship between these laws and the real world of electrons, light beams and digital circuits is arbitrary. Absolute physical benchmarks used in the physical sciences such as Physics and Chemistry are ignored in the conventional CS paradigm. Instead, algorithm analysis depends on the nature of an algorithm in the limit. That is, even though computers are of a finite size and the speed of electricity is bounded, algorithm analysis is based on processing unlimited data sizes and efficiently utilizing increasingly insignificant CPU and memory costs while ignoring the impact of the complexity of algorithms on the increasingly dominate programming costs.
+
+Unfortunately since the laws for the current paradigm are taught as absolute truths to every CS freshman, they are very difficult to challenge. Indeed, the perception is that they are infallible. The traditional relationship between mathematics and the sciences has been for mathematicians to develop abstract construct without regard to engineering or science and then, later, perhaps centuries later, discovered that they have a useful application. However, in the case of computer science, the abstract laws and theorems of mathematics have become the very basis of computer science with the consequence that any alternative paradigm can be proven to be inferior. The result is that new computer paradigms, architectures and languages, which could address many of today's issues such as the inefficiency of multitasking operating systems and hardware, have been overlooked, even suppressed. The wealth of alternative computer architectures, programming languages and alternative paradigms of earlier years, such as systolic arrays, data flow, data parallelism and associative computing, has been abandoned.
+
+This point is illustrated by the Connection Machine fiasco of the late 80's and early 90's. The CM that was designed at MIT and promoted by DARPA was an attempt to develop alternative machine architecture. It failed because of inappropriate algorithm paradigms and programming techniques. That is, because of the mismatch between the accepted CS paradigm and the available programming languages and the reality of the machine, the programmers could not develop "cost effective" algorithms. The most obvious example of this mismatch is sorting versus searching. The need for sorting data for efficient retrieval is accepted without question in the conventional paradigm. To suggest that data can be efficiently retrieved without sorting is not only heresy, but can be proved to be wrong by any freshman computer scientist using conventional paradigm laws. Yet the CM, using data parallelism, could and did find any datum in memory in one step – `O(1)` time. This would be an existence proof in any other discipline, but it was not and still is not accepted by the CS community because the standard paradigm "proves" that it takes at least `O(log n)` time to find something (even conveniently ignoring the cost of sorting the data.) As a result, the massive searching approach to data selection and retrieval was not pursued. One of the results of the law that data need to be sorted in order to find them efficiently is the tree organizations. However, using a data parallel searching paradigm, there is no need for nested menu trees or any other type of sorted data. Data parallel searching, by eliminating the need for sorting, does not need linked lists and allows all data organizations – chronological, by recipient, by topical category – to be utilized simultaneously via associatively. That is, data parallelism and associative computing is one possible answer to simpler computing. This approach requires that you go back to the flat tables of yesteryear, but with gigabytes of memory and gigahertz of speed, flat tables are manageable, even preferable.
+
+Moreover, the data parallel search based paradigm is well suited for high school level tabular data structures and natural language communication with your computer. Both features significantly reduce programming costs. But unfortunately, like the internal combustion engine, once a technology has progressed it a certain point, it is practically impossible to overcome it. However, as there is the possibility that the eventual depletion of our natural energy resources will cause economic changes in the design of car engines, the eventual depletion of "free" improvements in speed and memory may force a change in the conventional CS paradigm. Even today, super computers spend from 70 to 95% of their computing power in overcoming the limitations of the current paradigm so that only 5 to 30% of the actual speed improvements are obtained by the user. However, a change in paradigm is most likely to occur in the Laptop, PDA and cell phone environment not the super computer environment, because the lack of power is not the driving point, but the lack of physical space for keyboards, display screens, mice, etc. and the demand for easier modes of computing. Eventually, hopefully, computer scientists will come to realize that, CS has been trapped by the von Neumann models success and that just as the laws of plain geometry work well over a small portion of the Earth's surface, but fail when applied to a much larger portion, so too, the laws of the current CS paradigm work well for the old world of "slow", few, expensive computers and cheap programmers, but are not well suited to the new world of fast, ubiquitous cheap computers and expensive programmers.
+
