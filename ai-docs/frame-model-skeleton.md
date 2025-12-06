@@ -1,11 +1,11 @@
 # Frame Model Skeleton (Consolidated Extraction)
 Status: Draft
-Last-Touched: 2025-09-13
-Depends-On: docs/core/frame-context.md, ai-docs/root-monolith-frame-switching-extraction.md, ai-docs/root-monolith-memory-module-extraction.md
-Verbatim scope: docs/core/frame-context.md; ai-docs/root-monolith-frame-switching-extraction.md; ai-docs/root-monolith-memory-module-extraction.md
+Last-Touched: 2025-11-30
+Depends-On: docs/core/frame-context.md, root-monolith-frame-switching-extraction.md, root-monolith-memory-module-extraction.md
+Verbatim scope: docs/core/frame-context.md; root-monolith-frame-switching-extraction.md; root-monolith-memory-module-extraction.md
 
 ## Purpose
-Consolidate explicit statements about frames, context, and switching without adding semantics. All unresolved mechanics remain in gap documents.
+Consolidates explicit statements about frames, context, and frame switching from core and root-monolith sources. All unresolved mechanics documented in gap-priority-matrix.md (#17, #18).
 
 ## Sourced Statements (Frame Context)
 1. A Frame acts as a stepper's current view of the system with knowledge required to run incoming pointers. (Source: docs/core/frame-context.md)

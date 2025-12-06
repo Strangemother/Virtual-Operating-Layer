@@ -1,5 +1,5 @@
 Status: Draft
-Last-Touched: 2025-09-13
+Last-Touched: 2025-11-30
 Depends-On: term-promotion-readiness-matrix.md, sections/glossary.md, policy-promotion.md
 Verbatim scope: term-promotion-readiness-matrix.md, sections/glossary.md
 

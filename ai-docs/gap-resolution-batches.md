@@ -1,6 +1,6 @@
 # Gap Resolution Batches (Planning Extraction)
 Status: Draft
-Last-Touched: 2025-09-13
+Last-Touched: 2025-11-30
 Depends-On: gap-priority-matrix.md, gap-index.md
 Verbatim scope: gap-priority-matrix.md, gap-index.md
 

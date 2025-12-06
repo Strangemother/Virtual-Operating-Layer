@@ -1,8 +1,8 @@
 Status: Draft
-Last-Touched: 2025-09-13
+Last-Touched: 2025-11-30
 # Gap Index (Aggregated Incomplete Blocks)
 
-Purpose: Central list of all current Incomplete blocks across extraction stubs for prioritization. No new interpretation added.
+Purpose: Central registry of all unresolved specification items across extraction documents. Each gap links to source extraction docs and identifies candidate resolution sources. For prioritization ranking, see gap-priority-matrix.md.
 
 ## Capability Advertisement
 Reference: capability-advertisement.md

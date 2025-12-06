@@ -1,24 +1,11 @@
- Walking Register (Working-Term)
- Definition: Register that accumulates results of continuous input stream character steps until termination. (Source: docs/root-monolith/readme.md)
- Status: Stub
-
- Input-Session Key (Working-Term)
- Definition: Key stepped with each input character in continuous REPL stream; termination yields execution. (Source: docs/root-monolith/readme.md)
- Status: Stub
-
- Variation Tree (Working-Term)
- Definition: Structure associated with generative grammar; node/edge semantics not defined. (Source: docs/root-monolith/comprehensive.md)
- Status: Stub
-
- Generative Grammar (Working-Term)
- Definition: Grammar used with variation tree for structural spec generation; formal rules absent. (Source: docs/root-monolith/comprehensive.md)
- Status: Stub
 ---
 Status: Working-Spec
-Last-Touched: 2025-09-13
+Last-Touched: 2025-11-30
 Source: restructured-notes-2025.md
 ---
-# Glossary Seed
+# Glossary
+
+Comprehensive term definitions for Virtual Operating Layer documentation. Terms are organized by conceptual domain with sources cited.
 
 Core Runtime Terms
 + Chamber – Directory of magmatic core libraries (Source: [terminology.md](../../docs/core/terminology.md))
@@ -179,99 +166,17 @@ Candidate Sources: docs/garbage collector.md, docs/core/Contigious address names
 Verbatim scope: restructured-notes-2025.md Section 10 plus additions from mesh-roles, interface-input-events, identity-persistence.
 
 ---
----
-Archived Seed (Historical Duplicate Retained)
-Status: Draft
-Last-Touched: 2025-09-12
-Source: restructured-notes-2025.md
----
-# Glossary Seed
+## Working-Term Stubs (Pending Promotion)
 
-+ Chamber – Directory of magmatic core libraries (Source: [terminology.md](../../docs/core/terminology.md))
-+ Mantle – Collection of modules/packages forming installable library store (Source: [terminology.md](../../docs/core/terminology.md))
-+ Magmatic (Magma) – Grouping of mantle and core components (Source: [terminology.md](../../docs/core/terminology.md))
-+ Igneous – Root monolith build relying on stable mantle (Source: [terminology.md](../../docs/core/terminology.md))
-+ System Core – Managing thread for apps/services and housekeeping (Source: [system core.md](../../docs/core/system%20core.md))
-+ Health Doctor – Garbage collection / cleanup component (Source: [system core.md](../../docs/core/system%20core.md))
-+ Procedure Graph – Ordered function chain representing application execution (Source: [Procedure Graph.md](../../docs/core/Procedure%20Graph.md))
-+ Pointer – Header element executing SES and graph mutations (Source: [graph pointer.md](../../docs/core/graph%20pointer.md))
-+ Stepper – Walker resolving next pointer and executing sequentially (Source: [graph stepper.md](../../docs/core/graph%20stepper.md))
-+ SES (Self Executing Source) – Function/code unit executed via pointer (Source: [graph functions.md](../../docs/core/graph%20functions.md))
-+ Context Frame – Current view with memory, graph, temp data, APIs (Source: [frame-context.md](../../docs/core/frame-context.md))
-+ Zero Suite – First service set post-handoff (Source: [zero-suite.md](../../docs/core/zero-suite.md))
-+ Node Compass – Internal vector path resolution map (Source: [graph node compass.md](../../docs/core/graph%20node%20compass.md))
-+ Tape (Pointer Tape) – Sequence of keys describing execution path (Source: [graph pointer.md](../../docs/core/graph%20pointer.md))
+These terms appear in extraction documents but lack sufficient source detail for full definitions. See term-promotion-readiness-matrix.md for promotion tracking.
 
- Tape (Pointer Tape) – Sequence of keys describing execution path (Source: [graph pointer.md](../../docs/core/graph%20pointer.md))
+Walking Register (Working-Term) – Register that accumulates results of continuous input stream character steps until termination. (Source: docs/root-monolith/readme.md)
 
-Filesystem & Storage Terms
-+ Aggregate (ag) – Readable unit: ordered list of particle pointers (PP) resolved to data stream (Source: [File System.md](../../docs/fs/File%20System.md))
-+ Phenocryst (Header) – Independent metadata reference pointing to aggregate and grains (Source: [File System.md](../../docs/fs/File%20System.md))
-+ Grain – Address-like pointer plus iteration context grouping particles for an aggregate (Source: [grains.md](../../docs/fs/grains.md); [File System.md](../../docs/fs/File%20System.md))
-+ Particle (Segment) – Unchanging byte/binary content unit; subset of aggregate (Source: [File System.md](../../docs/fs/File%20System.md))
-+ Colloid – Functional read/fetch construct aggregating particles (may return grains/particles) (Source: [File System.md](../../docs/fs/File%20System.md))
-+ Orphan Particle – Particle lacking header and neighbor references; moves to cold-store after delay (Source: [File System.md](../../docs/fs/File%20System.md))
-+ Solid Particle – Particle with persistent stored content (Source: [File System.md](../../docs/fs/File%20System.md))
-+ Fluid Particle – Particle whose volatile content resides in RAM cache (Source: [File System.md](../../docs/fs/File%20System.md))
-+ Floating Particle – Particle reference/content not applied to a graph; potentially incomplete (Source: [File System.md](../../docs/fs/File%20System.md))
-+ Mass – Collection of peds and clods (aggregates) forming larger structure (Source: [File System.md](../../docs/fs/File%20System.md))
-+ Ped – System-generated aggregate (Source: [File System.md](../../docs/fs/File%20System.md))
-+ Clod – User-generated aggregate (Source: [File System.md](../../docs/fs/File%20System.md))
-+ Particle Phase – State of particle: solid, fluid, floating (Source: [File System.md](../../docs/fs/File%20System.md))
+Input-Session Key (Working-Term) – Key stepped with each input character in continuous REPL stream; termination yields execution. (Source: docs/root-monolith/readme.md)
 
-Mesh / Distribution Terms
-+ Membrane – Connectivity/transport layer bridging internal and external spaces; maintains protocol & topology shape (Source: [mesh.md](../../docs/mesh.md))
-+ Mesh – Topology of connected units assigning positions and enabling subgraph injection (Source: [mesh.md](../../docs/mesh.md))
- + Role (mesh) – Position within topology assigned when unit connects (Source: [mesh.md](../../docs/mesh.md))
- + Capability Set (working-term) – Aggregate capabilities of new RUNTIME governing its role integration (Source: [nodes.md](../../docs/nodes.md))
+Variation Tree (Working-Term) – Structure associated with generative grammar; node/edge semantics not defined. (Source: docs/root-monolith/comprehensive.md)
 
-Memory & Identity Terms
-+ (Identity Model) – Neural network file concept referencing weights/bias persistence (Source: [memory-as-weights-and-biases.md](../../docs/concepts/memory-as-weights-and-biases.md))
-
-Interface & Presentation Terms
-+ Display Container – Rendering container orchestrating visual output (Source: [display (container).md](../../docs/display%20(container).md))
-+ Facade – Abstraction exposing simplified interface (Source: [Facade.md](../../docs/Facade.md))
-
-Boot & Loop Terms
-+ Pointer 0 – Initial pointer invoked post zero-suite (Source: [boot.md](../../docs/boot.md); [zero-suite.md](../../docs/core/zero-suite.md))
-+ SEM (Boot SEM) – Referenced in boot sequence context (Source: [boot.md](../../docs/boot.md))
-
-Root & Foundational Apps Terms
-+ Root Fundamental Apps – Core baseline applications (Source: [Root Fundamental apps.md](../../docs/core/Root%20Fundamental%20apps.md))
-+ Container Manifest – Manifest describing containerized components (Source: [container-manifest.md](../../docs/container-manifest.md))
-+ First Apps – Initial demonstration or baseline apps (Source: [first-apps.md](../../docs/first-apps.md))
-
-Aliases
-+ Procedure Graph: exec graph, application graph (Source: [Procedure Graph.md](../../docs/core/Procedure%20Graph.md))
-
-Incomplete: Glossary completeness
-Needed:
-- Coverage of filesystem (grains, header, sector), memory identity, mesh roles, interface layer
-Candidate Sources: Files in: ../../docs/fs/, ../../docs/concepts/, ../../docs/mesh.md, ../../docs/nodes.md, ../../docs/registry.md, ../../docs/display (container).md
-
-Incomplete: Mesh role taxonomy terms
-Needed:
- - Explicit role names (node types, registry semantics)
-Candidate Sources: [nodes.md](../../docs/nodes.md), [registry.md](../../docs/registry.md), [Scaling.md](../../docs/Scaling.md)
-
-Incomplete: Memory identity detailed enumeration
-Needed:
- - Formal identity persistence states
- - Mapping between identity and filesystem aggregates
-Candidate Sources: [memory-as-weights-and-biases.md](../../docs/concepts/memory-as-weights-and-biases.md), files in ../../docs/fs/
-
-Incomplete: Interface input event taxonomy
-Needed:
- - Canonical list of input event types
- - Mapping to display container handlers
-Candidate Sources: [inputs.md](../../docs/inputs.md), [display (container).md](../../docs/display%20(container).md), [Facade.md](../../docs/Facade.md)
-
-Incomplete: Boot sequence nomenclature normalization
-Needed:
- - Definitive definitions for SEM, Zero Suite handoff markers, pointer 0 payload schema
-Candidate Sources: [boot.md](../../docs/boot.md), [zero-suite.md](../../docs/core/zero-suite.md), [top level.md](../../docs/top%20level.md)
-
- Verbatim scope: restructured-notes-2025.md Section 10 only.
+Generative Grammar (Working-Term) – Grammar used with variation tree for structural spec generation; formal rules absent. (Source: docs/root-monolith/comprehensive.md)
 
 ---
 Promotion Record:
