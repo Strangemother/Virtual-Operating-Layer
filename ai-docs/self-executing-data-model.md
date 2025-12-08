@@ -1,16 +1,16 @@
 # Self-Executing Data: A Paradigm Shift Beyond Von Neumann Architecture
 
-**Status**: Conceptual-Spec  
-**Owner**: System Architecture / Filesystem Design  
-**Last-Touched**: 2025-12-06  
-**Depends-On**: `fs-overview.md`, `graph-overview.md`, `docs/fs/File System.md`  
+**Status**: Conceptual-Spec
+**Owner**: System Architecture / Filesystem Design
+**Last-Touched**: 2025-12-06
+**Depends-On**: `fs-overview.md`, `graph-overview.md`, `docs/fs/File System.md`
 **Related**: Particle/Grain/Aggregate model, Graph execution semantics
 
 ---
 
 ## Abstract
 
-This document explores a fundamental reconceptualization of data interaction within the Virtual Operating Layer (VOL). Rather than the classical persist-load-execute-output cycle, we propose a model where **data is intrinsically active**—particles of information that self-organize, self-execute, and agglomerate on-demand through user intent. This shifts the computational paradigm from "programs operating on passive data" to "data clouds that manifest behavior when addressed."
+This document explores a fundamental reconceptualization of data interaction within the Virtual Operating Layer (VOL). Rather than the classical persist-load-execute-output cycle, we propose a model where **data is intrinsically active** particles of information that self-organize, self-execute, and agglomerate on-demand through user intent. This shifts the computational paradigm from "programs operating on passive data" to "data clouds that manifest behavior when addressed."
 
 The model synthesizes VOL's existing geological storage metaphor (particles, grains, aggregates) with a dynamic execution framework where data exists in motion, flowing and coalescing based on context, access patterns, and frame-level intent signals.
 
@@ -54,16 +54,16 @@ Key principles:
 
 Extending VOL's existing particle model (Source: `docs/fs/File System.md`), particles exist in phases beyond the documented solid/fluid/floating:
 
-**Solid Particles**  
+**Solid Particles**
 Persistently stored, unchanging content. Baked into service locations (disk, remote storage). Classical "file on disk" analogy.
 
-**Fluid Particles**  
+**Fluid Particles**
 Exist as Phenocryst references with volatile content—RAM-cached, hot-access memory. Content may shift location but remains available.
 
-**Floating Particles**  
+**Floating Particles**
 Not bound to any graph. Orphaned without owner or reference. May be sedimented (partial/incomplete) if separated from grain siblings.
 
-**_Proposed: Mobilized Particles_**  
+**_Proposed: Mobilized Particles_**
 Actively relocating based on access patterns. System observes "this is a busy bit" and migrates it locally. Or "finished with this bit" and allows drift to remote/cold storage. Mobility is optimization, not user-visible state.
 
 ### Why Motion?
@@ -135,10 +135,10 @@ This allows **context-sensitive activation**: The same particle might render as 
 
 VOL's geological storage model (Source: `docs/fs/File System.md`, `ai-docs/fs-overview.md`):
 
-**Particle**: Immutable binary segment. Atom of data.  
-**Grain**: Header with references to particles. Iteration context grouping particles.  
-**Aggregate**: Ordered list of particle pointers forming a readable stream.  
-**Phenocryst**: Metadata header independent of aggregate, linking labels to aggregates/grains.  
+**Particle**: Immutable binary segment. Atom of data.
+**Grain**: Header with references to particles. Iteration context grouping particles.
+**Aggregate**: Ordered list of particle pointers forming a readable stream.
+**Phenocryst**: Metadata header independent of aggregate, linking labels to aggregates/grains.
 **Colloid**: Functional read construct fetching particles/grains, possibly returning subsets.
 
 ### Dynamic Agglomeration Process
@@ -203,19 +203,19 @@ When a particle receives an intent signal:
 ```python
 def particle_respond_to_intent(intent_event, current_frame):
     grain = self.parent_grain
-    
+
     # Check frame context matches grain requirements
     if grain.required_context not in current_frame.contexts:
         return INERT  # Do not activate
-    
+
     # Check permissions
     if not grain.check_permission(intent_event.identity, 'EXECUTE'):
         return INERT
-    
+
     # Check intent type (VIEW vs MODIFY vs CLONE)
     if intent_event.type not in grain.allowed_intents:
         return INERT
-    
+
     # Activation authorized
     return self.execute_behavior(intent_event, current_frame)
 ```
@@ -331,32 +331,32 @@ To realize this model on existing hardware without custom CPUs:
 
 #### 1. Event-Driven Particle Activation
 
-**Component**: Event loop monitoring frame state and user actions  
-**Function**: Emit intent signals to registered particles  
+**Component**: Event loop monitoring frame state and user actions
+**Function**: Emit intent signals to registered particles
 **Technology**: Async I/O (libuv, epoll), pub/sub messaging (ZeroMQ, NATS)
 
 #### 2. Graph Stepper Execution Engine
 
-**Component**: Interpreter/JIT for graph traversal  
-**Function**: Walk graph nodes, evaluate activation conditions, spawn parallel steppers  
+**Component**: Interpreter/JIT for graph traversal
+**Function**: Walk graph nodes, evaluate activation conditions, spawn parallel steppers
 **Technology**: Lua/Python for high-level steppers, compiled stepper kernels for hot paths
 
 #### 3. Particle State Manager
 
-**Component**: Database tracking particle locations, states (solid/fluid/floating/mobilized)  
-**Function**: Decide particle migration, garbage collect orphans, maintain Phenocryst references  
+**Component**: Database tracking particle locations, states (solid/fluid/floating/mobilized)
+**Function**: Decide particle migration, garbage collect orphans, maintain Phenocryst references
 **Technology**: SQLite for local state, distributed KV store (Redis, etcd) for mesh coordination
 
 #### 4. Colloid Assembler / Stream Builder
 
-**Component**: Buffer manager aggregating particles into sequential streams  
-**Function**: Hide asynchronous particle fetching behind unified stream interface for legacy apps  
+**Component**: Buffer manager aggregating particles into sequential streams
+**Function**: Hide asynchronous particle fetching behind unified stream interface for legacy apps
 **Technology**: Ring buffers, async prefetch, codec pipelines
 
 #### 5. Frame-Context State Machine
 
-**Component**: Per-session context tracker  
-**Function**: Maintain active frame, identity, permissions, intent history  
+**Component**: Per-session context tracker
+**Function**: Maintain active frame, identity, permissions, intent history
 **Technology**: Stateful server (per-user process or sandboxed container)
 
 ### Advanced Implementation (Future Hardware)
@@ -374,42 +374,42 @@ If RAM/disk convergence occurs (persistent high-speed unified memory):
 
 ### Advantages
 
-**1. Eliminates Data/Program Dichotomy**  
+**1. Eliminates Data/Program Dichotomy**
 No separate "applications" that operate on "files." Data embodies its own semantics and behavior.
 
-**2. Natural Distribution and Replication**  
+**2. Natural Distribution and Replication**
 Particles can exist across mesh nodes, CDNs, peer systems. Agglomeration is location-transparent.
 
-**3. Adaptive Performance**  
+**3. Adaptive Performance**
 Hot particles migrate locally; cold particles drift to archival. System self-optimizes without manual cache management.
 
-**4. Structural Sharing and Efficiency**  
+**4. Structural Sharing and Efficiency**
 Multiple aggregates reference same particles. Version control, deduplication, and copy-on-write are implicit.
 
-**5. Context-Aware Security**  
+**5. Context-Aware Security**
 Permissions evaluated per-particle based on frame context. Fine-grained, dynamic access control.
 
-**6. Historical Preservation**  
+**6. Historical Preservation**
 Particle immutability means old aggregates remain valid even as new arrangements form. Natural versioning.
 
 ### Challenges
 
-**1. Mental Model Shift for Developers**  
+**1. Mental Model Shift for Developers**
 Requires unlearning file-descriptor, path-based thinking. Steep learning curve.
 
-**2. Debugging Complexity**  
+**2. Debugging Complexity**
 Self-executing, event-driven, distributed activation is harder to trace than synchronous function calls.
 
-**3. Garbage Collection**  
+**3. Garbage Collection**
 Orphan particles, sedimented fragments, unreferenced grains accumulate. Sophisticated GC required.
 
-**4. Determinism and Reproducibility**  
+**4. Determinism and Reproducibility**
 Asynchronous particle arrival, non-deterministic agglomeration order. Harder to reproduce bugs.
 
-**5. Security Attack Surface**  
+**5. Security Attack Surface**
 Malicious particles could exploit event system. Requires robust sandboxing and permission validation.
 
-**6. Interoperability with Classical Systems**  
+**6. Interoperability with Classical Systems**
 Bridge layer adds complexity. Legacy apps expect files and directories, not particle clouds.
 
 ---
@@ -500,11 +500,11 @@ code|vol|filesystem
 A **key graph** (trie-like structure) indexes word combinations:
 
 ```
-"media" → 
-    "vacation" → 
+"media" →
+    "vacation" →
         "2024" → [zero_pointer_A, zero_pointer_B]
         "2023" → [zero_pointer_C]
-    "music" → 
+    "music" →
         "jazz" → [zero_pointer_D]
 ```
 
