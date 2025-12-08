@@ -33,12 +33,10 @@ We live in interesting times. As with any era of profound change, we find oursel
 
 # The CHAOS-Based Systems
 
-# A New Computing Paradigm: (Chaos-Based System That "Evolves" Answers May Be
+## A New Computing Paradigm: Chaos-Based System That "Evolves" Answers May Be Alternative to Current Computers
 
-Alternative to Current Computers) Science Daily
+**Source:** Science Daily
 
-
- 
 A revolutionary new computing technique that uses a network of chaotic elements to "evolve" its 
 answers could provide an alternative to the digital computing systems widely used today. 
 Described for the first time in the September 7 issue of Physical Review Letters this "dynamics-
@@ -126,8 +124,7 @@ Technology.
 
 # Introduction
 
-
-Computer science is a soft science.  That is, computer science, like mathematics is based of 
+Computer science is a soft science. That is, computer science, like mathematics is based of 
 accepting the true of some basic theorems.  The mathematical laws on which the conventional 
 CS paradigm is based have served to guide CS during its history of incredible improvements of 
 `CPU` speed and memory size, but like the relationship between the arrangements of the fingers 
@@ -140,8 +137,6 @@ bounded, algorithm analysis is based on processing unlimited data sizes and  eff
 increasingly insignificant `CPU` and memory costs while ignoring the impact of the complexity of  
 algorithms on the increasingly dominate programming costs.
 
-
- 
 Unfortunately since the laws for the current paradigm are taught as absolute truths to every CS 
 freshman, they are very difficult to challenge.  Indeed, the perception is that they are infallible. 
 The traditional relationship between mathematics and the sciences has been for mathematicians 
@@ -152,10 +147,9 @@ science with the consequence that any alternative paradigm can be proven to be i
 result is that new computer paradigms, architectures and languages, which could address many 
 of today‟s issues such as the inefficiency of multitasking operating systems and hardware, have 
 been overlooked, even suppressed. The wealth of alternative computer architectures, 
-programming languages and alternative paradigms of earlier years, such as systolic arrays, data 
-flow, data parallelism and associative computing, has been abandoned.
+programming languages and alternative paradigms of earlier years, such as systolic arrays, data flow, data parallelism and associative computing, has been abandoned.
 
-This point is illustrated by the Connection Machine fiasco of the late 80‟s and early 90‟s.  The 
+This point is illustrated by the Connection Machine fiasco of the late 80‟s and early 90‟s. The 
 CM that was designed at MIT and promoted by `DARPA` was an attempt to develop alternative 
 machine architecture.  It failed because of inappropriate algorithm paradigms and programming 
 techniques.  That is, because of the mismatch between the accepted CS paradigm and the 
@@ -172,11 +166,7 @@ sorting the data.)  As a result, the massive searching approach to data selectio
 not pursued.  One of the results of the law that data need to be sorted in order to find them 
 efficiently is the tree organizations. However, using a data parallel searching paradigm, there is 
 no need for nested menu trees or any other type of sorted data.  Data parallel searching, by 
-eliminating the need for sorting, does not need linked lists and allows all data organizations – 
-chronological, by recipient, by topical category – to be utilized simultaneously via associatively.  
-That is, data parallelism and associative computing is one possible answer to simpler computing.  
-This approach requires that you go back to the flat tables of yesteryear, but with gigabytes of 
-memory and gigahertz of speed, flat tables are manageable, even preferable.  
+eliminating the need for sorting, does not need linked lists and allows all data organizations – chronological, by recipient, by topical category – to be utilized simultaneously via associatively. That is, data parallelism and associative computing is one possible answer to simpler computing. This approach requires that you go back to the flat tables of yesteryear, but with gigabytes of memory and gigahertz of speed, flat tables are manageable, even preferable.
 
 Moreover, the data parallel search based paradigm is well suited for high school level tabular 
 data structures and natural language communication with your computer.  Both features 
@@ -190,10 +180,7 @@ limitations of the current paradigm so that only 5 to 30% of the actual speed im
 obtained by the user.  However, a change in paradigm is most likely to occur in the Laptop, `PDA` 
 and cell phone environment not the super computer environment, because the lack of power is 
 not the driving point, but the lack of physical space for keyboards, display screens, mice, etc. and 
-the demand for easier modes of computing.  Eventually, hopefully, computer scientists will come 
-
- 
-to realize that, CS has been trapped by the von Neumann models success and that just as the laws 
+the demand for easier modes of computing. Eventually, hopefully, computer scientists will come to realize that, CS has been trapped by the von Neumann models success and that just as the laws 
 of plain geometry work well over a small portion of the Earth‟s surface, but fail when applied to 
 a much larger portion, so too, the laws of the current CS paradigm work well for the old world of 
 “slow”, few, expensive computers and cheap programmers, but are not well suited to the new 
@@ -201,41 +188,32 @@ world of fast, ubiquitous cheap computers and expensive programmers.
 
 # New Advances in Reconfigurable Computing and its Applications
 
-J.UCS Special Issue by: (Miguel A. Vega-Rodríguez, Juan A. Gómez-Pulido, Juan M. Sánchez-
+**J.UCS Special Issue**
 
-### Pérez Dept. Technologies of Computers and Communications, Univ. Extremadura Escuela
+**Authors:** Miguel A. Vega-Rodríguez, Juan A. Gómez-Pulido, Juan M. Sánchez-Pérez
 
-Politécnica, Campus Universitario s/n. 10071 Cáceres, Spain
+**Affiliation:** Dept. Technologies of Computers and Communications, Univ. Extremadura, Escuela Politécnica, Campus Universitario s/n. 10071 Cáceres, Spain
 
 This is a survey of different papers about reconfigurable computing and its applications. These 
 papers treat very different reconfigurable-computing applications: cryptography, computer 
 vision, SOPC, microprocessor architecture, self-timed circuits, sensor systems, detection of 
 ultrasonic emissions, `FPGA` compilation aspects (like data-dependent loops), and motion 
-estimation. We can say that reconfigurable computing is becoming an increasingly important 
-computing paradigm, being a good alternative for many real applications. 
+estimation. We can say that reconfigurable computing is becoming an increasingly important computing paradigm, being a good alternative for many real applications.
 
 As the Reconfigurable Computing is becoming an increasingly important computing paradigm, 
 more and more `FPGA`-based applications are appearing. `FPGA` devices are making it possible for 
 thousands of computer engineers to have access to digital design technology in an easier way, 
 obtaining a better performance with a similar flexibility to software. In addition, `ASIC` engineers 
 are now "reconfiguring" themselves as `FPGA` engineers for economic reasons and adding to the 
-growing legions of `FPGA` designers. 
-In conclusion, reconfiguration of circuitry at runtime to suit the application at hand has created a 
-promising paradigm of computing that blurs traditional frontiers between software and hardware. 
-At present, reconfigurable computing is a good alternative for many real applications in image 
-and signal processing, multimedia, robotics, telecommunications, cryptography, networking and 
-computation in general. 
-This Special Issue brings together high-quality state-of-the-art contributions about reconfigurable 
-computing and its applications. Concretely, the special issue contains 7 papers that represent the 
-diverse applications and designs being addressed today by the reconfigurable-computing 
-research community. With authors from around the world, these articles bring us an international 
-sampling of significant work.
+growing legions of `FPGA` designers.
 
- 
+In conclusion, reconfiguration of circuitry at runtime to suit the application at hand has created a promising paradigm of computing that blurs traditional frontiers between software and hardware. At present, reconfigurable computing is a good alternative for many real applications in image and signal processing, multimedia, robotics, telecommunications, cryptography, networking and computation in general.
 
-### New Computing Paradigm: A Chaos-Based System That Evolves Science and Engineering News
+This Special Issue brings together high-quality state-of-the-art contributions about reconfigurable computing and its applications. Concretely, the special issue contains 7 papers that represent the diverse applications and designs being addressed today by the reconfigurable-computing research community. With authors from around the world, these articles bring us an international sampling of significant work.
 
-(09/11/98) 
+## New Computing Paradigm: A Chaos-Based System That Evolves
+
+**Source:** Science and Engineering News (09/11/98) 
 
 San Diego, CA -- As John Toon reported for GIT, A revolutionary new computing technique that 
 uses a network of chaotic elements to "evolve" its answers could provide an alternative to the 
@@ -340,13 +318,13 @@ Ditto acknowledges a number of engineering issues that may hamper development of
 system based on this new computing paradigm. But he notes that in their early days, digital 
 computers had to overcome a daunting set of obstacles to overtake earlier techniques. 
 
-Support for the work has come from the U.S. Office of Naval Research, and from Control 
-Dynamics, Inc., a company partially owned by Ditto. 
+Support for the work has come from the U.S. Office of Naval Research, and from Control Dynamics, Inc., a company partially owned by Ditto.
 
 # Tuple Board: A New Distributed Computing Paradigm for Mobile Ad Hoc Networks
 
-(Alan Kaminsky - Department of Computer Science Rochester Institute of Technology 
-Rochester, NY, USA
+**Author:** Alan Kaminsky
+
+**Affiliation:** Department of Computer Science, Rochester Institute of Technology, Rochester, NY, USA
 
 # The Tuple Board Paradigm
 
@@ -354,10 +332,9 @@ Rochester, NY, USA
  
 The tuple board distributed computing paradigm is derived from the tuple space paradigm. It first 
 describes tuple space, and then introduces the tuple board and show how it differs from tuple 
-space. It also describes how to design applications based on the tuple board. Section 4 describes 
-how the tuple board is implemented.
+space. It also describes how to design applications based on the tuple board. Section 4 describes how the tuple board is implemented.
 
-# Historical background
+## Historical background
 
 In 1985 Gelernter introduced the notion of tuple space and its associated distributed coordination 
 language, `Linda`. Since then, tuple space has been implemented in many languages and 
@@ -378,15 +355,9 @@ taking, except the reading process receives a copy of the matching tuple while t
 stays in tuple space. 
 Tuple space provides a distributed communication mechanism that decouples processes both “in 
 space” and “in time.” Processes need not reside on the same device to communicate. A process 
-on one device can write a tuple and a process on another device can take or read the tuple; the 
-processes thus have communicated through the intermediary of tuple space. Processes also need 
-not be running at the same time to communicate. A process can write a tuple even if the process 
-that will read or take the tuple is not running yet. The writing process can then go away, and the 
-tuple will persist in tuple space until another process reads or takes it. Conversely, a process can 
-read or take a tuple (and will block if necessary) even if the process that will write the tuple is 
-not running yet. 
-Since mobile computing devices with wireless networking capabilities, such as laptop PCs, tablet 
-PCs, and PDAs, are becoming prevalent, there is a need for distributed applications that run on 
+on one device can write a tuple and a process on another device can take or read the tuple; the processes thus have communicated through the intermediary of tuple space. Processes also need not be running at the same time to communicate. A process can write a tuple even if the process that will read or take the tuple is not running yet. The writing process can then go away, and the tuple will persist in tuple space until another process reads or takes it. Conversely, a process can read or take a tuple (and will block if necessary) even if the process that will write the tuple is not running yet.
+
+Since mobile computing devices with wireless networking capabilities, such as laptop PCs, tablet PCs, and PDAs, are becoming prevalent, there is a need for distributed applications that run on 
 groups of nearby devices. For example, people in a meeting would like to have their PDAs pool 
 their individual calendars together to find a date and time everyone has free for the next meeting. 
 With today‟s software this is typically impossible, since different people use different calendar 
@@ -421,7 +392,7 @@ disappear. Many useful distributed applications can be developed even without tu
 In fact, the ability to detect when a device goes away – because a notifier reports that a tuple, 
 which the device had previously posted, was withdrawn – is useful in its own right.
 
-# Applications Based on the Tuple Board
+## Applications Based on the Tuple Board
 
 In this section we describe how distributed ad hoc collaborative applications are designed using 
 the tuple board paradigm. Such applications are “collaborative” in that any number of nearby 
@@ -432,7 +403,8 @@ runs on whichever devices happen to be nearby.
 Information sharing applications of all kinds are easily implemented using the tuple board. 
 Consider a digital photo sharing application. Each device with digital photos – PCs, PDAs, even 
 cameras and cell phones – posts tuples for its pictures. Each tuple has, say, four fields: unique 
-ID, thumbnail image, date taken, and description. 
+ID, thumbnail image, date taken, and description.
+
 Any device can then obtain the other devices‟ pictures, as follows. To retrieve all the pictures, 
 the device sets up a template where all four fields are wildcards; to retrieve only Disney World 
 pictures, the template‟s description field is set to “Disney World” and the other fields are 
@@ -441,7 +413,8 @@ assembles the tuples‟ thumbnail fields into an “album” of pictures, and di
 device‟s own screen. If the user wants to see the full-size picture for some thumbnail, the user‟s 
 device posts a tuple containing a full picture request for the picture‟s unique ID. Seeing that 
 request posted, the device that has the picture with the given unique ID posts a tuple containing 
-the full-size image. 
+the full-size image.
+
 The user‟s device reads that tuple and withdraws its request tuple, whereupon the other device 
 withdraws its full-size image tuple. If a device joins the group, the new device merely starts 
 posting tuples, and the other devices (responding to a report from a notifier) add the new 
@@ -453,11 +426,11 @@ Other examples of ad hoc collaborative applications that can be designed in a si
 tuple board include file, music, and video sharing; groupware applications like shared 
 whiteboard, shared document authoring, and the aforementioned shared calendar; and vendor 
 information directories in shopping malls and avenues. Bondada built a conference information 
-system demonstration using the tuple board collaborative applications based on the tuple board. 
+system demonstration using the tuple board collaborative applications based on the tuple board.
 
 # Mobile Computing Paradigm
 
-# Introduction
+## Introduction
 
 Mobile computing consistently fails to live up to expectations. Early adopters complain about the 
 size and resolution of displays, awkward input devices and limited bandwidth. There is every 
@@ -488,7 +461,8 @@ For example, there is Pocket Word (without styles) and Internet browsers (withou
 `Java` and plug-ins), which, in addition, hardly display content but one line at a time. 
 It seems like this is a conceptual, rather than a technical cul-de-sac, since "users‟ needs", in these 
 terms, will always exceed what mobile computing can offer. But as the following argument 
-demonstrates, this can be conceived as a result of a naïve design paradigm. 
+demonstrates, this can be conceived as a result of a naïve design paradigm.
+
 Is advanced document management or internet-based multimedia publication purposeful operations 
 for mobile workers? Are there mobile use contexts where a typewriter-metaphor based terminal with 
 a connected keyboard and screen will be useful at all. Consider the example of electrical maintenance 
@@ -499,62 +473,56 @@ the other hand, is put down on the only other flat surface, which is the top of 
 display cannot be seen when squatting to reach the switches and cables.  
 In order to make the mobile computer support mobile work it has had to be turned into a desktop 
 computer by connecting it to the stationary network and funnel its functionality through a hosting 
-PC. 
+PC.
 
- 
 The desktop metaphor in mobile computing is, thus, a symptom of the confusion of operations 
-and functionality in a stable use context. Only when the use context is constantly changing, like 
-in mobile computing, it becomes apparent that this contributes to a problematic design paradigm. 
-In order to open up an alternative design space (or at least a place to turn), an alternative 
-conception of the relationship between computer-mediated services and continually changing 
-modalities is needed. We are currently developing a model that responds to this challenge by 
-explicating the nature of mobile IT-use. 
+and functionality in a stable use context. Only when the use context is constantly changing, like in mobile computing, it becomes apparent that this contributes to a problematic design paradigm. In order to open up an alternative design space (or at least a place to turn), an alternative conception of the relationship between computer-mediated services and continually changing modalities is needed. We are currently developing a model that responds to this challenge by explicating the nature of mobile IT-use.
 
-# Modeling mobile work
+## Modeling mobile work
 
 The reference model for mobile work builds on fieldwork and discussions. Its core concepts are:
 
-Modality, which is a characterization of the physical relocation patterns of the mobile 
-worker/mediating technology. 
-
-Technology, which can to varying degrees be adapted to mobile work, and  
-Service, which is the set of intended operations offered by the functionality of the mediating 
-technology. 
+- **Modality**, which is a characterization of the physical relocation patterns of the mobile worker/mediating technology.
+- **Technology**, which can to varying degrees be adapted to mobile work, and
+- **Service**, which is the set of intended operations offered by the functionality of the mediating technology.
 
 A mobile session, thus, simply consists of changing modalities and services.
 
-A mobile setting comprises at least one mobile session. The following figure summarizes the 
-model in relaxed UML notation:
+A mobile setting comprises at least one mobile session. The following figure summarizes the model in relaxed UML notation:
 
-# Modeling mobile work
+### Modalities of mobile work
 
-Three important modalities of mobile work are: 
-Visiting is working in different places for a significant period of time  
-Traveling is working while traveling in a vehicle, such as an airplane or a train  
-Wandering is working while being locally mobile 
+Three important modalities of mobile work are:
+
+- **Visiting** is working in different places for a significant period of time
+- **Traveling** is working while traveling in a vehicle, such as an airplane or a train
+- **Wandering** is working while being locally mobile
+
 Certainly, these are only ideal types; nevertheless they represent a useful conceptual topology which 
 distinguishes mobile work from stationary work and contributes to developing a new research 
-agenda for handheld CSCW. The following figure illustrates the changing modalities of mobile work: 
+agenda for handheld CSCW. The following figure illustrates the changing modalities of mobile work:
 
+**Figure:** Modalities of mobile work
 
-Modalities of mobile work 
 Services and modality constitute central components of a mobile session, which due to its mobility is 
 far more contingent and dynamic than mobile work. Thus, it points in the direction of new items for a 
 mobile informatics research agenda when these dimensions are combined, such as in the following figure:
 
-                                 Changing services and modalities 
+**Figure:** Changing services and modalities
 
-### Implications for research
+## Implications for research
 
 Building on the framework outlined above, the following items for a mobile computing research 
 agenda can be outlined:
 
-# Initialization
+### Initialization
 
-Main objective: Develop models and systematic support for establishing sessions in a mobile 
-setting. 
-Some selected research problems: 
-Browse, inspect and select services. One can assume that the availability of services from a 
+**Main objective:** Develop models and systematic support for establishing sessions in a mobile 
+setting.
+
+**Some selected research problems:**
+
+- Browse, inspect and select services. One can assume that the availability of services from a 
 mobile terminal will vary with geographical re-location.  
 Browse, inspect and select resources (such as documents, people, procedures, etc.), from within a 
 service. It is integral to establishing sessions, especially involving other people in a synchronous 
@@ -569,17 +537,17 @@ Programming sessions. In a mobile setting, user cannot be expected to be fully i
 mobility itself imposes demands on attention and mobile work is likely to be directed towards 
 non-representable objects (otherwise, why go mobile?).
 
-# Transformation
+### Transformation
 
-Main objective: Develop models and systematic support for sustaining services between 
+**Main objective:** Develop models and systematic support for sustaining services between 
 modalities in a mobile setting. 
 Introducing the notion of changing modalities enhances the mobile informatics research agenda 
 with an interest in how people can change between modalities whilst remaining connected to 
 current services.
 
-# Adaptation
+### Adaptation
 
-Main objective: Develop models and systematic support for seamless use of new services within 
+**Main objective:** Develop models and systematic support for seamless use of new services within 
 modalities in a mobile setting. 
 In this opposite of transformation, research interest is in how new services (for which the current 
 modality may not be suited) can be adapted to function in a satisfactory manner. 
@@ -595,14 +563,11 @@ Aggregation of service units into fully functioning services for the current mod
 
 ### Optimization
 
-Main objective: Develop models and systematic support for improved performance of sessions in a 
-mobile setting. 
-This item on the agenda is already well covered in the mobile computing area. There seems to be a 
-tendency, however, of assuming that mobile technology will be almost as reliable as its fixed 
-counterpart. We believe that more work is needed on how to complete business-critical tasks using 
-mobile systems in case of unanticipated technological breakdowns. 
-We have selected one other area in which more work is definitely required: Simple input devices 
-for mobile sessions. 
+**Main objective:** Develop models and systematic support for improved performance of sessions in a mobile setting.
+
+This item on the agenda is already well covered in the mobile computing area. There seems to be a tendency, however, of assuming that mobile technology will be almost as reliable as its fixed counterpart. We believe that more work is needed on how to complete business-critical tasks using mobile systems in case of unanticipated technological breakdowns.
+
+We have selected one other area in which more work is definitely required: Simple input devices for mobile sessions.
 
 ### New applications
 
@@ -622,9 +587,11 @@ But it has been a department that has operated across the frontier of science. W
  
 we knew where the various fields were going and tried to get scientists who would help or lead 
 the change. As the department flourished, of course we ran out of FTEs and space. So how to 
-grow? Clearly, it was by colonization of the other departments. 
+grow? Clearly, it was by colonization of the other departments.
 
-Abstract: Single photon emission tomography allows the imaging of dynamic brain functioning. 
+## Single Photon Emission Tomography
+
+**Abstract:** Single photon emission tomography allows the imaging of dynamic brain functioning. 
 The use of cerebral activating procedures within the scan protocol enables investigation of the 
 mechanisms involved in specific brain functions in health and disease. Activation studies involve 
 the comparison of at least two data sets describing brain activity generated in conditions that 
@@ -636,11 +603,9 @@ cerebral structures and functions are reviewed, as are the limitations of the te
 respect to temporal and spatial resolution and the potentially confounding nature of preconceived 
 ideas regarding the mechanisms of brain function.
 
- 
+## Biomolecular Computing
 
-### Simulators for biomolecular computing, (both in vitro and in silico), have come to play an
-
-important role in experimentation, analysis, and evaluation of the efficiency and scalability of 
+Simulators for biomolecular computing, (both in vitro and in silico), have come to play an important role in experimentation, analysis, and evaluation of the efficiency and scalability of 
 `DNA` and biomolecule based computing. Simulation in silico of `DNA` computing is useful to 
 support `DNA`-computing algorithm design and to reduce the cost and effort of lab experiments. 
 Although many simulations have now been developed, there exists no standard for simulation 
@@ -649,10 +614,11 @@ arguably the most important criteria for development and wide spread use of simu
 for BMC. The requirements and evaluation of such software packages for `DNA` computing 
 software are discussed, particularly questions about software development, appropriate user 
 environments, standardization of benchmark data sets, and centrally available common 
-repositories for software and/or data.  
-The Breast Cancer Working Group is a multidisciplinary team of researchers from the Baystate 
+repositories for software and/or data.
 
-### Medical Center and the University of Massachusetts Amherst. Working Group researchers
+## The Breast Cancer Working Group
+
+The Breast Cancer Working Group is a multidisciplinary team of researchers from the Baystate Medical Center and the University of Massachusetts Amherst. Working Group researchers
 
 represent a wide variety of scientific disciplines including surgery, pathology, nursing, 
 epidemiology, statistics, molecular genetics, computer science, chemical engineering, and 
@@ -675,10 +641,7 @@ research." Productive collaboration among mathematicians, biologists, computer s
 epidemiologists, imaging scientists, physicists, and clinicians is needed to effectively cure and 
 
  
-control cancer, the report said. Now, in western Massachusetts, just such a multidisciplinary 
-research team exists. The Pioneer Valley's Breast Cancer Working Group, made up of M.D.s and 
-
-### Ph.D.s from the Baystate Medical Center in Springfield and the University of Massachusetts at
+control cancer, the report said. Now, in western Massachusetts, just such a multidisciplinary research team exists. The Pioneer Valley's Breast Cancer Working Group, made up of M.D.s and Ph.D.s from the Baystate Medical Center in Springfield and the University of Massachusetts at
 
 Amherst, was formed to investigate the basic pathology of breast cancer and develop more 
 effective interventions to treat and prevent the disease.  
@@ -687,73 +650,66 @@ the discovery of the structure of `DNA`. In his book on the process of scientifi
 Crick wrote, "In nature, hybrid species are usually sterile, but in science the reverse is often true. 
 Hybrid subjects are often astonishingly fertile." 
 The Breast Cancer Working Group is a hybrid coalition of researchers, representing a wide 
-variety of scientific disciplines ranging from pathology and surgical oncology to chemical 
-engineering and nanotechnology that evolved out of a partnership between researchers at UMass 
+variety of scientific disciplines ranging from pathology and surgical oncology to chemical engineering and nanotechnology that evolved out of a partnership between researchers at UMass Amherst and the Baystate Medical Center. They meet regularly to help steer the focus of the Group and to allow its direction to influence their own research programs and clinical practice.
 
-### Amherst and the Baystate Medical Center. They meet regularly to help steer the focus of the
-
-Group and to allow its direction to influence their own research programs and clinical practice. 
-
-# At Risk for Cancer
+## At Risk for Cancer
 
 Every year thousands of women are diagnosed with non-cancerous breast disease. Although, so-
 called benign breast disease is not cancerous, a certain form of the disease, called atypical 
 hyperplasia, is associated with an increased risk of breast cancer. At least 10% of those women 
-diagnosed with atypical breast lesions will develop cancer within one year.  
+diagnosed with atypical breast lesions will develop cancer within one year.
 
-### At Baystate Medical Center, physicians frequently detect these atypical hyperplasias and,
-
-although they know that some of those patients will soon develop breast cancer, there is nothing 
+At Baystate Medical Center, physicians frequently detect these atypical hyperplasias and, although they know that some of those patients will soon develop breast cancer, there is nothing 
 to be done about it. Treating all women with atypical hyperplasia would be expensive and very 
 invasive. However, inaction all but assures that 1 out of every 10 women diagnosed will be 
 battling breast cancer within a year. This clinical dilemma, and the problem it poses for 
 physicians and their patients, compelled the Breast Cancer Working Group to direct their focus 
-toward investigating cancer associated with atypical, pre-malignant breast lesions.  
+toward investigating cancer associated with atypical, pre-malignant breast lesions.
+
 Dr. Joe Jerry is a professor of Molecular Medicine at UMass Amherst and the designated leader 
 of the Working Group. His lab uses animal models to study the molecular pathways that mediate 
 susceptibility and resistance to breast cancer and to design targeted therapeutics to prevent it. 
 "Atypical doesn't sound good," Jerry says. "The physician has to tell the patient, 'go home and 
 don't worry about it, but come back and have it checked out often, because you should worry 
 about it.' That's pretty uncomfortable, and at some point people might die from worrying about 
-the disease rather than from the disease itself." 
+the disease rather than from the disease itself."
 
-# Prevention is the Best Treatment
+## Prevention is the Best Treatment
 
 A primary goal of the Working Group is to harness the formidable scientific expertise of its 
 members to achieve a better understanding of the basic cellular and molecular mechanisms that 
 control how atypical hyperplasias transition into tumors. By accurately describing the pathology 
 of tumorigenesis, new drugs can be designed and new methods developed to treat or even 
-prevent breast cancer. 
+prevent breast cancer.
+
 "Stopping the transition would be real prevention. It would be the ultimate prevention," says Dr. 
 Richard Arenas, Chief of Surgical Oncology at Baystate Health Systems and an active researcher 
 in the Breast Cancer Working Group. "If you know that, biologically, there is a link between 
 atypia and the onset of actual breast cancer, presumably because you see it pathologically, then 
-you've identified an actual pathway and there is a possibility of interrupting that pathway," he 
-said.  
-Arenas has partnered with Jerry to explore how certain anti-cancer drugs affect tumor cells at a 
-molecular level and with other Working Group members in the Chemical Engineering 
+you've identified an actual pathway and there is a possibility of interrupting that pathway," he said.
 
- 
-department at UMass Amherst to develop more effective drug-delivery methods. They are 
+Arenas has partnered with Jerry to explore how certain anti-cancer drugs affect tumor cells at a molecular level and with other Working Group members in the Chemical Engineering department at UMass Amherst to develop more effective drug-delivery methods. They are 
 interested in the effect that estrogen and prostaglandin-blocking drugs, called aromatase 
 inhibitors and COX-2 inhibitors respectively, have on the activity a tumor-suppressor protein 
 called p53. When working properly, p53 performs an indispensable function in the cellular 
 reproduction process by preventing abnormal cell proliferation. Mutations in the p53 gene and 
-non-mutational changes in p53 function may be associated with up to 45% of all breast cancers. 
+non-mutational changes in p53 function may be associated with up to 45% of all breast cancers.
 
-# A Good Model
+## A Good Model
 
 In depth experimental analysis in breast cancer is currently underway in Joe Jerry's laboratory at 
 UMass Amherst. Jerry has developed a mouse model with a defective gene that consistently 
 develops mammary tumors, which are very similar to those found in human breast tissue. Other 
 animal models for breast cancer have previously been created, but none develop the true ductal 
-hyperplasia that mimics human breast tumors. 
-"We're seeing a series of different structures in the carcinomas that are very much like humans," 
-he says. This analogous system allows Jerry's research team to experiment with drugs that 
-stimulate the surveillance function and boost its ability to prevent abnormal cell proliferation. 
+hyperplasia that mimics human breast tumors.
 
-Almost nothing exciting about computing today has to do with data structures and algorithms 
-One of Alan‟s undergraduate degrees is in molecular biology. He can‟t understand it anymore 
+"We're seeing a series of different structures in the carcinomas that are very much like humans," he says. This analogous system allows Jerry's research team to experiment with drugs that stimulate the surveillance function and boost its ability to prevent abnormal cell proliferation.
+
+# Computing Paradigms and Software Design
+
+## Data Structures and Algorithms
+
+One of Alan’s undergraduate degrees is in molecular biology. He can’t understand it anymore 
 despite having tried to review new developments every few years. That‟s not true in computer 
 science. The basics are still mostly the same. If you go to most campuses, there is a single 
 computer science department and the first course in computer science is almost indistinguishable 
@@ -793,49 +749,47 @@ better at building software systems than we are at predicting what they will do.
 good models. If we were scientists, we‟d be trying to build models.  
 “Science is not there to tell us about the Universe, but to tell us how to talk about the Universe.” 
 (Niels Bohr). Science helps us to be more reasonable about reasoning. It‟s set up so that we get 
-better and better maps (abstractions) not perfect maps.  
+better and better maps (abstractions) not perfect maps.
+
 Alan uses John McCarthy and `Lisp` as an example of real science in computer science. He 
 showed us that you can build a system that‟s also its own metasystem. `Lisp` is like Maxwell‟s 
 equations. Many of the things that are wrong about `Java` is that it lacks a metasystem and that the 
 metasystem that‟s been tacked onto it is missing key parts. To find the most interesting things 
-about our field you have to go back 30 or 40 years.  
-Alan used McCarthy‟s method to design an object oriented system. He spent only a month 
-implementing it because of the metasystem.  
-We build finite artifacts, but the degrees of freedom grow faster than we can reason about them. 
-Thus, we‟re left with debugging.  
-We are creatures who live in a world of stories and we‟re always looking for simple stories o 
+about our field you have to go back 30 or 40 years.
+
+Alan used McCarthy’s method to design an object oriented system. He spent only a month implementing it because of the metasystem.
+
+We build finite artifacts, but the degrees of freedom grow faster than we can reason about them. Thus, we’re left with debugging.
+
+We are creatures who live in a world of stories and we’re always looking for simple stories o 
 explain the world. He shows a clip, called Private Universe, of Harvard grads (at graduation) 
 describing trying to explain the seasons. Almost everyone thought the seasons were caused by an 
 elliptical orbit of the earth around the sun. It didn‟t matter whether or not the students were 
 science majors or now. Interestingly, people know that the seasons are reversed between the 
 northern and southern hemispheres. Their stories are inconsistent with what they know, yet they 
-persist in believing them, even though they have the knowledge that contradicts their theory.  
-When people react instantly, they‟re not thinking, they‟re doing a table lookup.  
-Engineering predates science by thousands and thousands of years because we don‟t have to 
-understand things to engineer them. He uses one of my favorite quotes: an engineer is someone 
-who can make for a dollar what any fool could make for two.  
-Making computing into a science means that we have to understand what to do about our beliefs. 
-When we talk, we do nothing but tell stories that people will find interesting. There‟s danger in 
-that because stories can create resonance without being scientific. 
+persist in believing them, even though they have the knowledge that contradicts their theory.
 
-# Distributed Systems.
+When people react instantly, they’re not thinking, they’re doing a table lookup.
+
+Engineering predates science by thousands and thousands of years because we don’t have to 
+understand things to engineer them. He uses one of my favorite quotes: an engineer is someone 
+who can make for a dollar what any fool could make for two.
+
+Making computing into a science means that we have to understand what to do about our beliefs. When we talk, we do nothing but tell stories that people will find interesting. There’s danger in that because stories can create resonance without being scientific.
+
+# Distributed Systems
 
 The classical architecture of distributed systems relies on computer communication protocols. 
 The main components of a distributed system are protocol entities that reside in different hosts 
-and which exchange messages following a well defined communication protocol.  
-On one side, some distributed applications require an important deployment for testing and 
-debugging; on the other side, users are not interested to use software if it has not been thoroughly 
-tested and is not largely deployed:
+and which exchange messages following a well defined communication protocol.
+
+On one side, some distributed applications require an important deployment for testing and debugging; on the other side, users are not interested to use software if it has not been thoroughly tested and is not largely deployed:
 
 Distributed operating systems use the exchange of special purpose messages for implementing 
 non-local services. This imposes that a minimal set of protocols be explicitly wired into the 
-kernel. These specialized protocols restrict the kernel‟s genericity and adaptability;
+kernel. These specialized protocols restrict the kernel’s genericity and adaptability.
 
-Distributed applications usually have two parts: one that is responsible for communication 
-management i.e, implementing a protocol for moving data between the different hosts; the other 
-part uses the communication facilities provided by the first one in order to implement the actual 
-distributed algorithm. 
-
+Distributed applications usually have two parts: one that is responsible for communication management i.e, implementing a protocol for moving data between the different hosts; the other part uses the communication facilities provided by the first one in order to implement the actual distributed algorithm.
 
 Extending the above argument, we can argue that for the application programmer, developing a 
 distributed application requires a different methodology from that of a centralized application. 
@@ -864,15 +818,15 @@ creation of a local thread. This offers a uniform way for programming both centr
 distributed applications. Moreover, the communication by messengers paradigm can be used as a 
 simple way to extend the remote procedure call paradigm.
 
-# The Messenger Paradigm
+## The Messenger Paradigm
 
 The messenger paradigm is born from a new way of thinking computer communications. Instead 
 of the classical sender/receiver model based on protocol entities that exchange and interpret 
 protocol specific messages, Tschudin proposed in a communication model based on the 
 exchange of protocol unspecific programs, called the messengers. Hosts receiving messengers 
-will then execute the messengers‟ code instead of interpreting them as messages.
+will then execute the messengers’ code instead of interpreting them as messages.
 
-# The Messenger Platform
+## The Messenger Platform
 
 All hosts involved in a messenger based communication share a common representation of the 
 messengers and provide a local execution environment, the messenger platform. A messenger is 
@@ -917,7 +871,7 @@ Platforms share
 (2) a common external representation of the messenger, used for the physical exchange 
 messengers.
 
-# Primitives of a Messenger Programming Language
+## Primitives of a Messenger Programming Language
 
 Messengers are exchanged between two platforms as simple messages, using a common external 
 representation. Arriving messengers are turned into threads of execution by the corresponding 
@@ -1736,44 +1690,29 @@ becomes significantly simpler using the new computational paradigm (the Italian 
 teachers of Mathematics has already expressed their high interest in this connection). Naturally, 
 the necessity to use the Infinity Computer during studies opens wide business possibilities.  
 
- 
 ## References
 
-Alan Kaminsky and Hans-Peter Bischof. Many-to-Many Invocation: A new object oriented 
-paradigm for ad hoc collaborative systems. 17th Annual ACM Conference on Object Oriented 
-Programming Systems, Languages, and Applications (OOPSLA 2002), Onward! track, Seattle, 
-Washington, USA, November 2002.
+Alan Kaminsky and Hans-Peter Bischof. Many-to-Many Invocation: A new object oriented paradigm for ad hoc collaborative systems. 17th Annual ACM Conference on Object Oriented Programming Systems, Languages, and Applications (OOPSLA 2002), Onward! track, Seattle, Washington, USA, November 2002.
 
-Alan Kaminsky and Hans-Peter Bischof. New architectures, protocols, and middleware for ad 
-hoc collaborative computing. Middleware 2003 Workshop on Middleware for Pervasive and Ad 
-Hoc Computing, Rio de Janeiro, Brazil, June 2003. 
+Alan Kaminsky and Hans-Peter Bischof. New architectures, protocols, and middleware for ad hoc collaborative computing. Middleware 2003 Workshop on Middleware for Pervasive and Ad Hoc Computing, Rio de Janeiro, Brazil, June 2003.
 
-# Chaithanya Bondada. Tuple Board: A new distributed computing paradigm for mobile ad hoc
+Chaithanya Bondada. Tuple Board: A new distributed computing paradigm for mobile ad hoc networks. Master’s project, Rochester Institute of Technology, Department of Computer Science, January 2004.
 
-networks. Master‟s project, Rochester Institute of Technology, Department of Computer Science, 
-January 2004.
+David Gelernter. Generative communication in `Linda`. ACM Transactions on Programming Languages and Systems, 7 (1)80-112, January 1985.
 
-David Gelernter. Generative communication in `Linda`. ACM Transactions on Programming 
-Languages and Systems, 7 (1)80-112, January 1985.
+Eric Freeman, Susanne Hupfer, and Ken Arnold. `JavaSpaces` Principles, Patterns, and Practice. Addison-Wesley, 1999.
 
-Eric Freeman, Susanne Hupfer, and Ken Arnold. `JavaSpaces` Principles, Patterns, and Practice. 
-Addison-Wesley, 1999.
-
-G. Agha. Actors: A model of Concurrent Computation in Distributed 
-Systems. MIT Press, 1986.
+G. Agha. Actors: A model of Concurrent Computation in Distributed Systems. MIT Press, 1986.
 
 M. Betz. Omg‟s corba. Dr. Dobb’s Special Report, (225):8–12, 
 Winter 1994/1995.
 
-Robert Grimm, Janet Davis, Eric Lemar, Adam MacBeth, Steven Swanson, Steven Gribble, Tom 
-Anderson, Brian Bershad, Gaetano Borriello, and David Wetherall. Programming for pervasive 
-computing environments. Technical Report UW-CSE-01-06-01, University of Washington, 
-Department of Computer Science and Engineering, June 2001.
+Robert Grimm, Janet Davis, Eric Lemar, Adam MacBeth, Steven Swanson, Steven Gribble, Tom Anderson, Brian Bershad, Gaetano Borriello, and David Wetherall. Programming for pervasive computing environments. Technical Report UW-CSE-01-06-01, University of Washington, Department of Computer Science and Engineering, June 2001.
 
-http://www.alphaworks.ibm.com/tech/tspaces. Retrieved 
+[IBM TSpaces](http://www.alphaworks.ibm.com/tech/tspaces)
 
-http://www.cs.rit.edu/~anhinga/publications/m2mi20020716.pdf. 
+[M2MI Publication](http://www.cs.rit.edu/~anhinga/publications/m2mi20020716.pdf)
 
-http://www.cs.rit.edu/~anhinga/publications/mw2003cr.pdf. 
+[Middleware 2003 Publication](http://www.cs.rit.edu/~anhinga/publications/mw2003cr.pdf)
 
-http://www.theinfinitycomputer.com
+[The Infinity Computer](http://www.theinfinitycomputer.com)

@@ -1,0 +1,942 @@
+1
+Faster Kernels for Graphs with Continuous
+Attributes via Hashing
+Christopher Morris, Nils M. Kriege, Kristian Kersting, Petra Mutzel
+TU Dortmund University
+{christopher.morris, nils.kriege, kristian.kersting, petra.mutzel}@tu-dortmund.de
+©2016 IEEE. Personal use of this material is permitted. Permission from IEEE must be obtained for all other uses, in any current or future media, including
+reprinting/republishing this material for advertising or promotional purposes, creating new collective works, for resale or redistribution to servers or lists, or reuse of
+any copyrighted component of this work in other works.
+Abstract—While state-of-the-art kernels for graphs with dis-
+crete labels scale well to graphs with thousands of nodes,
+the few existing kernels for graphs with continuous attributes,
+unfortunately, do not scale well. To overcome this limitation,
+we present hash graph kernels, a general framework to derive
+kernels for graphs with continuous attributes from discrete ones.
+The idea is to iteratively turn continuous attributes into discrete
+labels using randomized hash functions. We illustrate hash graph
+kernels for the Weisfeiler-Lehman subtree kernel and for the
+shortest-path kernel. The resulting novel graph kernels are shown
+to be, both, able to handle graphs with continuous attributes
+and scalable to large graphs and data sets. This is supported
+by our theoretical analysis and demonstrated by an extensive
+experimental evaluation.
+I. INTRODUCTION
+In several domains like chemo- and bioinformatics as well
+as social network and image analysis structured objects appear
+naturally. Graph kernels are a key concept for the application of
+kernel methods to structured data and various approaches have
+been developed in recent years, see [1, 2], and references therein.
+The considered graphs can be distinguished in (i) graphs with
+discrete labels, e.g., molecular graphs, where nodes are annotated
+by the symbols of the atoms they represent, and (ii) attributed
+graphs with (multi-dimensional) real-valued labels in addition to
+discrete labels. Attributed graphs often appear in domains like
+bioinformatics [3] or image classiﬁcation [4], where attributes
+may represent physical properties of protein secondary structure
+elements or RGB values of colors, respectively. Taking the
+continuous information into account has been proven empirically
+to be beneﬁcial in several applications, e.g., see [2–7].
+Kernels are equivalent to the inner product in an associated
+feature space, where a feature map assigns the objects of the
+input space to a feature vector. The various graph kernels
+proposed in recent years can be divided into approaches that
+either compute feature maps (i) explicitly, or (ii) implicitly [8].
+Explicit computation schemes have been shown to be scalable
+and allow the use of fast linear support vector classiﬁers, e.g., [9],
+while implicit computation schemes are often slow. Alternatively,
+we may divide graph kernels according to their ability to handle
+annotations of nodes and edges. The proposed graph kernels are
+either (i) restricted to discrete labels, or (ii) compare annotations
+like continuous values by user-speciﬁed kernels. Typically kernels
+of the ﬁrst category implicitly compare annotations of nodes and
+edges by the Dirac kernel, which requires values to match exactly
+and is not adequate for continuous values. The two classiﬁcations
+of graph kernels mentioned above largely coincide: Graph kernels
+supporting complex annotations use implicit computation schemes
+and do not scale well. Whereas graphs with discrete labels can be
+compared efﬁciently by graph kernels based on explicit feature
+maps. This is what we make use of to develop a unifying
+treatment. But ﬁrst, let us touch upon related work.
+A. Previous work
+In recent years, various graph kernels have been proposed.
+In [10] and [11] graph kernels were proposed based on random
+walks, which count the number of walks two graphs have in
+common. Since then, random walk kernels have been studied
+intensively, e.g., [1, 8, 12, 13]. Kernels based on tree patterns
+were initially proposed in [14]. These two approaches were
+originally applied to graphs with discrete labels, but the method
+of implicit computation supports comparing attributes by user-
+speciﬁed kernel functions. Kernels based on shortest paths [15]
+are computed by performing 1-step walks on the transformed
+input graphs, where edges are annotated with shortest-path lengths.
+A drawback of the approaches mentioned above is their high
+computational cost.
+A different line in the development of graph kernels focused
+particularly on scalable graph kernels. These kernels are typically
+computed efﬁciently by explicit feature maps, but are severely
+limited to graphs with discrete labels. Prominent examples are
+kernels based on subgraphs up to a ﬁxed size, e.g., [16], or
+speciﬁc subgraphs like cycles and trees [17]. Other approaches of
+this category encode the neighborhood of every node by different
+techniques [2, 18, 19].
+Recently, several kernels speciﬁcally designed for graphs with
+continuous attributes were proposed [5–7], and their experimental
+evaluation conﬁrms the importance of handling continuous
+attributes adequately.
+Several articles on scalable kernels for graphs with discrete
+labels propose the adaption of their approach to graphs with
+continuous attributes as future work, e.g., see [16, 19]. Yet, only
+little work in this direction has been reported, which is most
+likely due to the fact that this in general is a non-trivial task.
+An immediate approach is to discretize continuous values by
+binning. A key problem of this method is that two values, which
+only differ marginally may still fall in different bins and are then
+considered non-matching. Still, promising experimental results
+of such approaches have been reported for certain data sets,
+e.g., [2].
+arXiv:1610.00064v1  [cs.LG]  1 Oct 2016
+
+
+2
+B. Our Contribution
+We introduce hash graph kernels for graphs with continuous
+attributes. This family of kernels is obtained by a generic method,
+which iteratively hashes continuous attributes to discrete labels
+in order to apply a base kernel for graphs with discrete labels.
+This allows to construct a single combined feature vector for a
+graph from the individual feature vectors of each iteration. The
+essence of this approach is:
+The hash graph kernel framework lifts every graph
+kernel that supports discrete labels to a kernel which
+can handle continuous attributes.
+We exemplify this for two established graph kernels:
+∙We obtain a variation of the Weisfeiler-Lehman subtree
+kernel, which implicitly employs a non-trivial kernel on the
+node and edge annotations and is suitable for continuous
+values.
+∙Moreover, we derive a variant of the shortest-path kernel
+which also supports continuous attributes while being
+efﬁciently computable by explicit feature maps.
+For both kernels we provide a detailed theoretical analysis.
+Moreover, the effectiveness of these kernels is demonstrated
+in an extensive experimental study on real-world and synthetic
+data sets. The results show that hash graph kernels are orders
+of magnitude faster than state-of-the-art kernels for attributed
+graphs without drop in classiﬁcation accuracy.
+II. NOTATION
+An (undirected) graph 𝐺is a pair (𝑉, 𝐸) with a ﬁnite set of
+nodes 𝑉and a set of edges 𝐸⊆{{𝑢, 𝑣} ⊆𝑉| 𝑢̸= 𝑣}. We
+denote the set of nodes and the set of edges of 𝐺by 𝑉(𝐺) and
+𝐸(𝐺), respectively. For ease of notation we denote the edge
+{𝑢, 𝑣} in 𝐸(𝐺) by (𝑢, 𝑣) or (𝑣, 𝑢). Moreover, 𝑁(𝑣) denotes
+the neighborhood of 𝑣in 𝑉(𝐺), i.e., 𝑁(𝑣) = {𝑣′ ∈𝑉(𝐺) |
+(𝑣, 𝑣′) ∈𝐸(𝐺)}. An attributed graph is a graph 𝐺endowed
+with an attribute function 𝑎: 𝑉(𝐺) →R𝑑for 𝑑≥1. We say
+that 𝑎(𝑣) is an attribute of 𝑣for 𝑣in 𝑉(𝐺). A labeled graph
+is an attributed graph with an attribute function 𝑙, where the
+codomain of 𝑙is restricted to a (ﬁnite) alphabet, e.g., a ﬁnite
+subset of the natural numbers. Analogously, we say that 𝑙(𝑣) is
+a label of 𝑣in 𝑉(𝐺).
+Let 𝜒be a non-empty set and let 𝑘: 𝜒×𝜒→R be a function.
+Then 𝑘is a kernel on 𝜒if there is a real Hilbert space ℋ𝑘and
+a mapping 𝜑: 𝜒→ℋ𝑘such that 𝑘(𝑥, 𝑦) = ⟨𝜑(𝑥), 𝜑(𝑦)⟩for 𝑥
+and 𝑦in 𝜒, where ⟨·, ·⟩denotes the inner product of ℋ𝑘. We call
+𝜑a feature map, and ℋ𝑘a feature space. Let 𝒢be a non-empty
+set of (attributed) graphs, then a kernel 𝑘: 𝒢× 𝒢→R is called
+graph kernel. We denote by 𝑘𝛿: 𝜒× 𝜒→R the Dirac kernel
+with 𝑘𝛿(𝑥, 𝑦) = 1 if 𝑥= 𝑦, and 0 otherwise.
+III. HASH GRAPH KERNELS
+In this section we introduce hash graph kernels. The main
+idea of hash graph kernels is to map attributes to labels using a
+family of hash functions and then apply a kernel for graphs with
+discrete labels.
+Let ℋ= {ℎ: R𝑑→N} be a family of hash functions and
+𝐺a graph with attribute function 𝑎: 𝑉(𝐺) →R𝑑. We can
+transform (𝐺, 𝑎) to a graph with discrete labels by mapping each
+attribute 𝑎(𝑣) to ℎ(𝑎(𝑣)) with some function ℎin ℋ. For short,
+we write ℎ(𝐺) for the labeled graph obtained by this procedure.
+The function ℎis drawn at random from the family of hash
+functions ℋ. This procedure is repeated multiple times in order
+to lower the variance. Thus, we obtain a sequence of discretely
+labeled graphs (ℎ𝑖(𝐺))𝐼
+𝑖=1, where 𝐼is the number of iterations.
+Hash graph kernels compare these sequences of labeled graphs
+by an arbitrary graph kernel for labeled graphs, which we refer
+to as discrete base graph kernel, e.g., the Weisfeiler-Lehman
+subtree or the shortest-path kernel.
+Deﬁnition 1 (Hash graph kernel). Let ℋbe a family of hash
+functions and 𝑘b a discrete base graph kernel, then the hash
+graph kernel for two attributed graphs 𝐺and 𝐻is deﬁned as
+𝑘HGK(𝐺, 𝐻) = 1
+𝐼
+𝐼
+∑︁
+𝑖=1
+𝑘b(ℎ𝑖(𝐺), ℎ𝑖(𝐻)),
+where ℎ𝑖is obtained by choosing hash functions from ℋ.
+We will discuss hash functions, possible ways to choose
+them from ℋand how they relate to the global kernel value
+in Section III-B and Section IV. We proceed with the algorithmic
+aspects of hash graph kernels. It is desirable for efﬁciency to
+compute explicit feature maps for graph kernels. We can obtain
+feature vectors for hash graph kernels under the assumption
+that the discrete base graph kernel can be computed by explicit
+feature maps. This can be achieved by concatenating the feature
+vectors for each iteration and normalizing the combined feature
+maps by
+√︀
+1/𝐼according to the pseudocode in Algorithm 1.
+Algorithm 1 Explicit feature maps for hash graph kernels
+1: Input: An attributed graph (𝐺, 𝑎), a graph feature map 𝜑𝑏
+of the discrete base kernel 𝑘𝑏, and a parameter 𝐼in N>0.
+2: Output: A feature vector 𝛷(𝐺) for (𝐺, 𝑎).
+3: for 𝑖in {1, . . . , 𝐼} do
+4:
+(𝐺, 𝑙) ←ℎ𝑖(𝐺)
+◁Hash attributes to labels
+5:
+𝛷(𝐺) ←𝛷(𝐺) ⊕𝜑𝑏((𝐺, 𝑙))
+◁Concatenate vectors
+6: end for
+7: Return
+√︀
+1/𝐼· 𝛷(𝐺)
+◁Normalize
+A. Analysis
+Since hash graph kernels are a normalized sum over discrete
+base graph kernels applied to a sequence of transformed input
+graphs, it is clear that we again obtain a valid kernel.
+For the explicit computation of feature maps by Algorithm 1
+we get the following bound on the running time.
+Proposition 1 (Running Time). Algorithm 1 computes the hash
+graph kernel feature map for a graph 𝐺in time 𝒪(𝐼· (TH(𝐺) +
+T𝜑(𝐺))), where TH(𝐺) denotes the running time to evaluate the
+hash functions for 𝐺and T𝜑(𝐺) the running time to compute
+the graph feature map of the discrete base graph kernel for 𝐺.
+Proof. Directly follows from Algorithm 1.
+
+
+3
+Notice that when we ﬁx the number of iterations and assume
+TH(𝐺) ≤T𝜑(𝐺), the hash graph kernel can be computed in the
+same asymptotic running time as the discrete base graph kernel.
+Moreover, notice that lines 4 to 5 in Algorithm 1 can be easily
+executed in parallel.
+B. Hash Functions
+In this section we discuss possible realizations of the
+hashing technique used to obtain hash graph kernels according
+to Deﬁnition 1.
+The key idea is to choose a family of hash functions and draw
+hash functions ℎ1 and ℎ2 in each iteration such that Pr[ℎ1(𝑥) =
+ℎ2(𝑦)] is an adequate measure of similarity between attributes 𝑥
+and 𝑦in R𝑑. For the case that ℎ1 = ℎ2 drawn at random, such
+families of hash functions have been proposed, e.g., see [20–22].
+Unfortunately, these results do not lift to kernels composed of
+products of base kernels. Thus they do not directly transfer to
+hash graph kernels, where complex discrete base graph kernels
+are employed. For example, let 𝑘𝛥be the hat kernel on R and ℎ
+a hash function, such that 𝑘𝛥(𝑥, 𝑦) = Pr[ℎ(𝑥) = ℎ(𝑦)], see [20].
+However, in general
+𝑘𝛥(𝑎, 𝑐) · 𝑘𝛥(𝑏, 𝑑) ̸= Pr [ℎ(𝑎) = ℎ(𝑐) ∧ℎ(𝑏) = ℎ(𝑑)] .
+To overcome this issue, we introduce the following concept.
+Deﬁnition 2. Let 𝑘: 𝜒× 𝜒→R be a kernel and let ℋ=
+{ℎ: 𝜒→𝒮} for some set 𝒮be a family of hash functions. Then
+ℋis an independent 𝑘-hash family if Pr[ℎ1(𝑥) = ℎ2(𝑦)] =
+𝑘(𝑥, 𝑦) where ℎ1 and ℎ2 are chosen independently and uniformly
+at random from ℋ.
+IV. HASH GRAPH KERNEL INSTANCES
+In the following we prove that hash graph kernels approximate
+implicit variants of the shortest-path and the Weisfeiler-Lehman
+subtree kernel for attributed graphs.
+A. Shortest-path kernel
+We ﬁrst describe the implicit shortest-path kernel which can
+handle attributes. Let (𝐺, 𝑎) be an attributed graph and let 𝑑𝑢𝑣
+denote the length of the shortest path between 𝑢and 𝑣in 𝑉(𝐺).
+The kernel is then deﬁned as
+𝑘𝑘A,𝑘d
+Imp-SP(𝐺, 𝐻) =
+∑︁
+(𝑢,𝑣)∈𝑉(𝐺)2
+𝑢̸=𝑣
+∑︁
+(𝑤,𝑧)∈𝑉(𝐻)2
+𝑤̸=𝑧
+𝑘((𝑢, 𝑣), (𝑤, 𝑧)),
+where
+𝑘((𝑢, 𝑣), (𝑤, 𝑧)) =𝑘A(𝑎(𝑢), 𝑎(𝑤)) · 𝑘A(𝑎(𝑣), 𝑎(𝑧))
+· 𝑘d(𝑑𝑢𝑣, 𝑑𝑤𝑧) .
+Here 𝑘A is a kernel for comparing node labels or attributes
+and 𝑘d is a kernel to compare shortest-path distances, such that
+𝑘d(𝑑𝑢𝑣, 𝑑𝑤𝑧) = 0 if 𝑑𝑢𝑣= ∞or 𝑑𝑤𝑧= ∞.
+If we set 𝑘A and 𝑘d to the Dirac kernel, we can compute an
+explicit mapping 𝜑SP for the kernel 𝑘𝑘A,𝑘d
+Imp-SP: Assume a labeled
+graph (𝐺, 𝑙), then each component of 𝜑SP(𝐺) counts the number
+of occurrences of a triple of the form (𝑙(𝑢), 𝑙(𝑣), 𝑑𝑢𝑣) for (𝑢, 𝑣)
+in 𝑉(𝐺)2, 𝑢̸= 𝑣, and 𝑑𝑢𝑣< ∞. It is easy to see that
+𝜑SP(𝐺)⊤𝜑SP(𝐻) = 𝑘𝑘𝛿,𝑘𝛿
+Imp-SP(𝐺, 𝐻) .
+(1)
+The following theorem shows that the hash graph kernel
+approximates 𝑘𝑘A,𝑘𝛿
+Imp-SP arbitrarily close by using the explicit
+shortest-path kernel as a discrete base kernel and an independent
+𝑘A-hash family.
+Theorem 1 (Approximation of implicit shortest-path kernel for
+continuous attributes). Let 𝑘A : R𝑛× R𝑛→R be a kernel and
+let ℋbe an independent 𝑘A-hash family. Assume that in each
+iteration of Algorithm 1 each attribute is mapped to a label
+using a hash function chosen independently and uniformly at
+random from ℋ. Then Algorithm 1 with the explicit shortest-path
+kernel acting as the discrete base kernel approximates 𝑘𝑘A,𝑘𝛿
+Imp-SP
+such that
+Pr
+[︁⃒⃒⃒𝛷(𝐺)⊤𝛷(𝐻) −𝑘𝑘A,𝑘𝛿
+Imp-SP(𝐺, 𝐻)
+⃒⃒⃒≥𝜆
+]︁
+≤2 exp
+(︀
+−2𝜆2𝐼
+)︀
+.
+Moreover with any constant probability,
+sup
+𝐺,𝐻∈𝒢
+⃒⃒⃒𝛷(𝐺)⊤𝛷(𝐻) −𝑘𝑘A,𝑘𝛿
+Imp-SP(𝐺, 𝐻)
+⃒⃒⃒≤𝜖,
+for 𝜖> 0.
+Proof. By assumption, we have Pr[ℎ1(𝑎) = ℎ2(𝑎′)] = 𝑘A(𝑎, 𝑎′)
+for ℎ1 and ℎ2 chosen independently and uniformly at random
+from ℋ. Since we are using a Dirac kernel to compare discrete
+attributes, we get E[𝑘𝛿(ℎ1(𝑎), ℎ2(𝑎′))] = 𝑘A(𝑎, 𝑎′). Since
+ℋis an independent 𝑘A-hash family, Pr[ℎ1(𝑎) = ℎ2(𝑏) ∧
+ℎ3(𝑐) = ℎ4(𝑑)] = 𝑘A(𝑎, 𝑏) · 𝑘A(𝑐, 𝑑) for ℎ1, ℎ2, ℎ3, and
+ℎ4 chosen independently and uniformly at random from ℋ.
+Hence, by the above, E[𝑘𝛿(ℎ1(𝑎), ℎ2(𝑏)) · 𝑘𝛿(ℎ3(𝑐), ℎ4(𝑑))] =
+𝑘A(𝑎, 𝑏) · 𝑘A(𝑐, 𝑑). By Eq. (1) and using the linearity of
+expectation, E[𝛷(𝐺)⊤𝛷(𝐻)] = 𝑘Imp-SP(𝐺, 𝐻). Now assume
+that 𝑘Imp-SP(𝐺, 𝐻) is normalized to [0, 1], then the ﬁrst claim
+follows from the Hoeffding bound [23]. In order to derive the
+second claim, we choose 𝐼≥
+1
+2𝜖2 log(|𝒢|2 · 𝑐) with a large
+enough constant 𝑐> 1, where 𝐼is the number of iterations
+in Algorithm 1. From the ﬁrst claim, we get
+Pr
+[︁⃒⃒⃒𝛷(𝐺)⊤𝛷(𝐻) −𝑘𝑘A,𝑘𝛿
+Imp-SP(𝐺, 𝐻)
+⃒⃒⃒> 𝜖
+]︁
+≤2 exp
+(︀
+−log(|𝒢|2 · 𝑐)
+)︀
+=
+1
+𝑐/2 · |𝒢|2 .
+The claim then follows from the Union bound.
+Notice that we can also approximate 𝑘𝑘A,𝑘d
+Imp-SP by employing a
+𝑘d-independent hash family.
+B. Weisfeiler-Lehman subtree kernel
+By the same arguments, we can derive a similar result for the
+Weisfeiler-Lehman subtree kernel. The following Proposition
+derives an implicit version of the Weisfeiler-Lehman subtree
+kernel.
+
+
+4
+Proposition 2 (Implicit Weisfeiler-Lehman subtree kernel). Let
+𝑘ℎ
+Imp-WL(𝐺, 𝐻) =
+ℎ
+∑︁
+𝑖=0
+∑︁
+𝑣∈𝑉(𝐺),
+𝑣′∈𝑉(𝐻)
+𝑘𝑖(𝑣, 𝑣′),
+where
+𝑘𝑖(𝑣, 𝑣′) =
+⎧
+⎪
+⎨
+⎪
+⎩
+𝑘𝛿(𝑙(𝑣), 𝑙(𝑣′))
+𝑖= 0,
+𝑘𝑖−1(𝑣, 𝑣′) · 𝑓(𝑣, 𝑣′) 𝑖> 0 ∧ℳ𝑖(𝑣, 𝑣′) ̸= ∅,
+0
+𝑖> 0 ∧ℳ(𝑣, 𝑣′) = ∅,
+and
+𝑓(𝑣, 𝑣′) = |𝑀𝑖(𝑣, 𝑣′)|−1
+∑︁
+𝑅∈𝑀𝑖(𝑣,𝑣′)
+∏︁
+(𝑤,𝑤′)∈𝑅
+𝑘𝑖−1(𝑤, 𝑤′),
+where ℳ𝑖(𝑣, 𝑣′) is the set of bijections 𝑏: 𝑉(𝐺) →𝑉(𝐻)
+between 𝑁(𝑣) and 𝑁(𝑣′) such that 𝑘𝑖−1(𝑤, 𝑤′) > 0 for 𝑏(𝑤) =
+𝑤′. Then 𝑘ℎ
+Imp-WL is equivalent to the Weisfeiler-Lehman subtree
+kernel.
+Proof. Follows from [19, Theorem 8].
+We show that Algorithm 1 with the (explicit) Weisfeiler-
+Lehman subtree kernel acting as the discrete base graph kernel
+probabilistically approximates the graph kernel 𝑘ℎ,𝑘A
+Imp-WL, where
+𝑘ℎ,𝑘A
+Imp-WL is deﬁned by substituting 𝑘𝛿in the deﬁnition of
+𝑘ℎ
+Imp-WL(𝐺, 𝐻) by a kernel 𝑘A : R𝑛× R𝑛→R.
+Corollary 1 (Approximation of implicit Weisfeiler-Lehman
+subtree kernel for continous attributes). Let 𝑘A : R𝑛× R𝑛→R
+be a kernel and let ℋbe an independent 𝑘A-hash family. Assume
+that in each iteration of Algorithm 1 each attribute is mapped to
+a label using a hash function chosen independently and uniformly
+at random from ℋ. Then Algorithm 1 with the Weisfeiler-Lehman
+subtree kernel with ℎiterations acting as the discrete base kernel
+approximates 𝑘ℎ,𝑘A
+Imp-WL such that
+Pr
+[︁⃒⃒⃒𝛷(𝐺)⊤𝛷(𝐻) −𝑘ℎ,𝑘A
+Imp-WL(𝐺, 𝐻)
+⃒⃒⃒≥𝜆
+]︁
+≤2 exp
+(︀
+−2𝜆2𝐼
+)︀
+.
+Moreover with any constant probability,
+sup
+𝐺,𝐻∈𝒢
+⃒⃒⃒𝛷(𝐺)⊤𝛷(𝐻) −𝑘ℎ,𝑘A
+Imp-WL(𝐺, 𝐻)
+⃒⃒⃒≤𝜖,
+for 𝜖> 0.
+Proof. Since 𝑘ℎ
+Imp-WL is written as a sum of products and sums
+of Dirac kernels, we can again use the property of 𝑘-independent
+hash functions and argue analogously to the proof of Theorem 1.
+V. EXPERIMENTAL EVALUATION
+Our intention here is to investigate the beneﬁts of hash graph
+kernels compared to the state-of-the-art. More precisely, we
+address the following questions:
+Q1 How do hash graph kernels compare to state-of-the-art
+graph kernels for attributed graphs in terms of classiﬁcation
+accuracy and running time?
+Q2 How does the choice of the discrete base kernel inﬂuence
+the classiﬁcation accuracy?
+Q3 Does the number of iterations inﬂuence the classiﬁcation
+accuracy of hash graph kernels in practice?
+A. Data Sets and Graph Kernels
+We used the following data sets to evaluate and compare
+hash graph kernels: ENZYMES [3, 5], FRANKENSTEIN [7],
+PROTEINS [3, 5], SYNTHETICNEW [5], and SYNTHIE.1 The data
+set SYNTHIE consists of 400 graphs, subdivided into four classes,
+with 15 real-valued node attributes. It was generated as follows:
+First, we generated two Erd˝os-Rényi graphs 𝐺1 and 𝐺2 on 𝑛
+vertices with edge probability 𝑝= 0.2. From each we generated
+a seed set 𝒮𝑖for 𝑖in {1, 2} of 200 graphs by randomly adding
+or deleting 25% of the edges of 𝐺𝑖. Connected graphs were
+obtained by randomly sampling 10 seeds and randomly adding
+edges between them. We generated the class 𝒞1 of 200 graphs,
+choosing seeds with probability 0.8 from 𝒮1 and 0.2 from 𝒮2
+and the class 𝒞2 with interchanged probabilities. Finally, we
+generated a set of real-valued vectors of dimension 15, subdivided
+into classes 𝒜and ℬ, following the approach of [24]. We then
+subdivided 𝒞𝑖into two classes 𝒞𝐴
+𝑖and 𝒞𝐵
+𝑖
+by drawing a random
+attribute for each node. For the class 𝒞𝐴
+𝑖(𝒞𝐵
+𝑖), a node stemming
+from a seed in 𝒮1 (𝒮2) was annotated by an attribute from 𝒜,
+and from ℬotherwise.
+We implemented hash graph kernels with the explicit shortest-
+path graph kernel (HGK-SP) and the Weisfeiler-Lehman subtree
+kernel (HGK-WL) acting as discrete base kernels in Python.2
+We compare our kernels to the GraphHopper kernel (GH) [5],
+an instance of the graph invariant kernels (GI) [7], and the
+propagation kernel from [2] which support continuous attributes
+(P2K). Additionally, we compare our kernel to the Weisfeiler-
+Lehman subtree kernel and the explicit shortest-path kernel
+(SP), which only take discrete label information into account, to
+exemplify the usefulness of using continuous attributes. Since the
+FRANKENSTEIN, SYNTHETICNEW, and SYNTHIE data set do
+not have discrete labels, we used node degrees as labels instead.
+For GI we used the original Python implementation provided
+by the author of [7]. The variants of the hash graph kernel are
+computed on a single core only. For GH and P2K we used the
+original Matlab implementation provided by the authors of [5]
+and [2], respectively.
+B. Experimental Protocol
+For each kernel, we computed the normalized gram matrix.
+For explicit kernels we computed the gram matrix via the linear
+kernel. Note that the running times of the hash graph kernels
+could be further reduced by employing linear kernel methods.
+We computed the classiﬁcation accuracies using the C-SVM
+implementation of LIBSVM [25], using 10-fold cross validation.
+The 𝐶-parameter was selected from {10−3, 10−2, . . . , 102, 103}
+by 10-fold cross validation on the training folds. We repeated
+each 10-fold cross validation ten times with different random
+1Due to space constraints we refer to https://ls11-www.cs.uni-dortmund.de/
+staff/morris/graphkerneldatasets for descriptions, references, and statistics.
+2The source code can be obtained from https://ls11-www.cs.uni-dortmund.de/
+people/morris/hashgraphkernel.zip.
+
+
+5
+folds and report average accuracies and standard deviations.
+Since the hash graph kernels and P2K are randomized algorithms
+we computed each gram matrix ten times and report average
+classiﬁcation accuracies and running times. We report running
+times for WL, HGK-WL, and P2K with 5 reﬁnement steps.
+We ﬁxed the number of iterations of the hash graph kernels
+for all but the SYNTHIE data set to 20, since this was sufﬁcient
+to obtain state-of-the-art classiﬁcation accuracies. For the
+SYNTHIE data set we set the number of iterations to 100,
+which indicates that this data set is harder to classify. The
+number of reﬁnement/propagation steps for WL, HGK-WL,
+and P2K was selected from {0, . . . , 4} using 10-fold cross
+validation on the training folds only. For the hash graph kernels
+we centered the attributes dimensionwise to the mean, scaled
+to unit variance, and used 2-stable LSH [22] as hash functions
+to hash attributes to discrete labels. For the ENZYMES, the
+PROTEINS, SYNTHETICNEW, and SYNTHIE data set we set the
+interval length to 1, see [22]. Due to the high dimensional sparse
+attributes of the FRANKENSTEIN data set we set the interval
+length to 100. For each hash graph kernel we report classiﬁcation
+accuracy and running time with and without taking discrete
+labels into account. For the HGK-WL we propagated label and
+hashed attribute information separately. In order to speed up
+the computation we used the same LSH hash function for all
+attributes in one iteration.
+For the graph invariant kernel we used the LWLV variant, which
+has been reported to perform overall well on all data sets [7].
+The implementation is using parallelization to speed up the
+computation and we set the number of parallel processes to eight.
+For GH and GI we used the Gaussian RBF kernel to compare
+node attributes. For all the data sets except FRANKENSTEIN, we
+set the parameter 𝛾of the RBF kernel to 1/(Dimension of attribute
+vector), see [5, 7]. For FRANKENSTEIN, we set 𝛾= 0.0073 [7].
+Moreover, in order to study the inﬂuence of the number of
+iterations of the hash graph kernels, we computed classiﬁcation
+accuracies and running times of hash kernels with 1 to 50
+iterations on the ENZYMES data set. Running times were averaged
+over ten independent runs.
+All experiments were conducted on a workstation with an Intel
+Core i7-3770@3.40GHz and 16 GB of RAM running Ubuntu
+14.04 LTS with Python 2.7.6 and Matlab R2015b.
+C. Results and Discussion
+In the following we answer questions Q1–Q3.
+A1 The running times and the classiﬁcation accuracies are
+depicted in Table I and Table II, respectively.
+In terms of classiﬁcation accuracies HGK-WL achieves
+state-of-the-art results on the PROTEINS and the SYN-
+THETICNEW data set. Notice that the WL kernel, without
+using attribute information, achieves the same classiﬁcation
+accuracy on SYNTHETICNEW. This indicates that on this
+data set the attributes are only of marginal relevance for
+classiﬁcation. A different result is observed for the other
+data sets. On the SYNTHIE data set HGK-WL achieves the
+overall best accuracy and is more than 20% better than GH
+and 40% better than P2K. The kernel almost achieves state-
+of-the art classiﬁcation accuracy on the FRANKENSTEIN
+data set. Notice that the 𝛾parameter of the RBF kernel
+used in GI and GH was ﬁnely tuned.
+HGK-SP achieves state-of-the-art classiﬁcation accuracy
+on the ENZYMES and PROTEINS data set and compares
+favorably on the SYNTHETICNEW data set. On the
+FRANKENSTEIN data set, we observed better classiﬁcation
+accuracy than GH. Moreover, it performs also well on the
+SYNTHIE data set.
+In terms of running times both instances of the hash graph
+kernel framework perform very well. On all data sets
+HGK-WL obtains running times that are several orders of
+magnitude faster than GH and GI.
+A2 As Table II shows, the choice of the discrete base kernel
+has major inﬂuence on the classiﬁcation accuracy for
+some data sets. On the ENZYMES data sets HGK-SP
+performs very favorably, while HGK-WL achieves higher
+classiﬁcation accuracies on the FRANKENSTEIN data set. On
+the PROTEINS and the SYNTHETICNEW data sets both hash
+graph kernels achieve similar results. HGK-WL performs
+slightly better on the SYNTHIE data set.
+A3 Fig. 1 illustrates the inﬂuence of the number iterations
+on HGK-SP and HGK-WL on the ENZYMES data set.
+Both plots show that a higher number of iterations leads to
+better classiﬁcation accuracies while the running time grows
+linearly. In case of the HGK-SP, the classiﬁcation accuracy
+on the ENZYMES data set improves by more than 12% when
+using 20 instead of 1 iterations. The improvement on the
+ENZYMES data set is even more substantial for HGK-WL:
+the classiﬁcation accuracy improves by more than 16%. At
+about 30 and 40 iterations for the HGK-SP and HGK-WL,
+respectively, the algorithms reach a point of saturation.
+0
+10
+20
+30
+40
+50
+Number of iterations
+60
+62
+64
+66
+68
+70
+72
+74
+Classification accuracy [%]
+Accuracy
+0
+20
+40
+60
+80
+100
+120
+140
+Running time [s]
+ Time
+(a) Shortest-path kernel
+0
+10
+20
+30
+40
+50
+Number of iterations
+50
+52
+54
+56
+58
+60
+62
+64
+66
+68
+Classification accuracy [%]
+Accuracy
+0
+20
+40
+60
+80
+100
+120
+140
+Running time [s]
+ Time
+(b) Weisfeiler-Lehman subtree kernel
+Fig. 1. Inﬂuence of the number of iterations on the classiﬁcation accuracy for
+HGK-SP and HGK-WL on the ENZYMES data set.
+VI. CONCLUSION AND FUTURE WORK
+We have introduced the hash graph kernel framework which
+allows applying the various existing scalable and well-engineered
+kernels for graphs with discrete labels to graphs with continuous
+attributes. The derived kernels outperform other kernels tailored
+to attributed graphs in terms of running time without sacriﬁcing
+classiﬁcation accuracy.
+Moreover, we showed that the hash graph kernel framework
+approximates implicit variants of the shortest-path and the
+Weisfeiler-Lehman subtree kernel with an arbitrary small error.
+
+
+6
+TABLE I
+RUNNING TIMES IN SECONDS (NUMBER OF ITERATIONS FOR HGK-WL AND HGK-SP: 20 (100 FOR SYNTHIE), NUMBER OF REFINEMENT STEPS OF WL,
+HGK-WL, AND PK: 5, *— KERNEL USES DISCRETE LABELS ONLY, †— MATLAB CODE, ‡— CODE IS EXECUTED IN PARALLEL USING EIGHT PROCESSES),
+OOM— OUT OF MEMORY.
+Graph Kernel
+Data Set
+ENZYMES
+FRANKENSTEIN
+PROTEINS
+SYNTHETICNEW
+SYNTHIE
+Cont.
+Label+Cont.
+Cont.
+Label+Cont.
+Cont.
+Label+Cont.
+Cont.
+Label+Cont.
+Cont.
+Label+Cont.
+WL*
+1.30
+25.05
+4.06
+0.73
+1.02
+SP*
+1.46
+22.87
+5.86
+3.26
+3.69
+HGK-SP
+27.91
+43.32
+165.9
+197.82
+89.13
+107.09
+60.74
+80.63
+428.13
+714.38
+HGK-WL
+25.10
+32.06
+307.10
+497.69
+60.00
+82.41
+15.17
+22.50
+123.59
+168.04
+GH†
+–
+365.82
+–
+16329.00
+–
+3396.20
+–
+275.26
+–
+348.18
+GI‡
+–
+1748.82
+–
+26717.25
+–
+7905.23
+–
+3814.46
+–
+5522.96
+P2K†
+–
+43.77
+–
+OOM
+–
+208.09
+–
+15.12
+–
+45.34
+TABLE II
+CLASSIFICATION ACCURACIES IN PERCENT AND STANDARD DEVIATIONS (NUMBER OF ITERATIONS FOR HGK-WL AND HGK-SP: 20 (100 FOR SYNTHIE), *—
+KERNEL USES DISCRETE LABELS ONLY), OOM— OUT OF MEMORY.
+Graph Kernel
+Data Set
+ENZYMES
+FRANKENSTEIN
+PROTEINS
+SYNTHETICNEW
+SYNTHIE
+Cont.
+Label+Cont.
+Cont.
+Label+Cont.
+Cont.
+Label+Cont.
+Cont.
+Label+Cont.
+Cont.
+Label+Cont.
+WL*
+53.97 (±1.34)
+73.53 (±0.33)
+75.02 (±0.58)
+98.57 (±0.30)
+53.60 (±0.81)
+SP*
+42.88 (±1.04)
+69.51(±0.35)
+75.71 (±0.34)
+83.30(±1.35)
+53.78 (±0.62)
+HGK-SP
+66.73 (±0.91)
+71.30 (±0.86)
+65.84 (±0.32)
+70.06 (±0.32)
+75.14 (±0.47)
+77.47 (±0.43)
+80.55 (±1.29)
+96.46 ±0.61)
+86.27 (±0.72)
+94.34 (±0.54)
+HGK-WL
+63.94 (±1.11)
+67.63 (±0.95)
+73.16 (±0.34)
+73.62 (±0.38)
+74.88 (±0.64)
+76.70 (±0.41)
+97.57 (±0.42)
+98.84 (±0.29)
+80.25 (±1.37)
+96.75 (±0.51)
+GH
+–
+68.80 (±0.96)
+–
+68.48 (±0.26)
+–
+72.26 (±0.34)
+–
+85.10 (±1.04)
+–
+73.18 (±0.77)
+GI
+–
+71.70 (±0.79)
+–
+76.31 (±0.33)
+–
+76.88 (±0.47)
+–
+83.07 (±1.10)
+–
+95.75 (±0.50)
+P2K
+–
+69.22 (±0.34)
+–
+OOM
+–
+73.45 (±0.48)
+–
+91.70 (±0.86)
+–
+50.15 (±1.92)
+ACKNOWLEDGEMENT
+This work was supported by the German Science Foundation
+(DFG) within the Collaborative Research Center SFB 876
+“Providing Information by Resource-Constrained Data Analysis”,
+project A6 “Resource-efﬁcient Graph Mining”. We thank Aasa
+Feragen, Marion Neumann, and Franceso Orsini for providing
+us with data sets and source code.
+REFERENCES
+[1]
+S. V. N. Vishwanathan, N. N. Schraudolph, R. Kondor, and K. M.
+Borgwardt, “Graph kernels,” Journal of Machine Learning Research, vol.
+11, pp. 1201–1242, 2010.
+[2]
+M. Neumann, R. Garnett, C. Bauckhage, and K. Kersting, “Propagation
+kernels: efﬁcient graph kernels from propagated information,” Machine
+Learning, vol. 102, no. 2, pp. 209–245, 2016.
+[3]
+K. M. Borgwardt, C. S. Ong, S. Schönauer, S. Vishwanathan, A. J.
+Smola, and H.-P. Kriegel, “Protein function prediction via graph kernels.,”
+Bioinformatics, vol. 21 Suppl 1, pp. i47–i56, 2005.
+[4]
+Z. Harchaoui and F. Bach, “Image classiﬁcation with segmentation graph
+kernels,” in IEEE Conference on Computer Vision and Pattern Recognition,
+2007, pp. 1–8.
+[5]
+A. Feragen, N. Kasenburg, J. Petersen, M. D. Bruijne, and B. K. M.,
+“Scalable kernels for graphs with continuous attributes,” in Advances
+in Neural Information Processing System, Erratum available at http:
+//image.diku.dk/aasa/papers/graphkernels_nips_erratum.pdf, 2013,
+pp. 216–224.
+[6]
+N. Kriege and P. Mutzel, “Subgraph matching kernels for attributed
+graphs,” in Proceedings of the Twentieth International Conference on
+Machine Learning, 2012.
+[7]
+F. Orsini, P. Frasconi, and L. De Raedt, “Graph invariant kernels,” in
+Proceedings of the Twenty-fourth International Joint Conference on
+Artiﬁcial Intelligence, 2015, pp. 3756–3762.
+[8]
+N. Kriege, M. Neumann, K. Kersting, and M. Mutzel, “Explicit versus
+implicit graph feature maps: a computational phase transition for walk
+kernels,” in 2014 IEEE International Conference on Data Mining, 2014,
+pp. 881–886.
+[9]
+T. Joachims, “Training linear SVMs in linear time,” in Proceedings of the
+Twelfth ACM SIGKDD International Conference on Knowledge Discovery
+and Data Mining, 2006, pp. 217–226.
+[10]
+T. Gärtner, P. Flach, and S. Wrobel, “On graph kernels: hardness results
+and efﬁcient alternatives,” in Learning Theory and Kernel Machines,
+2003, pp. 129–143.
+[11]
+H. Kashima, K. Tsuda, and A. Inokuchi, “Marginalized kernels between
+labeled graphs,” in Proceedings of the Twentieth International Conference
+on Machine Learning, 2003, pp. 321–328.
+[12]
+U. Kang, H. Tong, and J. Sun, “Fast random walk graph kernel,” in
+Proceedings of the 2012 SIAM International Conference on Data Mining,
+2012, pp. 828–838.
+[13]
+P. Mahé, N. Ueda, T. Akutsu, J.-L. Perret, and J.-P. Vert, “Extensions
+of marginalized graph kernels,” in Proceedings of the Twenty-ﬁrst
+International Conference on Machine Learning, 2004, pp. 552–559.
+[14]
+J. Ramon and T. Gärtner, “Expressivity versus efﬁciency of graph kernels,”
+in First International Workshop on Mining Graphs, Trees and Sequences,
+2003.
+[15]
+K. M. Borgwardt and H.-P. Kriegel, “Shortest-path kernels on graphs,” in
+Proceedings of the Fifth IEEE International Conference on Data Mining,
+2005, pp. 74–81.
+[16]
+N. Shervashidze, S. V. N. Vishwanathan, T. H. Petri, K. Mehlhorn, and
+K. M. Borgwardt, “Efﬁcient graphlet kernels for large graph comparison,”
+in Proceedings of the Twelfth International Conference on Artiﬁcial
+Intelligence and Statistics, 2009, pp. 488–495.
+[17]
+T. Horváth, T. Gärtner, and S. Wrobel, “Cyclic pattern kernels for predictive
+graph mining,” in Proceedings of the Tenth ACM SIGKDD International
+Conference on Knowledge Discovery and Data Mining, 2004, pp. 158–167.
+[18]
+S. Hido and H. Kashima, “A linear-time graph kernel,” in The Ninth
+IEEE International Conference on Data Mining, 2009, pp. 179–188.
+[19]
+N. Shervashidze, P. Schweitzer, E. J. van Leeuwen, K. Mehlhorn, and
+K. M. Borgwardt, “Weisfeiler-Lehman graph kernels,” Journal of Machine
+Learning Research, vol. 12, pp. 2539–2561, 2011.
+[20]
+A. Rahimi and B. Recht, “Random features for large-scale kernel machines,”
+in Advances in Neural Information Processing Systems, 2008, pp. 1177–
+1184.
+[21]
+A. Andoni, “Nearest neighbor search: the old, the new, and the impossible,”
+Ph.D. thesis, MIT, 2009.
+[22]
+M. Datar, N. Immorlica, P. Indyk, and V. S. Mirrokni, “Locality-sensitive
+hashing scheme based on 𝑝-stable distributions,” in Proceedings of the
+Twentieth Annual ACM Symposium on Computational Geometry, 2004,
+pp. 253–262.
+[23]
+W. Hoeffding, “Probability inequalities for sums of bounded random
+variables,” Journal of the American Statistical Association, vol. 58, no.
+301, pp. 13–30, 1963.
+[24]
+I. Guyon. (2003). Design of experiments for the NIPS 2003 variable
+selection benchmark, [Online]. Available: http://clopinet.com/isabelle/
+Projects/NIPS2003/Slides/NIPS2003-Datasets.pdf (visited on 09/29/2016).
+[25]
+C.-C. Chang and C.-J. Lin, “LIBSVM: a library for support vector
+machines,” ACM Transactions on Intelligent Systems and Technology, vol.
+2, 27:1–27:27, 3 2011, Software available at http://www.csie.ntu.edu.tw/
+~cjlin/libsvm.
